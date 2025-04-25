@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\inetpub\wwwroot\WebApi_LoDeFran</_PublishTargetUrl>
+    <History>True|2025-04-18T14:38:34.8498139Z||;True|2025-04-17T20:58:58.2143336-03:00||;True|2025-04-17T20:55:14.5375071-03:00||;True|2025-04-17T20:48:55.7059937-03:00||;True|2025-04-17T20:13:09.9023604-03:00||;True|2025-04-17T19:35:44.1127158-03:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>
