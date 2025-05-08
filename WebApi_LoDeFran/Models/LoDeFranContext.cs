@@ -23,11 +23,17 @@ public partial class LoDeFranContext : DbContext
 
     public virtual DbSet<DetallesPedido> DetallesPedidos { get; set; }
 
+    public virtual DbSet<EstadosInsumo> EstadosInsumos { get; set; }
+
     public virtual DbSet<EstadosPedido> EstadosPedidos { get; set; }
 
     public virtual DbSet<EstadosProducto> EstadosProductos { get; set; }
 
     public virtual DbSet<Factura> Facturas { get; set; }
+
+    public virtual DbSet<Insumo> Insumos { get; set; }
+
+    public virtual DbSet<InsumosProducto> InsumosProductos { get; set; }
 
     public virtual DbSet<Mesa> Mesas { get; set; }
 
@@ -38,6 +44,8 @@ public partial class LoDeFranContext : DbContext
     public virtual DbSet<Producto> Productos { get; set; }
 
     public virtual DbSet<Promocione> Promociones { get; set; }
+
+    public virtual DbSet<Proveedore> Proveedores { get; set; }
 
     public virtual DbSet<Reserva> Reservas { get; set; }
 
@@ -148,6 +156,22 @@ public partial class LoDeFranContext : DbContext
                 .HasConstraintName("FK_Detalles_Producto");
         });
 
+        modelBuilder.Entity<EstadosInsumo>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__estados___3213E83F35CD2668");
+
+            entity.ToTable("estados_insumos");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Descripcion)
+                .HasColumnType("text")
+                .HasColumnName("descripcion");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
+        });
+
         modelBuilder.Entity<EstadosPedido>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Estados___3213E83FE27A2447");
@@ -202,6 +226,71 @@ public partial class LoDeFranContext : DbContext
             entity.HasOne(d => d.Pedido).WithMany(p => p.Facturas)
                 .HasForeignKey(d => d.PedidoId)
                 .HasConstraintName("FK_Facturas_Pedidos");
+        });
+
+        modelBuilder.Entity<Insumo>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__insumos__3213E83F5F8B6EF6");
+
+            entity.ToTable("insumos");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CantidadDisponible)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("cantidad_disponible");
+            entity.Property(e => e.CantidadMinima)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("cantidad_minima");
+            entity.Property(e => e.Costo)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("costo");
+            entity.Property(e => e.Descripcion)
+                .HasColumnType("text")
+                .HasColumnName("descripcion");
+            entity.Property(e => e.EstadoId).HasColumnName("estado_id");
+            entity.Property(e => e.FechaUltimoIngreso)
+                .HasColumnType("datetime")
+                .HasColumnName("fecha_ultimo_ingreso");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
+            entity.Property(e => e.ProveedorId).HasColumnName("proveedor_id");
+            entity.Property(e => e.UnidadMedida)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("unidad_medida");
+
+            entity.HasOne(d => d.Estado).WithMany(p => p.Insumos)
+                .HasForeignKey(d => d.EstadoId)
+                .HasConstraintName("fk_estado_insumo");
+
+            entity.HasOne(d => d.Proveedor).WithMany(p => p.Insumos)
+                .HasForeignKey(d => d.ProveedorId)
+                .HasConstraintName("FK__insumos__proveed__6442E2C9");
+        });
+
+        modelBuilder.Entity<InsumosProducto>(entity =>
+        {
+            entity.HasKey(e => new { e.ProductoId, e.InsumoId });
+
+            entity.ToTable("insumos_productos");
+
+            entity.Property(e => e.ProductoId).HasColumnName("producto_id");
+            entity.Property(e => e.InsumoId).HasColumnName("insumo_id");
+            entity.Property(e => e.Cantidad)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("cantidad");
+
+            entity.HasOne(d => d.Insumo).WithMany(p => p.InsumosProductos)
+                .HasForeignKey(d => d.InsumoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__insumos_p__insum__690797E6");
+
+            entity.HasOne(d => d.Producto).WithMany(p => p.InsumosProductos)
+                .HasForeignKey(d => d.ProductoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__insumos_p__productos__681373AD");
         });
 
         modelBuilder.Entity<Mesa>(entity =>
@@ -291,6 +380,7 @@ public partial class LoDeFranContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_creacion");
+            entity.Property(e => e.InsumoId).HasColumnName("insumo_id");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(150)
                 .IsUnicode(false)
@@ -299,6 +389,7 @@ public partial class LoDeFranContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("precio");
             entity.Property(e => e.Stock).HasColumnName("stock");
+            entity.Property(e => e.TieneInsumos).HasColumnName("tiene_insumos");
 
             entity.HasOne(d => d.CategoriaProducto).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.CategoriaProductoId)
@@ -307,6 +398,10 @@ public partial class LoDeFranContext : DbContext
             entity.HasOne(d => d.Estado).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.EstadoId)
                 .HasConstraintName("FK_Productos_EstadoProducto");
+
+            entity.HasOne(d => d.Insumo).WithMany(p => p.Productos)
+                .HasForeignKey(d => d.InsumoId)
+                .HasConstraintName("FK_productos_insumo");
         });
 
         modelBuilder.Entity<Promocione>(entity =>
@@ -348,6 +443,30 @@ public partial class LoDeFranContext : DbContext
                         j.IndexerProperty<int>("PromocionId").HasColumnName("promocion_id");
                         j.IndexerProperty<int>("ProductoId").HasColumnName("producto_id");
                     });
+        });
+
+        modelBuilder.Entity<Proveedore>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__proveedo__3213E83F039ADCD6");
+
+            entity.ToTable("proveedores");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Direccion)
+                .HasColumnType("text")
+                .HasColumnName("direccion");
+            entity.Property(e => e.Email)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("email");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
+            entity.Property(e => e.Telefono)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("telefono");
         });
 
         modelBuilder.Entity<Reserva>(entity =>

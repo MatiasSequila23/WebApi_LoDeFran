@@ -93,4 +93,69 @@ public class ProductosController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpPost("{id}/insumos")]
+    public async Task<IActionResult> AsociarInsumo(int id, InsumoProductoViewModel insumo)
+    {
+        var producto = await _context.Productos.Include(p => p.InsumosProductos)
+                                               .FirstOrDefaultAsync(p => p.Id == id);
+
+        if (producto == null)
+            return NotFound();
+
+        producto.InsumosProductos.Add(new InsumosProducto
+        {
+            ProductoId = id,
+            InsumoId = insumo.InsumoId,
+            Cantidad = insumo.Cantidad ?? 0
+        });
+
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+    [HttpGet("{id}/insumos")]
+    public async Task<IActionResult> GetInsumosAsignados(int id)
+    {
+        var insumos = await _context.InsumosProductos
+            .Include(ip => ip.Insumo) // importante para que funcione el mapeo de Insumo.Nombre
+            .Where(ip => ip.ProductoId == id)
+            .ToListAsync();
+
+        if (insumos == null || !insumos.Any())
+            return NotFound();
+
+        var insumosVM = _mapper.Map<List<InsumoProductoViewModel>>(insumos);
+        return Ok(insumosVM);
+    }
+    [HttpPut("{productoId}/insumos/{insumoId}")]
+    public async Task<IActionResult> ActualizarInsumoProducto(int productoId, int insumoId, [FromBody] InsumoProductoViewModel insumo)
+    {
+        if (productoId != insumo.ProductoId || insumoId != insumo.InsumoId)
+            return BadRequest("Los IDs no coinciden.");
+
+        var insumoProducto = await _context.InsumosProductos
+            .FirstOrDefaultAsync(ip => ip.ProductoId == productoId && ip.InsumoId == insumoId);
+
+        if (insumoProducto == null)
+            return NotFound("Insumo asignado no encontrado.");
+
+        if (insumo.Cantidad.HasValue)
+            insumoProducto.Cantidad = insumo.Cantidad.Value;
+
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+    [HttpDelete("{productoId}/insumos/{insumoId}")]
+    public async Task<IActionResult> EliminarInsumoProducto(int productoId, int insumoId)
+    {
+        var insumoProducto = await _context.InsumosProductos
+            .FirstOrDefaultAsync(ip => ip.ProductoId == productoId && ip.InsumoId == insumoId);
+
+        if (insumoProducto == null)
+            return NotFound("Insumo asignado no encontrado.");
+
+        _context.InsumosProductos.Remove(insumoProducto);
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
 }

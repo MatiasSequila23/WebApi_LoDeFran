@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran.csproj": {}
+    "C:\\SISTEMA LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran.csproj": {}
   },
   "projects": {
-    "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran.csproj": {
+    "C:\\SISTEMA LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran.csproj",
+        "projectUniqueName": "C:\\SISTEMA LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran.csproj",
         "projectName": "WebApi_LoDeFran",
-        "projectPath": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran.csproj",
+        "projectPath": "C:\\SISTEMA LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran.csproj",
         "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
         "outputPath": "C:\\SISTEMA LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\obj\\",
         "projectStyle": "PackageReference",

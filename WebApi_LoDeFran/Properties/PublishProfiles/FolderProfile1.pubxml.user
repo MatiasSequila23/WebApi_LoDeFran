@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\inetpub\wwwroot\WebApi_LoDeFran</_PublishTargetUrl>
-    <History>True|2025-04-23T17:36:28.1423983Z||;</History>
+    <History>True|2025-05-02T04:02:20.0435443Z||;True|2025-05-02T00:23:46.5216035-03:00||;True|2025-05-02T00:15:04.6355246-03:00||;True|2025-05-02T00:14:57.1659889-03:00||;True|2025-05-01T23:59:36.8664628-03:00||;True|2025-05-01T23:43:16.0066395-03:00||;True|2025-05-01T23:03:08.4251735-03:00||;True|2025-04-29T23:25:18.9321206-03:00||;True|2025-04-29T23:15:05.9332837-03:00||;True|2025-04-29T22:49:33.6962628-03:00||;True|2025-04-25T15:45:03.2146512-03:00||;True|2025-04-25T14:54:38.7671838-03:00||;True|2025-04-23T14:36:28.1423983-03:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

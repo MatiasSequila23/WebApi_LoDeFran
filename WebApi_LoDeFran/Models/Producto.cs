@@ -23,11 +23,19 @@ public partial class Producto
 
     public int? CategoriaProductoId { get; set; }
 
+    public int? InsumoId { get; set; }
+
+    public bool TieneInsumos { get; set; }
+
     public virtual CategoriasProducto? CategoriaProducto { get; set; }
 
     public virtual ICollection<DetallesPedido> DetallesPedidos { get; set; } = new List<DetallesPedido>();
 
     public virtual EstadosProducto? Estado { get; set; }
+
+    public virtual Insumo? Insumo { get; set; }
+
+    public virtual ICollection<InsumosProducto> InsumosProductos { get; set; } = new List<InsumosProducto>();
 
     public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
 

@@ -7,24 +7,44 @@
       "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\viewmodels\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\viewmodels\\insumoproductoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\insumoproductoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\models\\insumosproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\models\\insumosproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\viewmodels\\productoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\productoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\controllers\\estadosinsumoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\estadosinsumoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\controllers\\estadosproductoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\estadosproductoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\controllers\\insumoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\insumoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\models\\lodefrancontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\models\\lodefrancontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\viewmodels\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|c:\\sistema lodefran\\webapi_lodefran\\webapi_lodefran\\viewmodels\\stockviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -68,50 +88,126 @@
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\ProductosController.cs",
               "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\ProductosController.cs",
               "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\ProductosController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBUAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAawJ8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T17:33:31.821Z",
+              "WhenOpened": "2025-05-02T01:49:33.241Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductoViewModel.cs",
+              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
+              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T01:07:11.017Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "EstadosProductosController.cs",
+              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\EstadosProductosController.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\EstadosProductosController.cs",
+              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\EstadosProductosController.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\EstadosProductosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T02:07:00.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EstadosInsumosController.cs",
+              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\EstadosInsumosController.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\EstadosInsumosController.cs",
+              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\EstadosInsumosController.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\EstadosInsumosController.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAIwEUAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T02:07:31.168Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LoDeFranContext.cs",
+              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\LoDeFranContext.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\LoDeFranContext.cs",
+              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\LoDeFranContext.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Models\\LoDeFranContext.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T15:43:01.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
+              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAIwEQAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T17:01:33.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InsumoProductoViewModel.cs",
+              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\InsumoProductoViewModel.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\InsumoProductoViewModel.cs",
+              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\InsumoProductoViewModel.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\InsumoProductoViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T01:08:32.203Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\appsettings.json",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\appsettings.json",
-              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\appsettings.json",
-              "RelativeToolTip": "WebApi_LoDeFran\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-17T22:52:10.235Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Program.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Program.cs",
-              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Program.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Title": "InsumosProducto.cs",
+              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\InsumosProducto.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\InsumosProducto.cs",
+              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\InsumosProducto.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Models\\InsumosProducto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T22:50:41.043Z"
+              "WhenOpened": "2025-05-02T01:54:33.324Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\UsuariosController.cs",
-              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\UsuariosController.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAcwE4AAAAiAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "Producto.cs",
+              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Producto.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\Producto.cs",
+              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Producto.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Models\\Producto.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAYwBsAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T17:34:22.198Z"
+              "WhenOpened": "2025-04-25T15:11:58.839Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
+              "Title": "InsumosController.cs",
+              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\InsumosController.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\InsumosController.cs",
+              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\InsumosController.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\InsumosController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T16:42:10.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "UsuarioViewModel.cs",
               "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\UsuarioViewModel.cs",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\UsuarioViewModel.cs",
@@ -123,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "StockViewModel.cs",
               "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\StockViewModel.cs",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\StockViewModel.cs",
@@ -135,7 +231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "Stock.cs",
               "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Stock.cs",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\Stock.cs",
@@ -147,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "Role.cs",
               "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Role.cs",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\Role.cs",
@@ -159,7 +255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "Reserva.cs",
               "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Reserva.cs",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\Reserva.cs",
@@ -171,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "PromocionViewModel.cs",
               "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\PromocionViewModel.cs",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\PromocionViewModel.cs",
@@ -183,7 +279,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "Promocione.cs",
               "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Promocione.cs",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\Promocione.cs",
@@ -192,18 +288,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-16T17:23:47.571Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MappingProfile.cs",
-              "DocumentMoniker": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "ToolTip": "C:\\Sistema LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwC0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T17:01:33.462Z"
             }
           ]
         }

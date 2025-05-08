@@ -14,5 +14,10 @@
 
         public int? EstadoId { get; set; }
         public string? EstadoNombre { get; set; }
+        public int? InsumoId { get; set; }
+        public string? InsumoNombre { get; set; }
+        public bool TieneInsumos { get; set; }
+        public List<InsumoProductoViewModel>? InsumosProducto { get; set; }
+
     }
 }

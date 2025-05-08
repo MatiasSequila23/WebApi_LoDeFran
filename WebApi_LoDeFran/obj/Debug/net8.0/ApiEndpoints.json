@@ -400,6 +400,115 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApi_LoDeFran.Controllers.EstadosInsumosController",
+    "Method": "GetEstadosInsumos",
+    "RelativePath": "api/EstadosInsumos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApi_LoDeFran.ViewModels.EstadoProductoViewModel, WebApi_LoDeFran, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.EstadosInsumosController",
+    "Method": "PostEstadoInsumo",
+    "RelativePath": "api/EstadosInsumos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "viewModel",
+        "Type": "WebApi_LoDeFran.ViewModels.EstadoInsumoViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi_LoDeFran.ViewModels.EstadoInsumoViewModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.EstadosInsumosController",
+    "Method": "GetEstadoInsumo",
+    "RelativePath": "api/EstadosInsumos/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi_LoDeFran.ViewModels.EstadoInsumoViewModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.EstadosInsumosController",
+    "Method": "PutEstadoInsumo",
+    "RelativePath": "api/EstadosInsumos/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "viewModel",
+        "Type": "WebApi_LoDeFran.ViewModels.EstadoInsumoViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.EstadosInsumosController",
+    "Method": "DeleteEstadoInsumo",
+    "RelativePath": "api/EstadosInsumos/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApi_LoDeFran.Controllers.EstadosPedidosController",
     "Method": "GetEstadosPedido",
     "RelativePath": "api/EstadosPedidos",
@@ -714,6 +823,115 @@
     "ContainingType": "WebApi_LoDeFran.Controllers.FacturasController",
     "Method": "DeleteFactura",
     "RelativePath": "api/Facturas/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.InsumosController",
+    "Method": "GetInsumos",
+    "RelativePath": "api/Insumos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApi_LoDeFran.ViewModels.InsumoViewModel, WebApi_LoDeFran, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.InsumosController",
+    "Method": "PostInsumo",
+    "RelativePath": "api/Insumos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "insumoVM",
+        "Type": "WebApi_LoDeFran.ViewModels.InsumoViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi_LoDeFran.ViewModels.InsumoViewModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.InsumosController",
+    "Method": "GetInsumo",
+    "RelativePath": "api/Insumos/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi_LoDeFran.ViewModels.InsumoViewModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.InsumosController",
+    "Method": "PutInsumo",
+    "RelativePath": "api/Insumos/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "insumoVM",
+        "Type": "WebApi_LoDeFran.ViewModels.InsumoViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.InsumosController",
+    "Method": "DeleteInsumo",
+    "RelativePath": "api/Insumos/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1163,6 +1381,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApi_LoDeFran.Controllers.ProductosController",
+    "Method": "AsociarInsumos",
+    "RelativePath": "api/Productos/{productoId}/insumos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "insumos",
+        "Type": "System.Collections.Generic.List\u00601[[WebApi_LoDeFran.ViewModels.InsumoProductoViewModel, WebApi_LoDeFran, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WebApi_LoDeFran.Controllers.PromocionesController",
     "Method": "GetPromociones",
     "RelativePath": "api/Promociones",
@@ -1259,6 +1498,115 @@
     "ContainingType": "WebApi_LoDeFran.Controllers.PromocionesController",
     "Method": "DeletePromocion",
     "RelativePath": "api/Promociones/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.ProveedoresController",
+    "Method": "GetProveedores",
+    "RelativePath": "api/Proveedores",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApi_LoDeFran.ViewModels.ProveedorViewModel, WebApi_LoDeFran, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.ProveedoresController",
+    "Method": "PostProveedor",
+    "RelativePath": "api/Proveedores",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "proveedorVM",
+        "Type": "WebApi_LoDeFran.ViewModels.ProveedorViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi_LoDeFran.ViewModels.ProveedorViewModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.ProveedoresController",
+    "Method": "GetProveedor",
+    "RelativePath": "api/Proveedores/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApi_LoDeFran.ViewModels.ProveedorViewModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.ProveedoresController",
+    "Method": "PutProveedor",
+    "RelativePath": "api/Proveedores/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "proveedorVM",
+        "Type": "WebApi_LoDeFran.ViewModels.ProveedorViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.ProveedoresController",
+    "Method": "DeleteProveedor",
+    "RelativePath": "api/Proveedores/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
