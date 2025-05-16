@@ -57,9 +57,13 @@ namespace WebApi_LoDeFran.Mapping
                 .ForMember(dest => dest.ProductoNombre, opt => opt.MapFrom(src => src.Producto.Nombre))  // Mapear nombre del producto
                 .ReverseMap();
             CreateMap<Insumo, InsumoViewModel>()
-                .ForMember(dest => dest.ProveedorNombre, opt => opt.MapFrom(src => src.ProveedorId != null ? src.Proveedor.Nombre : null))
+                .ForMember(dest => dest.ProveedorNombre, opt => opt.MapFrom(src => src.Proveedor != null ? src.Proveedor.Nombre : null))
                 .ForMember(dest => dest.EstadoNombre, opt => opt.MapFrom(src => src.Estado != null ? src.Estado.Nombre : null))
-                .ReverseMap();
+                .ForMember(dest => dest.Abreviatura, opt => opt.MapFrom(src => src.UnidadMedida != null ? src.UnidadMedida.Abreviatura : null))
+                .ReverseMap()
+                .ForMember(dest => dest.Proveedor, opt => opt.Ignore())
+                .ForMember(dest => dest.Estado, opt => opt.Ignore())
+                .ForMember(dest => dest.UnidadMedida, opt => opt.Ignore());
 
             CreateMap<Proveedore, ProveedorViewModel>().ReverseMap();
             CreateMap<EstadosInsumo, EstadoInsumoViewModel>().ReverseMap();
@@ -67,7 +71,7 @@ namespace WebApi_LoDeFran.Mapping
                 .ForMember(dest => dest.InsumoId, opt => opt.MapFrom(src => src.InsumosProductos));
             CreateMap<InsumosProducto, InsumoProductoViewModel>()
                 .ForMember(dest => dest.NombreInsumo, opt => opt.MapFrom(src => src.Insumo.Nombre));
-
+            CreateMap<UnidadMedidum, UnidadMedidaViewModel>().ReverseMap();
         }
     }
 }

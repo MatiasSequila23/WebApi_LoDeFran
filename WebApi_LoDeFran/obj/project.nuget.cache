@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gVMcnHkc1Rw=",
+  "dgSpecHash": "cAO74Irevjw=",
   "success": true,
-  "projectFilePath": "C:\\SISTEMA LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran.csproj",
+  "projectFilePath": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\WebApi_LoDeFran.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USUARIO\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\USUARIO\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

@@ -53,6 +53,8 @@ public partial class LoDeFranContext : DbContext
 
     public virtual DbSet<Stock> Stocks { get; set; }
 
+    public virtual DbSet<UnidadMedidum> UnidadMedida { get; set; }
+
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -256,10 +258,7 @@ public partial class LoDeFranContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("nombre");
             entity.Property(e => e.ProveedorId).HasColumnName("proveedor_id");
-            entity.Property(e => e.UnidadMedida)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("unidad_medida");
+            entity.Property(e => e.UnidadMedidaId).HasColumnName("unidad_medida_id");
 
             entity.HasOne(d => d.Estado).WithMany(p => p.Insumos)
                 .HasForeignKey(d => d.EstadoId)
@@ -268,6 +267,10 @@ public partial class LoDeFranContext : DbContext
             entity.HasOne(d => d.Proveedor).WithMany(p => p.Insumos)
                 .HasForeignKey(d => d.ProveedorId)
                 .HasConstraintName("FK__insumos__proveed__6442E2C9");
+
+            entity.HasOne(d => d.UnidadMedida).WithMany(p => p.Insumos)
+                .HasForeignKey(d => d.UnidadMedidaId)
+                .HasConstraintName("FK_insumos_unidad_medida");
         });
 
         modelBuilder.Entity<InsumosProducto>(entity =>
@@ -551,6 +554,23 @@ public partial class LoDeFranContext : DbContext
             entity.HasOne(d => d.Producto).WithMany(p => p.Stocks)
                 .HasForeignKey(d => d.ProductoId)
                 .HasConstraintName("FK_Stock_Productos");
+        });
+
+        modelBuilder.Entity<UnidadMedidum>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__unidad_m__3213E83FFBCE2E37");
+
+            entity.ToTable("unidad_medida");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Abreviatura)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("abreviatura");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
         });
 
         modelBuilder.Entity<Usuario>(entity =>

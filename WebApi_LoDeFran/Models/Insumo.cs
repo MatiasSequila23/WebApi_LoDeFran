@@ -11,8 +11,6 @@ public partial class Insumo
 
     public string? Descripcion { get; set; }
 
-    public string? UnidadMedida { get; set; }
-
     public decimal? Costo { get; set; }
 
     public decimal CantidadDisponible { get; set; }
@@ -25,6 +23,8 @@ public partial class Insumo
 
     public int? EstadoId { get; set; }
 
+    public int? UnidadMedidaId { get; set; }
+
     public virtual EstadosInsumo? Estado { get; set; }
 
     public virtual ICollection<InsumosProducto> InsumosProductos { get; set; } = new List<InsumosProducto>();
@@ -32,4 +32,6 @@ public partial class Insumo
     public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
 
     public virtual Proveedore? Proveedor { get; set; }
+
+    public virtual UnidadMedidum? UnidadMedida { get; set; }
 }

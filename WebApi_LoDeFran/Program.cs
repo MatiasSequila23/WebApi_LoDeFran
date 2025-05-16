@@ -9,10 +9,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("PermitirFront", policy =>
     {
-        policy.WithOrigins("https://localhost:7274", "https://localhost:7271") // Cambiar si tu frontend corre en otro puerto o dominio
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        policy
+            .SetIsOriginAllowed(_ => true) // PERMITE CUALQUIER ORIGEN
+            .AllowAnyHeader()
+            .AllowAnyMethod();
     });
+
 });
 
 builder.Services.AddDbContext<LoDeFranContext>(options =>
@@ -41,7 +43,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     });
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
