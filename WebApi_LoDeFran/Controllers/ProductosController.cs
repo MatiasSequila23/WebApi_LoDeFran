@@ -117,16 +117,14 @@ public class ProductosController : ControllerBase
     public async Task<IActionResult> GetInsumosAsignados(int id)
     {
         var insumos = await _context.InsumosProductos
-            .Include(ip => ip.Insumo) // importante para que funcione el mapeo de Insumo.Nombre
+            .Include(ip => ip.Insumo)
             .Where(ip => ip.ProductoId == id)
             .ToListAsync();
 
-        if (insumos == null || !insumos.Any())
-            return NotFound();
-
         var insumosVM = _mapper.Map<List<InsumoProductoViewModel>>(insumos);
-        return Ok(insumosVM);
+        return Ok(insumosVM); // incluso si la lista es vacía
     }
+
     [HttpPut("{productoId}/insumos/{insumoId}")]
     public async Task<IActionResult> ActualizarInsumoProducto(int productoId, int insumoId, [FromBody] InsumoProductoViewModel insumo)
     {
@@ -157,5 +155,26 @@ public class ProductosController : ControllerBase
         _context.InsumosProductos.Remove(insumoProducto);
         await _context.SaveChangesAsync();
         return NoContent();
+    }
+    [HttpPut("{id}/recalcular-precio")]
+    public async Task<ActionResult<ProductoViewModel>> RecalcularPrecioProductoAsync(int id)
+    {
+        var producto = await _context.Productos
+            .Include(p => p.InsumosProductos)
+                .ThenInclude(ip => ip.Insumo)
+            .Include(p => p.CategoriaProducto) // opcional, si lo necesitas en el ViewModel
+            .Include(p => p.Estado)            // opcional, si lo necesitas en el ViewModel
+            .FirstOrDefaultAsync(p => p.Id == id);
+
+        if (producto == null)
+            return NotFound();
+
+        decimal? nuevoPrecio = producto.InsumosProductos.Sum(ip => ip.Cantidad * ip.Insumo.Costo);
+        producto.Precio = nuevoPrecio ?? 0;
+
+        await _context.SaveChangesAsync();
+
+        var productoVM = _mapper.Map<ProductoViewModel>(producto);
+        return Ok(productoVM);
     }
 }

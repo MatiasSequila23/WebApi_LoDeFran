@@ -92,6 +92,72 @@ namespace WebApi_LoDeFran.Controllers
 
             return NoContent();
         }
+        [HttpPut("{id}/recalcular-precios-productos")]
+        public async Task<IActionResult> RecalcularPreciosPorInsumo(int id)
+        {
+            var insumo = await _context.Insumos
+                .Include(i => i.InsumosProductos)
+                    .ThenInclude(pi => pi.Producto)
+                        .ThenInclude(p => p.InsumosProductos)
+                            .ThenInclude(ip => ip.Insumo)
+                .FirstOrDefaultAsync(i => i.Id == id);
+
+            if (insumo == null)
+                return NotFound();
+
+            if (insumo.InsumosProductos == null || !insumo.InsumosProductos.Any())
+                return Ok("No hay productos que usen este insumo.");
+
+            foreach (var insumoProducto in insumo.InsumosProductos)
+            {
+                var producto = insumoProducto.Producto;
+
+                if (producto != null && producto.InsumosProductos != null)
+                {
+                    producto.Precio = producto.InsumosProductos
+                        .Sum(ip => ip.Cantidad * ip.Insumo.Costo) ?? 0;
+                }
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok("Precios de productos recalculados correctamente.");
+        }
+        [HttpPut("{id}/recalcular-precios-productos-retlstProd")]
+        public async Task<ActionResult<ProductoViewModel>> RecalcularPreciosPorInsumoretlstProd(int id)
+        {
+            // Retorna la lista de los productos modificados que contienen ese insumo
+            var insumo = await _context.Insumos
+                .Include(i => i.InsumosProductos)
+                    .ThenInclude(pi => pi.Producto)
+                        .ThenInclude(p => p.InsumosProductos)
+                            .ThenInclude(ip => ip.Insumo)
+                .FirstOrDefaultAsync(i => i.Id == id);
+
+            if (insumo == null)
+                return NotFound();
+
+            if (insumo.InsumosProductos == null || !insumo.InsumosProductos.Any())
+                return Ok("No hay productos que usen este insumo.");
+
+            foreach (var insumoProducto in insumo.InsumosProductos)
+            {
+                var producto = insumoProducto.Producto;
+
+                if (producto != null && producto.InsumosProductos != null)
+                {
+                    producto.Precio = producto.InsumosProductos
+                        .Sum(ip => ip.Cantidad * ip.Insumo.Costo) ?? 0;
+                }
+            }
+
+            await _context.SaveChangesAsync();
+
+            var productosActualizados = insumo.InsumosProductos
+                .Select(pi => _mapper.Map<ProductoViewModel>(pi.Producto))
+                .ToList();
+            return Ok(productosActualizados);
+        }
     }
 }
 
