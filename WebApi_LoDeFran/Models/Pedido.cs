@@ -21,6 +21,8 @@ public partial class Pedido
 
     public int? CategoriaId { get; set; }
 
+    public int MesaId { get; set; }
+
     public virtual Cliente? Cliente { get; set; }
 
     public virtual ICollection<DetallesPedido> DetallesPedidos { get; set; } = new List<DetallesPedido>();
@@ -28,4 +30,6 @@ public partial class Pedido
     public virtual EstadosPedido Estado { get; set; } = null!;
 
     public virtual ICollection<Factura> Facturas { get; set; } = new List<Factura>();
+
+    public virtual Mesa Mesa { get; set; } = null!;
 }

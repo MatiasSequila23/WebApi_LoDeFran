@@ -23,7 +23,11 @@ namespace WebApi_LoDeFran.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MesaViewModel>>> GetMesas()
         {
-            var mesas = await _context.Mesas.ToListAsync();
+            var mesas = await _context.Mesas
+                .Include(m => m.IdEstadoNavigation)
+                .Include(m => m.IdPisoNavigation)
+                .ToListAsync();
+
             var mesasVM = _mapper.Map<List<MesaViewModel>>(mesas);
             return Ok(mesasVM);
         }
@@ -32,7 +36,10 @@ namespace WebApi_LoDeFran.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<MesaViewModel>> GetMesa(int id)
         {
-            var mesa = await _context.Mesas.FirstOrDefaultAsync(m => m.Id == id);
+            var mesa = await _context.Mesas
+                .Include(m => m.IdEstadoNavigation)
+                .Include(m => m.IdPisoNavigation)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (mesa == null)
                 return NotFound();
@@ -49,7 +56,13 @@ namespace WebApi_LoDeFran.Controllers
             _context.Mesas.Add(mesa);
             await _context.SaveChangesAsync();
 
-            var nuevoVM = _mapper.Map<MesaViewModel>(mesa);
+            // Volver a incluir navegación para devolver el objeto completo
+            var nuevaMesa = await _context.Mesas
+                .Include(m => m.IdEstadoNavigation)
+                .Include(m => m.IdPisoNavigation)
+                .FirstOrDefaultAsync(m => m.Id == mesa.Id);
+
+            var nuevoVM = _mapper.Map<MesaViewModel>(nuevaMesa);
             return CreatedAtAction(nameof(GetMesa), new { id = mesa.Id }, nuevoVM);
         }
 
@@ -84,6 +97,19 @@ namespace WebApi_LoDeFran.Controllers
 
             return NoContent();
         }
-    }
+        // GET: api/Mesas/disponibles
+        [HttpGet("disponibles")]
+        public async Task<ActionResult<IEnumerable<MesaViewModel>>> GetMesasDisponibles()
+        {
+            var mesasDisponibles = await _context.Mesas
+                .Include(m => m.IdEstadoNavigation)
+                .Include(m => m.IdPisoNavigation)
+                .Where(m => m.IdEstadoNavigation.Nombre == "Disponible") // Ajustá si usás ID
+                .ToListAsync();
 
+            var mesasVM = _mapper.Map<List<MesaViewModel>>(mesasDisponibles);
+            return Ok(mesasVM);
+        }
+
+    }
 }

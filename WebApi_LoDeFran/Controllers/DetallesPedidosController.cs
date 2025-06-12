@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿
+
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi_LoDeFran.Models;
@@ -80,17 +82,25 @@ namespace WebApi_LoDeFran.Controllers
         }
 
         // DELETE: api/DetallesPedidos/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDetallesPedido(int id)
+        [HttpDelete("pedidos/{idPedido}/detalle/{idDetalle}")]
+        public async Task<IActionResult> DeleteDetalle(int idPedido, int idDetalle)
         {
-            var detallesPedido = await _context.DetallesPedidos.FindAsync(id);
-            if (detallesPedido == null)
+            var pedido = await _context.Pedidos
+                .Include(p => p.DetallesPedidos)
+                .FirstOrDefaultAsync(p => p.Id == idPedido);
+
+            if (pedido == null)
                 return NotFound();
 
-            _context.DetallesPedidos.Remove(detallesPedido);
+            var detalle = pedido.DetallesPedidos.FirstOrDefault(d => d.Id == idDetalle);
+            if (detalle == null)
+                return NotFound();
+
+            _context.DetallesPedidos.Remove(detalle);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
+
     }
 }

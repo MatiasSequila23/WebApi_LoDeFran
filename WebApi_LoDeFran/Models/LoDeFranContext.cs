@@ -25,6 +25,8 @@ public partial class LoDeFranContext : DbContext
 
     public virtual DbSet<EstadosInsumo> EstadosInsumos { get; set; }
 
+    public virtual DbSet<EstadosMesa> EstadosMesas { get; set; }
+
     public virtual DbSet<EstadosPedido> EstadosPedidos { get; set; }
 
     public virtual DbSet<EstadosProducto> EstadosProductos { get; set; }
@@ -40,6 +42,8 @@ public partial class LoDeFranContext : DbContext
     public virtual DbSet<Pedido> Pedidos { get; set; }
 
     public virtual DbSet<Permiso> Permisos { get; set; }
+
+    public virtual DbSet<Piso> Pisos { get; set; }
 
     public virtual DbSet<Producto> Productos { get; set; }
 
@@ -171,6 +175,18 @@ public partial class LoDeFranContext : DbContext
             entity.Property(e => e.Nombre)
                 .HasMaxLength(100)
                 .IsUnicode(false)
+                .HasColumnName("nombre");
+        });
+
+        modelBuilder.Entity<EstadosMesa>(entity =>
+        {
+            entity.HasKey(e => e.IdEstado).HasName("PK__estados___86989FB2D1C31BE5");
+
+            entity.ToTable("estados_mesa");
+
+            entity.Property(e => e.IdEstado).HasColumnName("id_estado");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(20)
                 .HasColumnName("nombre");
         });
 
@@ -306,11 +322,23 @@ public partial class LoDeFranContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Capacidad).HasColumnName("capacidad");
-            entity.Property(e => e.Estado)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasColumnName("estado");
+            entity.Property(e => e.IdEstado)
+                .HasDefaultValue(1)
+                .HasColumnName("id_estado");
+            entity.Property(e => e.IdPiso)
+                .HasDefaultValue(1)
+                .HasColumnName("id_piso");
             entity.Property(e => e.Numero).HasColumnName("numero");
+
+            entity.HasOne(d => d.IdEstadoNavigation).WithMany(p => p.Mesas)
+                .HasForeignKey(d => d.IdEstado)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_mesas_estados");
+
+            entity.HasOne(d => d.IdPisoNavigation).WithMany(p => p.Mesas)
+                .HasForeignKey(d => d.IdPiso)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_mesas_pisos");
         });
 
         modelBuilder.Entity<Pedido>(entity =>
@@ -332,6 +360,7 @@ public partial class LoDeFranContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_pedido");
+            entity.Property(e => e.MesaId).HasColumnName("mesa_id");
             entity.Property(e => e.Total)
                 .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
@@ -346,6 +375,11 @@ public partial class LoDeFranContext : DbContext
                 .HasForeignKey(d => d.EstadoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Pedidos_Estados");
+
+            entity.HasOne(d => d.Mesa).WithMany(p => p.Pedidos)
+                .HasForeignKey(d => d.MesaId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Pedidos_Mesas");
         });
 
         modelBuilder.Entity<Permiso>(entity =>
@@ -363,6 +397,18 @@ public partial class LoDeFranContext : DbContext
             entity.Property(e => e.Nombre)
                 .HasMaxLength(100)
                 .IsUnicode(false)
+                .HasColumnName("nombre");
+        });
+
+        modelBuilder.Entity<Piso>(entity =>
+        {
+            entity.HasKey(e => e.IdPiso).HasName("PK__pisos__37C031BCA5364FF8");
+
+            entity.ToTable("pisos");
+
+            entity.Property(e => e.IdPiso).HasColumnName("id_piso");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
                 .HasColumnName("nombre");
         });
 

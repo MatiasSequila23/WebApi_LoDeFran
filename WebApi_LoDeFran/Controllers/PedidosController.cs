@@ -95,6 +95,102 @@ namespace WebApi_LoDeFran.Controllers
 
             return NoContent();
         }
+        [HttpPost("iniciar")]
+        public async Task<ActionResult<PedidoViewModel>> IniciarPedido([FromBody] int idMesa)
+        {
+            var mesa = await _context.Mesas.FindAsync(idMesa);
+            if (mesa == null)
+                return NotFound($"No se encontró la mesa con ID {idMesa}");
+            if (mesa.IdEstado != 1) 
+                return BadRequest("La mesa no está disponible");
+
+            var pedido = new Pedido
+            {
+                MesaId = idMesa,
+                FechaPedido = DateTime.UtcNow,
+                EstadoId =(int)EstadoPedido.Abierto,
+                DetallesPedidos = new List<DetallesPedido>()
+            };
+            mesa.IdEstado = 2; // 2 = Ocupada
+
+            _context.Pedidos.Add(pedido);
+            _context.Mesas.Update(mesa);
+            await _context.SaveChangesAsync();
+
+            var pedidoVM = _mapper.Map<PedidoViewModel>(pedido);
+            return CreatedAtAction(nameof(GetPedido), new { id = pedido.Id }, pedidoVM);
+        }
+        [HttpPut("{id}/estado")]
+        public async Task<IActionResult> CambiarEstado(int id, [FromBody] EstadoPedido nuevoEstado)
+        {
+            var pedido = await _context.Pedidos.FindAsync(id);
+            if (pedido == null)
+                return NotFound();
+
+            pedido.EstadoId = (int)nuevoEstado;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        [HttpPost("{id}/agregar-producto")]
+        public async Task<IActionResult> AgregarProducto(int id, [FromBody] int productoId)
+        {
+            var pedido = await _context.Pedidos
+                .Include(p => p.DetallesPedidos)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (pedido == null)
+                return NotFound($"No se encontró el pedido con ID {id}");
+
+            var producto = await _context.Productos.FindAsync(productoId);
+            if (producto == null)
+                return NotFound($"No se encontró el producto con ID {productoId}");
+
+            // Verificar si el producto ya está en el pedido
+            var detalleExistente = pedido.DetallesPedidos
+                .FirstOrDefault(d => d.ProductoId == productoId);
+
+            if (detalleExistente != null)
+            {
+                detalleExistente.Cantidad += 1;
+            }
+            else
+            {
+                pedido.DetallesPedidos.Add(new DetallesPedido
+                {
+                    ProductoId = productoId,
+                    Cantidad = 1,
+                    PrecioUnitario = producto.Precio
+                });
+            }
+
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+        [HttpGet("por-mesa/{idMesa}")]
+        public async Task<ActionResult<PedidoViewModel>> ObtenerPedidoPorMesa(int idMesa)
+        {
+            var pedido = await _context.Pedidos
+                //.Include(p => p.Estado)
+                .Include(p => p.DetallesPedidos)
+                .ThenInclude(dp => dp.Producto)
+                .FirstOrDefaultAsync(p => p.MesaId == idMesa && p.EstadoId == 1);
+
+            if (pedido == null)
+                return NotFound();
+
+            var pedidoVM = _mapper.Map<PedidoViewModel>(pedido);
+            return Ok(pedidoVM);
+        }
+
+    }
+    public enum EstadoPedido
+    {
+        Abierto = 1,
+        EnPreparacion = 2,
+        ListoParaEntregar = 3,
+        Entregado = 4,
+        Cancelado = 5
     }
 
 

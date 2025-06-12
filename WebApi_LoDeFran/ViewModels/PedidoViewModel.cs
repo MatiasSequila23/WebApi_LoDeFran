@@ -12,6 +12,7 @@ namespace WebApi_LoDeFran.ViewModels
         public DateTime? FechaEntrega { get; set; }
         public int EstadoId { get; set; }
         public int? CategoriaId { get; set; }
+        public int MesaId { get; set; }
         public EstadosPedido Estado { get; set; }
         public List<DetallePedidoViewModel> DetallePedido { get; set; } = new List<DetallePedidoViewModel>();
     }

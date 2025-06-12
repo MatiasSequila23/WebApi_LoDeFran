@@ -11,7 +11,15 @@ public partial class Mesa
 
     public int Capacidad { get; set; }
 
-    public string Estado { get; set; } = null!;
+    public int IdPiso { get; set; }
+
+    public int IdEstado { get; set; }
+
+    public virtual EstadosMesa IdEstadoNavigation { get; set; } = null!;
+
+    public virtual Piso IdPisoNavigation { get; set; } = null!;
+
+    public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
 
     public virtual ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
 }

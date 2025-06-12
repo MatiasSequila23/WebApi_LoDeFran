@@ -38,7 +38,16 @@ namespace WebApi_LoDeFran.Mapping
 
             CreateMap<Factura, FacturaViewModel>().ReverseMap();
 
-            CreateMap<Mesa, MesaViewModel>().ReverseMap();
+            CreateMap<Mesa, MesaViewModel>()
+                .ForMember(dest => dest.EstadoNombre, opt => opt.MapFrom(src => src.IdEstadoNavigation.Nombre))
+                .ForMember(dest => dest.EstadoId, opt => opt.MapFrom(src => src.IdEstado))
+                .ForMember(dest => dest.IdPiso, opt => opt.MapFrom(src => src.IdPiso))
+                .ForMember(dest => dest.PisoNombre, opt => opt.MapFrom(src => src.IdPisoNavigation.Nombre))
+                .ReverseMap()
+                .ForMember(dest => dest.IdEstadoNavigation, opt => opt.Ignore()) // Ignorar navegación inversa al mapear de VM a entidad
+                .ForMember(dest => dest.IdPisoNavigation, opt => opt.Ignore())   // Idem
+                .ForMember(dest => dest.Reservas, opt => opt.Ignore());          // También ignorás colecciones complejas
+
 
             CreateMap<Permiso, PermisoViewModel>().ReverseMap();
 
@@ -66,12 +75,23 @@ namespace WebApi_LoDeFran.Mapping
                 .ForMember(dest => dest.UnidadMedida, opt => opt.Ignore());
 
             CreateMap<Proveedore, ProveedorViewModel>().ReverseMap();
+
             CreateMap<EstadosInsumo, EstadoInsumoViewModel>().ReverseMap();
+
             CreateMap<Producto, InsumoProductoViewModel>()
                 .ForMember(dest => dest.InsumoId, opt => opt.MapFrom(src => src.InsumosProductos));
+
             CreateMap<InsumosProducto, InsumoProductoViewModel>()
                 .ForMember(dest => dest.NombreInsumo, opt => opt.MapFrom(src => src.Insumo.Nombre));
+
             CreateMap<UnidadMedidum, UnidadMedidaViewModel>().ReverseMap();
+
+            CreateMap<EstadosMesa, EstadoMesaViewModel>().ReverseMap();
+
+            CreateMap<EstadosMesa, EstadoMesaViewModel>().ReverseMap();
+
+            CreateMap<Piso, PisoViewModel>().ReverseMap();
+
         }
     }
 }

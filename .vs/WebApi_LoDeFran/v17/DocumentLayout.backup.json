@@ -3,44 +3,32 @@
   "WorkspaceRootPath": "E:\\Sources\\WebApi_LoDeFran\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\insumoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\insumoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\pedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\pedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\categoriaproductoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\categoriaproductoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\insumoproductoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\insumoproductoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\pedidoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\pedidoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\insumoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\insumoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\productoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\productoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\unidadmedidaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\unidadmedidaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\unidadesmedidascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\unidadesmedidascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\models\\unidadmedidum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\models\\unidadmedidum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\detallepedidoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\detallepedidoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,33 +38,44 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InsumoProductoViewModel.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\InsumoProductoViewModel.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\InsumoProductoViewModel.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\InsumoProductoViewModel.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\InsumoProductoViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAADAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "CategoriaProductoViewModel.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\CategoriaProductoViewModel.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\CategoriaProductoViewModel.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\CategoriaProductoViewModel.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\CategoriaProductoViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T02:03:02.429Z",
+              "WhenOpened": "2025-06-11T18:39:10.145Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Pedido.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Pedido.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\Pedido.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Pedido.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Models\\Pedido.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBMAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T17:01:29.52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "MappingProfile.cs",
               "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
               "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
               "RelativeToolTip": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwA4AAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T02:01:50.559Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T16:46:55.319Z"
             },
             {
               "$type": "Document",
@@ -86,98 +85,46 @@
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
               "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
               "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T02:01:23.696Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T16:42:40.46Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "UnidadMedidaViewModel.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\UnidadMedidaViewModel.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\UnidadMedidaViewModel.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\UnidadMedidaViewModel.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\UnidadMedidaViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAHAAAAAAAAAA==",
+              "Title": "DetallePedidoViewModel.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\DetallePedidoViewModel.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\DetallePedidoViewModel.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\DetallePedidoViewModel.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\DetallePedidoViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T18:07:49.878Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T16:42:34.028Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UnidadesMedidasController.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\UnidadesMedidasController.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\UnidadesMedidasController.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\UnidadesMedidasController.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\UnidadesMedidasController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "PedidoViewModel.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\PedidoViewModel.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\PedidoViewModel.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\PedidoViewModel.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\PedidoViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T17:59:25.208Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "InsumoViewModel.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\InsumoViewModel.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\InsumoViewModel.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\InsumoViewModel.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\InsumoViewModel.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAUwAQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T02:37:26.207Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UnidadMedidum.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\UnidadMedidum.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\UnidadMedidum.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\UnidadMedidum.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Models\\UnidadMedidum.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-16T17:41:43.067Z"
+              "WhenOpened": "2025-06-11T16:42:29.274Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "InsumosController.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\InsumosController.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\InsumosController.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\InsumosController.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\InsumosController.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAowGgAAAAfAAAAAAAAAA==",
+              "Title": "PedidosController.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\PedidosController.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\PedidosController.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\PedidosController.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\PedidosController.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAUwHEAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T16:42:10.241Z",
+              "WhenOpened": "2025-06-05T02:29:20.015Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductosController.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\ProductosController.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\ProductosController.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\ProductosController.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\ProductosController.cs",
-              "ViewState": "AgIAAI4AAAAAAAAAAAAYwKkAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T02:35:48.856Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ProveedoresController.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\ProveedoresController.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\ProveedoresController.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\ProveedoresController.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\ProveedoresController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T02:34:16.722Z"
             }
           ]
         }
