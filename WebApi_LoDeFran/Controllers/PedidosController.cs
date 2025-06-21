@@ -24,21 +24,22 @@ namespace WebApi_LoDeFran.Controllers
         public async Task<ActionResult<IEnumerable<PedidoViewModel>>> GetPedidos()
         {
             var pedidos = await _context.Pedidos
-                //.Include(p => p.Estado)
+                .Include(p => p.Mesa)
                 .Include(p => p.DetallesPedidos)
-                .ThenInclude(dp => dp.Producto)  // Incluir los productos dentro del detalle
+                    .ThenInclude(dp => dp.Producto)
                 .ToListAsync();
 
             var pedidosVM = _mapper.Map<List<PedidoViewModel>>(pedidos);
             return Ok(pedidosVM);
         }
 
+
         // GET: api/Pedidos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<PedidoViewModel>> GetPedido(int id)
         {
             var pedido = await _context.Pedidos
-                //.Include(p => p.Estado)
+                .Include(p => p.Mesa)
                 .Include(p => p.DetallesPedidos)
                 .ThenInclude(dp => dp.Producto)
                 .FirstOrDefaultAsync(p => p.Id == id);
@@ -133,7 +134,7 @@ namespace WebApi_LoDeFran.Controllers
             return NoContent();
         }
         [HttpPost("{id}/agregar-producto")]
-        public async Task<IActionResult> AgregarProducto(int id, [FromBody] int productoId)
+        public async Task<IActionResult> AgregarProducto(int id, [FromBody] ProductoPedidoDto dto)
         {
             var pedido = await _context.Pedidos
                 .Include(p => p.DetallesPedidos)
@@ -142,13 +143,13 @@ namespace WebApi_LoDeFran.Controllers
             if (pedido == null)
                 return NotFound($"No se encontró el pedido con ID {id}");
 
-            var producto = await _context.Productos.FindAsync(productoId);
+            var producto = await _context.Productos.FindAsync(dto.productoId);
             if (producto == null)
-                return NotFound($"No se encontró el producto con ID {productoId}");
+                return NotFound($"No se encontró el producto con ID {dto.productoId}");
 
             // Verificar si el producto ya está en el pedido
             var detalleExistente = pedido.DetallesPedidos
-                .FirstOrDefault(d => d.ProductoId == productoId);
+                .FirstOrDefault(d => d.ProductoId == dto.productoId);
 
             if (detalleExistente != null)
             {
@@ -158,8 +159,8 @@ namespace WebApi_LoDeFran.Controllers
             {
                 pedido.DetallesPedidos.Add(new DetallesPedido
                 {
-                    ProductoId = productoId,
-                    Cantidad = 1,
+                    ProductoId = dto.productoId,
+                    Cantidad = dto.cantidad,
                     PrecioUnitario = producto.Precio
                 });
             }
@@ -174,7 +175,7 @@ namespace WebApi_LoDeFran.Controllers
                 //.Include(p => p.Estado)
                 .Include(p => p.DetallesPedidos)
                 .ThenInclude(dp => dp.Producto)
-                .FirstOrDefaultAsync(p => p.MesaId == idMesa && p.EstadoId == 1);
+                .FirstOrDefaultAsync(p => p.MesaId == idMesa && p.EstadoId != 7);
 
             if (pedido == null)
                 return NotFound();
@@ -182,16 +183,63 @@ namespace WebApi_LoDeFran.Controllers
             var pedidoVM = _mapper.Map<PedidoViewModel>(pedido);
             return Ok(pedidoVM);
         }
+        [HttpPut("detalle/{idDetalle}/cantidad")]
+        public async Task<IActionResult> ModificarCantidad(int idDetalle, [FromBody] int nuevaCantidad)
+        {
+            var detalle = await _context.DetallesPedidos.FindAsync(idDetalle);
+            if (detalle == null) return NotFound();
+
+            detalle.Cantidad = nuevaCantidad;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        [HttpGet("cocina")]
+        public async Task<ActionResult<IEnumerable<PedidoViewModel>>> GetPedidosParaCocina()
+        {
+            var pedidos = await _context.Pedidos
+                .Where(p => p.EstadoId == (int)EstadoPedido.Abierto || p.EstadoId == (int)EstadoPedido.EnPreparacion)
+                .Include(p => p.Mesa)
+                .Include(p => p.DetallesPedidos)
+                    .ThenInclude(dp => dp.Producto)
+                .ToListAsync();
+
+            var pedidosVM = _mapper.Map<List<PedidoViewModel>>(pedidos);
+            return Ok(pedidosVM);
+        }
+        // GET: api/Pedidos?estado=2
+        [HttpGet("por-estado/{idEstado}")]
+        public async Task<ActionResult<IEnumerable<PedidoViewModel>>> GetPedidosPorEstado(int idEstado)
+        {
+            var pedidos = await _context.Pedidos
+                .Include(p => p.Mesa)
+                .Include(p => p.DetallesPedidos)
+                    .ThenInclude(dp => dp.Producto)
+                .Where(p => p.EstadoId == idEstado)
+                .ToListAsync();
+
+
+            var pedidosVM = _mapper.Map<List<PedidoViewModel>>(pedidos);
+            return Ok(pedidosVM);
+        }
+
 
     }
     public enum EstadoPedido
     {
-        Abierto = 1,
-        EnPreparacion = 2,
-        ListoParaEntregar = 3,
-        Entregado = 4,
-        Cancelado = 5
+        Abierto = 1,             // Pedido creado y se están cargando productos.
+        EnPreparacion = 2,       // Cocina está preparando.
+        ListoParaEntregar = 3,   // Cocina termina, listo para el mozo.
+        Entregado = 4,           // El mozo entrega a la mesa.
+        A_Cobrar = 5,            // El cliente pide la cuenta.
+        Cobrado = 6,             // Cajero cobra el pedido.
+        Cerrado = 7,             // Se liberó la mesa.
+        Cancelado = 8
     }
-
+    public class ProductoPedidoDto
+    {
+        public int productoId { get; set; }
+        public int cantidad { get; set; }
+    }
 
 }

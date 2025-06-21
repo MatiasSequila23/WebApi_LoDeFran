@@ -110,6 +110,26 @@ namespace WebApi_LoDeFran.Controllers
             var mesasVM = _mapper.Map<List<MesaViewModel>>(mesasDisponibles);
             return Ok(mesasVM);
         }
+        // PUT: api/Mesas/{id}/estado
+        [HttpPut("{id}/estado")]
+        public async Task<IActionResult> CambiarEstadoMesa(int id, [FromBody] EstadoMesa nuevoEstado)
+        {
+            var mesa = await _context.Mesas.FindAsync(id);
+            if (mesa == null)
+                return NotFound($"No se encontró la mesa con ID {id}");
 
+            mesa.IdEstado = (int)nuevoEstado;
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+    }
+    public enum EstadoMesa
+    {
+        Disponible = 1,            
+        Ocupada = 2,       
+        Reservada = 3,   
+        Fuera_de_servicio = 4
     }
 }

@@ -7,12 +7,24 @@
       "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\pedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\categoriaproductoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\categoriaproductoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\mesascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\mesascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\mesaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\mesaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\pedidoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\pedidoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\detallespedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\detallespedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,12 +35,12 @@
       "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\productoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\productoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\detallepedidoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\detallepedidoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\models\\mesa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\models\\mesa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,80 +50,121 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CategoriaProductoViewModel.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\CategoriaProductoViewModel.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\CategoriaProductoViewModel.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\CategoriaProductoViewModel.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\CategoriaProductoViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAArAAAAAAAAAA==",
+              "Title": "MesasController.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\MesasController.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\MesasController.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\MesasController.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\MesasController.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAQwG8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T18:39:10.145Z",
+              "WhenOpened": "2025-06-21T21:38:53.202Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Program.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Program.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Program.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-21T22:07:28.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DetallesPedidosController.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\DetallesPedidosController.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\DetallesPedidosController.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\DetallesPedidosController.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\DetallesPedidosController.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAwwFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-13T02:52:57.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Mesa.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Mesa.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\Mesa.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Mesa.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Models\\Mesa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T19:13:52.943Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Pedido.cs",
               "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Pedido.cs",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\Pedido.cs",
               "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Pedido.cs",
               "RelativeToolTip": "WebApi_LoDeFran\\Models\\Pedido.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBMAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T17:01:29.52Z"
+              "WhenOpened": "2025-06-12T19:13:22.234Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MappingProfile.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "UsuarioViewModel.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\UsuarioViewModel.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\UsuarioViewModel.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\UsuarioViewModel.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\UsuarioViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T16:46:55.319Z"
+              "WhenOpened": "2025-06-12T19:06:31.667Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ProductoViewModel.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T16:42:40.46Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DetallePedidoViewModel.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\DetallePedidoViewModel.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\DetallePedidoViewModel.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\DetallePedidoViewModel.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\DetallePedidoViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T16:42:34.028Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "PedidoViewModel.cs",
               "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\PedidoViewModel.cs",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\PedidoViewModel.cs",
               "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\PedidoViewModel.cs",
               "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\PedidoViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T16:42:29.274Z"
+              "WhenOpened": "2025-06-12T19:05:08.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MesaViewModel.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\MesaViewModel.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\MesaViewModel.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\MesaViewModel.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\MesaViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T19:05:46.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T16:46:55.319Z"
             },
             {
               "$type": "Document",
@@ -119,9 +172,9 @@
               "Title": "PedidosController.cs",
               "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\PedidosController.cs",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\PedidosController.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\PedidosController.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\PedidosController.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAUwHEAAAAZAAAAAAAAAA==",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\PedidosController.cs*",
+              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\PedidosController.cs*",
+              "ViewState": "AgIAAMQAAAAAAAAAAAAtwNsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-05T02:29:20.015Z",
               "EditorCaption": ""

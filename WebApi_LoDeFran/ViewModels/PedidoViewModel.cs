@@ -13,7 +13,13 @@ namespace WebApi_LoDeFran.ViewModels
         public int EstadoId { get; set; }
         public int? CategoriaId { get; set; }
         public int MesaId { get; set; }
+
         public EstadosPedido Estado { get; set; }
-        public List<DetallePedidoViewModel> DetallePedido { get; set; } = new List<DetallePedidoViewModel>();
+        public List<DetallePedidoViewModel> DetallePedido { get; set; } = new();
+
+        // NUEVO: datos para la vista
+        public MesaViewModel? Mesa { get; set; }
+        public string? NombreMozo { get; set; } // opcional
     }
+
 }

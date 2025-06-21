@@ -19,7 +19,8 @@ namespace WebApi_LoDeFran.Mapping
 
             CreateMap<Pedido, PedidoViewModel>()
            .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Estado))
-           .ForMember(dest => dest.DetallePedido, opt => opt.MapFrom(src => src.DetallesPedidos));
+           .ForMember(dest => dest.DetallePedido, opt => opt.MapFrom(src => src.DetallesPedidos))
+           .ForMember(dest => dest.Mesa, opt => opt.MapFrom(src => src.Mesa));
             CreateMap<PedidoViewModel, Pedido>();
 
             CreateMap<DetallesPedido, DetallePedidoViewModel>()
