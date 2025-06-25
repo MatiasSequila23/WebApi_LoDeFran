@@ -222,7 +222,241 @@ namespace WebApi_LoDeFran.Controllers
             var pedidosVM = _mapper.Map<List<PedidoViewModel>>(pedidos);
             return Ok(pedidosVM);
         }
+        [HttpGet("tipos")]
+        public async Task<ActionResult<IEnumerable<TipoPedidoViewModel>>> GetTiposPedido()
+        {
+            var tipos = await _context.TiposPedidos.ToListAsync();
 
+            var tiposVM = _mapper.Map<List<TipoPedidoViewModel>>(tipos);
+            return Ok(tiposVM);
+        }
+        [HttpPost("sin-mesa")]
+        public async Task<ActionResult<int>> CrearPedidoSinMesa([FromBody] PedidoViewModel pedidoVM)
+        {
+            if (pedidoVM.TipoPedidoId == null)
+                return BadRequest("El tipo de pedido es obligatorio.");
+
+            // Si viene ClienteId, verificar si existe
+            if (pedidoVM.ClienteId != null)
+            {
+                var cliente = await _context.Clientes.FindAsync(pedidoVM.ClienteId);
+                if (cliente == null)
+                    return BadRequest("El cliente indicado no existe.");
+            }
+
+            var pedido = _mapper.Map<Pedido>(pedidoVM);
+            pedido.FechaPedido = DateTime.UtcNow;
+            pedido.MesaId = 0; // sin mesa
+            pedido.EstadoId = (int)EstadoPedido.Abierto;
+
+            _context.Pedidos.Add(pedido);
+            await _context.SaveChangesAsync();
+
+            return Ok(pedido.Id);
+        }
+
+        [HttpPost("crear-con-id")]
+        public async Task<ActionResult<int>> CrearPedido([FromBody] PedidoViewModel pedido)
+        {
+            if (pedido == null || pedido.TipoPedidoId == null)
+                return BadRequest("Datos incompletos.");
+
+            var entidad = _mapper.Map<Pedido>(pedido);
+            entidad.FechaPedido = DateTime.UtcNow;
+
+            _context.Pedidos.Add(entidad);
+            await _context.SaveChangesAsync();
+
+            return Ok(entidad.Id);
+        }
+
+        [HttpPost("iniciar_pedido_out")]
+        public async Task<ActionResult<PedidoViewModel>> IniciarPedidoOut([FromBody] int idMesa)
+        {
+            var mesa = await _context.Mesas.FindAsync(idMesa);
+            if (mesa == null)
+                return NotFound($"No se encontró la mesa con ID {idMesa}");
+            if (mesa.IdEstado != 1)
+                return BadRequest("La mesa no está disponible");
+
+            var pedido = new Pedido
+            {
+                MesaId = idMesa,
+                FechaPedido = DateTime.UtcNow,
+                EstadoId = (int)EstadoPedido.Abierto,
+                DetallesPedidos = new List<DetallesPedido>()
+            };
+            mesa.IdEstado = 2; // 2 = Ocupada
+
+            _context.Pedidos.Add(pedido);
+            _context.Mesas.Update(mesa);
+            await _context.SaveChangesAsync();
+
+            var pedidoVM = _mapper.Map<PedidoViewModel>(pedido);
+            return CreatedAtAction(nameof(GetPedido), new { id = pedido.Id }, pedidoVM);
+        }
+        [HttpPost("crear-pedido")]
+        public async Task<ActionResult<PedidoViewModel>> CrearPedidoConClienteYTipo([FromBody] CrearPedidoRequest request)
+        {
+            // Validar tipo de pedido
+            var tipoPedido = await _context.TiposPedidos.FindAsync(request.TipoPedidoId);
+            if (tipoPedido == null)
+                return BadRequest("Tipo de pedido inválido.");
+
+            var tipoNombre = tipoPedido.Nombre?.ToLower();
+
+            // DELIVERY
+            if (tipoNombre.Contains("delivery"))
+            {
+                var cliente = await _context.Clientes.FindAsync(request.ClienteId);
+                if (cliente == null)
+                    return BadRequest("El cliente no existe para delivery.");
+            }
+
+            // MOSTRADOR
+            if (tipoNombre.Contains("mostrador"))
+            {
+                if (request.ClienteId == 0)
+                {
+                    // Buscar o crear un cliente genérico
+                    var clienteGenerico = await _context.Clientes
+                        .FirstOrDefaultAsync(c => c.Nombre == "Genérico" && c.Telefono == "0");
+
+                    if (clienteGenerico == null)
+                    {
+                        clienteGenerico = new Cliente
+                        {
+                            Nombre = "Genérico",
+                            Apellido = "Mostrador",
+                            Telefono = "0",
+                            FechaCreacion = DateTime.Now
+                        };
+                        _context.Clientes.Add(clienteGenerico);
+                        await _context.SaveChangesAsync();
+                    }
+
+                    request.ClienteId = clienteGenerico.Id;
+                }
+                else
+                {
+                    var cliente = await _context.Clientes.FindAsync(request.ClienteId);
+                    if (cliente == null)
+                        return BadRequest("El cliente no existe.");
+                }
+            }
+
+            // Crear el pedido
+            var pedido = new Pedido
+            {
+                ClienteId = request.ClienteId,
+                TipoPedidoId = request.TipoPedidoId,
+                FechaPedido = DateTime.Now,
+                EstadoId = (int)EstadoPedido.Abierto, // Asegurate de tener un enum o valor fijo
+                MesaId = null // Sin mesa
+            };
+
+            _context.Pedidos.Add(pedido);
+            await _context.SaveChangesAsync();
+
+            var viewModel = _mapper.Map<PedidoViewModel>(pedido);
+            return Ok(viewModel);
+        }
+
+        [HttpPost("crear_pedido_por_cliente")]
+        public async Task<IActionResult> CrearPedidoPorCliente([FromBody] CrearPedidoRequest dto)
+        {
+            // Validar tipo de pedido
+            var tipoPedido = await _context.TiposPedidos.FindAsync(dto.TipoPedidoId);
+            if (tipoPedido == null)
+                return BadRequest("Tipo de pedido inválido.");
+
+            var tipoNombre = tipoPedido.Nombre?.ToLower();
+
+            // DELIVERY
+            if (tipoNombre.Contains("delivery"))
+            {
+                var cliente = await _context.Clientes.FindAsync(dto.ClienteId);
+                if (cliente == null)
+                    return BadRequest("El cliente no existe para delivery.");
+            }
+
+            // MOSTRADOR
+            if (tipoNombre.Contains("mostrador"))
+            {
+                if (dto.ClienteId == 0)
+                {
+                    var clienteGenerico = await _context.Clientes
+                        .FirstOrDefaultAsync(c => c.Nombre == "Genérico" && c.Telefono == "0");
+
+                    if (clienteGenerico == null)
+                    {
+                        clienteGenerico = new Cliente
+                        {
+                            Nombre = "Genérico",
+                            Apellido = "Mostrador",
+                            Telefono = "0",
+                            FechaCreacion = DateTime.Now
+                        };
+                        _context.Clientes.Add(clienteGenerico);
+                        await _context.SaveChangesAsync();
+                    }
+
+                    dto.ClienteId = clienteGenerico.Id;
+                }
+                else
+                {
+                    var cliente = await _context.Clientes.FindAsync(dto.ClienteId);
+                    if (cliente == null)
+                        return BadRequest("El cliente no existe.");
+                }
+            }
+
+            // Crear el pedido
+            var pedido = new Pedido
+            {
+                ClienteId = dto.ClienteId,
+                TipoPedidoId = dto.TipoPedidoId,
+                FechaPedido = DateTime.Now,
+                EstadoId = (int)EstadoPedido.Abierto,
+                MesaId = null // Pedido sin mesa
+            };
+
+            _context.Pedidos.Add(pedido);
+            await _context.SaveChangesAsync();
+
+            var viewModel = _mapper.Map<PedidoViewModel>(pedido);
+            return Ok(viewModel);
+        }
+        // GET: api/Pedidos/no-salon
+        [HttpGet("no-salon")]
+        public async Task<ActionResult<IEnumerable<PedidoViewModel>>> GetPedidosFueraDeSalon()
+        {
+            // IDs de estado que se quieren excluir (cerrado/cancelado)
+            var estadosExcluir = new[] { 7, 8 }; // <- por ejemplo: 3 = cerrado, 4 = cancelado
+            var tipoSalonId = 1; // <- suponiendo que 1 = salón
+
+            var pedidos = await _context.Pedidos
+                .Where(p => !estadosExcluir.Contains(p.EstadoId) && p.TipoPedidoId != tipoSalonId)
+                .Include(p => p.Mesa)
+                .Include(p => p.DetallesPedidos)
+                    .ThenInclude(dp => dp.Producto)
+                .Include(p => p.Cliente)
+                .Include(p => p.TipoPedido) // ✅ Necesario para mapear TipoPedidoNombre
+                .ToListAsync();
+
+
+            var pedidosVM = _mapper.Map<List<PedidoViewModel>>(pedidos);
+
+            // Enriquecer con ClienteNombre
+            for (int i = 0; i < pedidos.Count; i++)
+            {
+                var cliente = pedidos[i].Cliente;
+                if (cliente != null)
+                    pedidosVM[i].ClienteNombre = $"{cliente.Nombre} {cliente.Apellido}";
+            }
+
+            return Ok(pedidosVM);
+        }
 
     }
     public enum EstadoPedido
@@ -240,6 +474,11 @@ namespace WebApi_LoDeFran.Controllers
     {
         public int productoId { get; set; }
         public int cantidad { get; set; }
+    }
+    public class CrearPedidoRequest
+    {
+        public int ClienteId { get; set; }
+        public int TipoPedidoId { get; set; }
     }
 
 }

@@ -11,11 +11,17 @@ public partial class Factura
 
     public decimal Total { get; set; }
 
-    public string? MetodoPago { get; set; }
-
     public DateTime? FechaEmision { get; set; }
 
     public string Estado { get; set; } = null!;
+
+    public int? ClienteId { get; set; }
+
+    public int MetodoPagoId { get; set; }
+
+    public virtual Cliente? Cliente { get; set; }
+
+    public virtual MetodoPago MetodoPago { get; set; } = null!;
 
     public virtual Pedido Pedido { get; set; } = null!;
 }

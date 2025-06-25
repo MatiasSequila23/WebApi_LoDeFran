@@ -19,46 +19,29 @@ namespace WebApi_LoDeFran.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/Facturas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FacturaViewModel>>> GetFacturas()
         {
-            var facturas = await _context.Facturas
-                .Include(f => f.Pedido)
-                .ToListAsync();
-
-            var viewModels = _mapper.Map<List<FacturaViewModel>>(facturas);
-            return Ok(viewModels);
+            var facturas = await _context.Facturas.Include(f => f.Cliente).Include(f => f.MetodoPago).ToListAsync();
+            return Ok(_mapper.Map<List<FacturaViewModel>>(facturas));
         }
 
-        // GET: api/Facturas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<FacturaViewModel>> GetFactura(int id)
         {
-            var factura = await _context.Facturas
-                .Include(f => f.Pedido)
-                .FirstOrDefaultAsync(f => f.Id == id);
-
-            if (factura == null)
-                return NotFound();
-
+            var factura = await _context.Facturas.Include(f => f.Cliente).Include(f => f.MetodoPago).FirstOrDefaultAsync(f => f.Id == id);
+            if (factura == null) return NotFound();
             return Ok(_mapper.Map<FacturaViewModel>(factura));
         }
 
-        // POST: api/Facturas
         [HttpPost]
-        public async Task<ActionResult<FacturaViewModel>> PostFactura(FacturaViewModel viewModel)
+        public async Task<ActionResult<FacturaViewModel>> PostFactura(FacturaViewModel facturaVM)
         {
-            var factura = _mapper.Map<Factura>(viewModel);
-            factura.FechaEmision = DateTime.UtcNow;
-
+            var factura = _mapper.Map<Factura>(facturaVM);
             _context.Facturas.Add(factura);
             await _context.SaveChangesAsync();
-
-            var nuevoVM = _mapper.Map<FacturaViewModel>(factura);
-            return CreatedAtAction(nameof(GetFactura), new { id = factura.Id }, nuevoVM);
+            return CreatedAtAction(nameof(GetFactura), new { id = factura.Id }, _mapper.Map<FacturaViewModel>(factura));
         }
-
         // PUT: api/Facturas/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFactura(int id, FacturaViewModel viewModel)

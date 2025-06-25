@@ -43,8 +43,17 @@ namespace WebApi_LoDeFran.Controllers
         [HttpPost]
         public async Task<IActionResult> PostCliente(ClienteViewModel viewModel)
         {
+            var existente = await _context.Clientes
+                .FirstOrDefaultAsync(c => c.Telefono == viewModel.Telefono);
+
+            if (existente != null)
+            {
+                // Cliente ya existe: devolverlo como OK
+                return Ok(_mapper.Map<ClienteViewModel>(existente));
+            }
+
             var cliente = _mapper.Map<Cliente>(viewModel);
-            cliente.FechaCreacion = DateTime.UtcNow;
+            cliente.FechaCreacion = DateTime.Now;
 
             _context.Clientes.Add(cliente);
             await _context.SaveChangesAsync();
@@ -80,6 +89,22 @@ namespace WebApi_LoDeFran.Controllers
 
             return NoContent();
         }
+        [HttpGet("buscar")]
+        public async Task<ActionResult<List<ClienteViewModel>>> BuscarClientes([FromQuery] string? busqueda)
+        {
+            if (string.IsNullOrWhiteSpace(busqueda))
+                return BadRequest("La cadena de búsqueda no puede estar vacía.");
+
+            var clientes = await _context.Clientes
+                .Where(c => c.Nombre.Contains(busqueda) ||
+                            c.Telefono.Contains(busqueda) ||
+                            (c.Email != null && c.Email.Contains(busqueda)))
+                .ToListAsync();
+
+            var clientesVM = _mapper.Map<List<ClienteViewModel>>(clientes);
+            return Ok(clientesVM);
+        }
+
     }
 
 }

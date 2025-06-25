@@ -17,6 +17,8 @@ public partial class Usuario
 
     public virtual ICollection<Bitacora> Bitacoras { get; set; } = new List<Bitacora>();
 
+    public virtual ICollection<Caja> Cajas { get; set; } = new List<Caja>();
+
     public virtual ICollection<Permiso> Permisos { get; set; } = new List<Permiso>();
 
     public virtual ICollection<Role> Rols { get; set; } = new List<Role>();

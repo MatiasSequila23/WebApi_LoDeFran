@@ -18,9 +18,13 @@ namespace WebApi_LoDeFran.Mapping
             CreateMap<ProductoViewModel, Producto>();
 
             CreateMap<Pedido, PedidoViewModel>()
-           .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Estado))
-           .ForMember(dest => dest.DetallePedido, opt => opt.MapFrom(src => src.DetallesPedidos))
-           .ForMember(dest => dest.Mesa, opt => opt.MapFrom(src => src.Mesa));
+               .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Estado))
+               .ForMember(dest => dest.DetallePedido, opt => opt.MapFrom(src => src.DetallesPedidos))
+               .ForMember(dest => dest.Mesa, opt => opt.MapFrom(src => src.Mesa))
+               .ForMember(dest => dest.TipoPedidoNombre, opt => opt.MapFrom(src => src.TipoPedido.Nombre))
+               .ForMember(dest => dest.ClienteNombre, opt => opt.MapFrom(src => src.Cliente != null ? src.Cliente.Nombre + " " + src.Cliente.Apellido : null));
+
+
             CreateMap<PedidoViewModel, Pedido>();
 
             CreateMap<DetallesPedido, DetallePedidoViewModel>()
@@ -37,7 +41,29 @@ namespace WebApi_LoDeFran.Mapping
 
             CreateMap<EstadosProducto, EstadoProductoViewModel>().ReverseMap();
 
-            CreateMap<Factura, FacturaViewModel>().ReverseMap();
+            CreateMap<Caja, CajaViewModel>()
+                .ForMember(dest => dest.NombreUsuario, opt => opt.MapFrom(src => src.Usuario.Nombre))
+                .ForMember(dest => dest.Movimientos, opt => opt.MapFrom(src => src.MovimientoCajas));
+            CreateMap<CajaViewModel, Caja>()
+                .ForMember(dest => dest.Usuario, opt => opt.Ignore())
+                .ForMember(dest => dest.MovimientoCajas, opt => opt.Ignore());
+
+            CreateMap<MetodoPago, MetodoPagoViewModel>().ReverseMap();
+
+            CreateMap<MovimientoCaja, MovimientoCajaViewModel>()
+                .ForMember(dest => dest.MetodoPagoNombre, opt => opt.MapFrom(src => src.MetodoPago != null ? src.MetodoPago.Nombre : null));
+            CreateMap<MovimientoCajaViewModel, MovimientoCaja>()
+                .ForMember(dest => dest.MetodoPago, opt => opt.Ignore())
+                .ForMember(dest => dest.Caja, opt => opt.Ignore());
+
+            CreateMap<Factura, FacturaViewModel>()
+                .ForMember(dest => dest.ClienteNombre, opt => opt.MapFrom(src => src.Cliente != null ? src.Cliente.Nombre + " " + src.Cliente.Apellido : null))
+                .ForMember(dest => dest.MetodoPagoNombre, opt => opt.MapFrom(src => src.MetodoPago != null ? src.MetodoPago.Nombre : null));
+            CreateMap<FacturaViewModel, Factura>()
+                .ForMember(dest => dest.Cliente, opt => opt.Ignore())
+                .ForMember(dest => dest.MetodoPago, opt => opt.Ignore())
+                .ForMember(dest => dest.Pedido, opt => opt.Ignore());
+
 
             CreateMap<Mesa, MesaViewModel>()
                 .ForMember(dest => dest.EstadoNombre, opt => opt.MapFrom(src => src.IdEstadoNavigation.Nombre))
@@ -92,6 +118,10 @@ namespace WebApi_LoDeFran.Mapping
             CreateMap<EstadosMesa, EstadoMesaViewModel>().ReverseMap();
 
             CreateMap<Piso, PisoViewModel>().ReverseMap();
+
+            CreateMap<Cliente, ClienteViewModel>().ReverseMap();
+
+            CreateMap<TiposPedido, TipoPedidoViewModel>().ReverseMap();
 
         }
     }

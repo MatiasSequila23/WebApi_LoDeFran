@@ -17,6 +17,8 @@ public partial class LoDeFranContext : DbContext
 
     public virtual DbSet<Bitacora> Bitacoras { get; set; }
 
+    public virtual DbSet<Caja> Cajas { get; set; }
+
     public virtual DbSet<CategoriasProducto> CategoriasProductos { get; set; }
 
     public virtual DbSet<Cliente> Clientes { get; set; }
@@ -39,6 +41,10 @@ public partial class LoDeFranContext : DbContext
 
     public virtual DbSet<Mesa> Mesas { get; set; }
 
+    public virtual DbSet<MetodoPago> MetodoPagos { get; set; }
+
+    public virtual DbSet<MovimientoCaja> MovimientoCajas { get; set; }
+
     public virtual DbSet<Pedido> Pedidos { get; set; }
 
     public virtual DbSet<Permiso> Permisos { get; set; }
@@ -56,6 +62,8 @@ public partial class LoDeFranContext : DbContext
     public virtual DbSet<Role> Roles { get; set; }
 
     public virtual DbSet<Stock> Stocks { get; set; }
+
+    public virtual DbSet<TiposPedido> TiposPedidos { get; set; }
 
     public virtual DbSet<UnidadMedidum> UnidadMedida { get; set; }
 
@@ -92,6 +100,38 @@ public partial class LoDeFranContext : DbContext
                 .HasConstraintName("FK__Bitacora__usuari__6E01572D");
         });
 
+        modelBuilder.Entity<Caja>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__caja__3213E83F87FA4BDB");
+
+            entity.ToTable("caja");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Estado)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("estado");
+            entity.Property(e => e.FechaApertura)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("fecha_apertura");
+            entity.Property(e => e.FechaCierre)
+                .HasColumnType("datetime")
+                .HasColumnName("fecha_cierre");
+            entity.Property(e => e.MontoFinal)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("monto_final");
+            entity.Property(e => e.MontoInicial)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("monto_inicial");
+            entity.Property(e => e.UsuarioId).HasColumnName("usuario_id");
+
+            entity.HasOne(d => d.Usuario).WithMany(p => p.Cajas)
+                .HasForeignKey(d => d.UsuarioId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_caja_usuario");
+        });
+
         modelBuilder.Entity<CategoriasProducto>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Categori__3213E83FEFA6EF6D");
@@ -114,6 +154,15 @@ public partial class LoDeFranContext : DbContext
             entity.HasIndex(e => e.Email, "UQ__Clientes__AB6E6164AF96F521").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Altura)
+                .HasMaxLength(20)
+                .HasColumnName("altura");
+            entity.Property(e => e.Apellido)
+                .HasMaxLength(100)
+                .HasColumnName("apellido");
+            entity.Property(e => e.Calle)
+                .HasMaxLength(150)
+                .HasColumnName("calle");
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .IsUnicode(false)
@@ -126,6 +175,9 @@ public partial class LoDeFranContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("nombre");
+            entity.Property(e => e.Piso)
+                .HasMaxLength(20)
+                .HasColumnName("piso");
             entity.Property(e => e.PuntosFidelidad)
                 .HasDefaultValue(0)
                 .HasColumnName("puntos_fidelidad");
@@ -224,6 +276,7 @@ public partial class LoDeFranContext : DbContext
             entity.ToTable("facturas");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.ClienteId).HasColumnName("cliente_id");
             entity.Property(e => e.Estado)
                 .HasMaxLength(20)
                 .IsUnicode(false)
@@ -232,14 +285,20 @@ public partial class LoDeFranContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_emision");
-            entity.Property(e => e.MetodoPago)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("metodo_pago");
+            entity.Property(e => e.MetodoPagoId).HasColumnName("metodo_pago_id");
             entity.Property(e => e.PedidoId).HasColumnName("pedido_id");
             entity.Property(e => e.Total)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("total");
+
+            entity.HasOne(d => d.Cliente).WithMany(p => p.Facturas)
+                .HasForeignKey(d => d.ClienteId)
+                .HasConstraintName("FK_Factura_Cliente");
+
+            entity.HasOne(d => d.MetodoPago).WithMany(p => p.Facturas)
+                .HasForeignKey(d => d.MetodoPagoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_factura_metodo_pago");
 
             entity.HasOne(d => d.Pedido).WithMany(p => p.Facturas)
                 .HasForeignKey(d => d.PedidoId)
@@ -341,6 +400,54 @@ public partial class LoDeFranContext : DbContext
                 .HasConstraintName("FK_mesas_pisos");
         });
 
+        modelBuilder.Entity<MetodoPago>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__metodo_p__3213E83FAE3A1442");
+
+            entity.ToTable("metodo_pago");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
+        });
+
+        modelBuilder.Entity<MovimientoCaja>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__movimien__3213E83F5D2C7FB2");
+
+            entity.ToTable("movimiento_caja");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CajaId).HasColumnName("caja_id");
+            entity.Property(e => e.Descripcion)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("descripcion");
+            entity.Property(e => e.FechaMovimiento)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("fecha_movimiento");
+            entity.Property(e => e.MetodoPagoId).HasColumnName("metodo_pago_id");
+            entity.Property(e => e.Monto)
+                .HasColumnType("decimal(18, 2)")
+                .HasColumnName("monto");
+            entity.Property(e => e.TipoMovimiento)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("tipo_movimiento");
+
+            entity.HasOne(d => d.Caja).WithMany(p => p.MovimientoCajas)
+                .HasForeignKey(d => d.CajaId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_movimiento_caja_caja");
+
+            entity.HasOne(d => d.MetodoPago).WithMany(p => p.MovimientoCajas)
+                .HasForeignKey(d => d.MetodoPagoId)
+                .HasConstraintName("fk_movimiento_caja_metodo_pago");
+        });
+
         modelBuilder.Entity<Pedido>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Pedidos__3213E83F4D8F25EE");
@@ -361,6 +468,8 @@ public partial class LoDeFranContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_pedido");
             entity.Property(e => e.MesaId).HasColumnName("mesa_id");
+            entity.Property(e => e.Notas).HasColumnName("notas");
+            entity.Property(e => e.TipoPedidoId).HasColumnName("tipo_pedido_id");
             entity.Property(e => e.Total)
                 .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
@@ -378,8 +487,11 @@ public partial class LoDeFranContext : DbContext
 
             entity.HasOne(d => d.Mesa).WithMany(p => p.Pedidos)
                 .HasForeignKey(d => d.MesaId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Pedidos_Mesas");
+
+            entity.HasOne(d => d.TipoPedido).WithMany(p => p.Pedidos)
+                .HasForeignKey(d => d.TipoPedidoId)
+                .HasConstraintName("FK_pedidos_tipos_pedido");
         });
 
         modelBuilder.Entity<Permiso>(entity =>
@@ -600,6 +712,18 @@ public partial class LoDeFranContext : DbContext
             entity.HasOne(d => d.Producto).WithMany(p => p.Stocks)
                 .HasForeignKey(d => d.ProductoId)
                 .HasConstraintName("FK_Stock_Productos");
+        });
+
+        modelBuilder.Entity<TiposPedido>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tipos_pe__3213E83F911A0FFC");
+
+            entity.ToTable("tipos_pedido");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
+                .HasColumnName("nombre");
         });
 
         modelBuilder.Entity<UnidadMedidum>(entity =>

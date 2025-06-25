@@ -17,6 +17,16 @@ public partial class Cliente
 
     public DateTime? FechaCreacion { get; set; }
 
+    public string? Apellido { get; set; }
+
+    public string? Calle { get; set; }
+
+    public string? Altura { get; set; }
+
+    public string? Piso { get; set; }
+
+    public virtual ICollection<Factura> Facturas { get; set; } = new List<Factura>();
+
     public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
 
     public virtual ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
