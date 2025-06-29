@@ -96,14 +96,19 @@ namespace WebApi_LoDeFran.Controllers
                 return BadRequest("La cadena de búsqueda no puede estar vacía.");
 
             var clientes = await _context.Clientes
-                .Where(c => c.Nombre.Contains(busqueda) ||
-                            c.Telefono.Contains(busqueda) ||
-                            (c.Email != null && c.Email.Contains(busqueda)))
+                .Where(c =>
+                    c.Nombre.Contains(busqueda) ||
+                    c.Telefono.Contains(busqueda) ||
+                    (c.Email != null && c.Email.Contains(busqueda)) ||
+                    (c.Calle != null && c.Calle.Contains(busqueda)) ||
+                    (c.Altura != null && c.Altura.Contains(busqueda))
+                )
                 .ToListAsync();
 
             var clientesVM = _mapper.Map<List<ClienteViewModel>>(clientes);
             return Ok(clientesVM);
         }
+
 
     }
 

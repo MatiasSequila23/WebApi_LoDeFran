@@ -16,6 +16,8 @@
 
         public decimal? MontoFinal { get; set; }
 
+        public decimal? Diferencia { get; set; }
+
         public string Estado { get; set; } = null!;
 
         public List<MovimientoCajaViewModel> Movimientos { get; set; } = new();

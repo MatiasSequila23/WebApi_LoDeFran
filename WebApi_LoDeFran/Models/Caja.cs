@@ -19,6 +19,8 @@ public partial class Caja
 
     public string Estado { get; set; } = null!;
 
+    public decimal? Diferencia { get; set; }
+
     public virtual ICollection<MovimientoCaja> MovimientoCajas { get; set; } = new List<MovimientoCaja>();
 
     public virtual Usuario Usuario { get; set; } = null!;

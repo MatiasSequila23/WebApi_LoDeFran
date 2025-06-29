@@ -50,11 +50,32 @@ namespace WebApi_LoDeFran.Mapping
 
             CreateMap<MetodoPago, MetodoPagoViewModel>().ReverseMap();
 
+            // MotivoMovimiento
+            CreateMap<MotivosMovimiento, MotivoMovimientoViewModel>()
+                .ForMember(dest => dest.TipoMovimientoNombre, opt => opt.MapFrom(src => src.TipoMovimiento.Nombre));
+            CreateMap<MotivoMovimientoViewModel, MotivosMovimiento>()
+                .ForMember(dest => dest.TipoMovimiento, opt => opt.Ignore());
+
+            // MovimientoCaja
+            CreateMap<MotivosMovimiento, MotivoMovimientoViewModel>()
+                .ForMember(dest => dest.TipoMovimientoNombre, opt => opt.MapFrom(src => src.TipoMovimiento.Nombre))
+                .ReverseMap()
+                .ForMember(dest => dest.TipoMovimiento, opt => opt.Ignore())
+                .ForMember(dest => dest.MovimientoCajas, opt => opt.Ignore());
+
             CreateMap<MovimientoCaja, MovimientoCajaViewModel>()
-                .ForMember(dest => dest.MetodoPagoNombre, opt => opt.MapFrom(src => src.MetodoPago != null ? src.MetodoPago.Nombre : null));
+            .ForMember(dest => dest.MotivoNombre, opt => opt.MapFrom(src => src.MotivoMovimiento != null ? src.MotivoMovimiento.Nombre : null))
+            .ForMember(dest => dest.TipoMovimientoNombre, opt => opt.MapFrom(src => src.MotivoMovimiento != null ? src.MotivoMovimiento.TipoMovimiento.Nombre : null))
+            .ForMember(dest => dest.MetodoPagoNombre, opt => opt.MapFrom(src => src.MetodoPago != null ? src.MetodoPago.Nombre : null));
+
+            // ViewModel -> Modelo
             CreateMap<MovimientoCajaViewModel, MovimientoCaja>()
                 .ForMember(dest => dest.MetodoPago, opt => opt.Ignore())
-                .ForMember(dest => dest.Caja, opt => opt.Ignore());
+                .ForMember(dest => dest.MotivoMovimiento, opt => opt.Ignore())
+                .ForMember(dest => dest.Caja, opt => opt.Ignore())
+                .ForMember(dest => dest.MetodoPagoId, opt => opt.MapFrom(src => src.MetodoPagoId))
+                .ForMember(dest => dest.MotivoMovimientoId, opt => opt.MapFrom(src => src.MotivoMovimientoId));
+
 
             CreateMap<Factura, FacturaViewModel>()
                 .ForMember(dest => dest.ClienteNombre, opt => opt.MapFrom(src => src.Cliente != null ? src.Cliente.Nombre + " " + src.Cliente.Apellido : null))

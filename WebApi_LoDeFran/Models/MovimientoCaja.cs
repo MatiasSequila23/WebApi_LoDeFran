@@ -11,15 +11,17 @@ public partial class MovimientoCaja
 
     public DateTime FechaMovimiento { get; set; }
 
-    public string TipoMovimiento { get; set; } = null!;
-
     public decimal Monto { get; set; }
 
     public string? Descripcion { get; set; }
 
     public int? MetodoPagoId { get; set; }
 
+    public int? MotivoMovimientoId { get; set; }
+
     public virtual Caja Caja { get; set; } = null!;
 
     public virtual MetodoPago? MetodoPago { get; set; }
+
+    public virtual MotivosMovimiento? MotivoMovimiento { get; set; }
 }

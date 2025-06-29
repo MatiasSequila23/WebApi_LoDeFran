@@ -7,12 +7,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebApi_LoDeFran.Controllers
 {
-    public class CajaController : ControllerBase
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CajasController : ControllerBase
     {
         private readonly LoDeFranContext _context;
         private readonly IMapper _mapper;
 
-        public CajaController(LoDeFranContext context, IMapper mapper)
+        public CajasController(LoDeFranContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -91,19 +93,42 @@ namespace WebApi_LoDeFran.Controllers
         }
         // PATCH: api/Cajas/5/cerrar
         [HttpPatch("{id}/cerrar")]
-        public async Task<IActionResult> CerrarCaja(int id)
+        public async Task<IActionResult> CerrarCaja(int id, [FromBody] CierreCajaRequest request)
         {
-            var caja = await _context.Cajas.Include(c => c.MovimientoCajas).FirstOrDefaultAsync(c => c.Id == id);
-            if (caja == null || caja.Estado != "abierta") return NotFound();
+            var caja = await _context.Cajas
+                .Include(c => c.MovimientoCajas)
+                    .ThenInclude(m => m.MotivoMovimiento)
+                        .ThenInclude(mm => mm.TipoMovimiento)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (caja == null || caja.Estado != "abierta")
+                return NotFound();
+
+            // ✅ Calcular ingresos y egresos EN EFECTIVO usando relaciones reales
+            var efectivoIngresos = caja.MovimientoCajas
+                .Where(m =>
+                    m.MetodoPagoId == 1 &&
+                    m.MotivoMovimiento?.TipoMovimiento.Nombre.ToLower() == "ingreso")
+                .Sum(m => m.Monto);
+
+            var efectivoEgresos = caja.MovimientoCajas
+                .Where(m =>
+                    m.MetodoPagoId == 1 &&
+                    m.MotivoMovimiento?.TipoMovimiento.Nombre.ToLower() == "egreso")
+                .Sum(m => m.Monto);
+
+            var totalSistema = caja.MontoInicial + efectivoIngresos - efectivoEgresos;
 
             caja.FechaCierre = DateTime.Now;
-            caja.MontoFinal = caja.MovimientoCajas.Sum(m => m.Monto) + caja.MontoInicial;
+            caja.MontoFinal = request.MontoFinalIngresado;
+            caja.Diferencia = request.MontoFinalIngresado - totalSistema;
             caja.Estado = "cerrada";
 
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
+
+
         // GET: api/Cajas/abierta/usuario/5
         [HttpGet("abierta/usuario/{usuarioId}")]
         public async Task<ActionResult<CajaViewModel>> GetCajaAbierta(int usuarioId)
@@ -111,18 +136,26 @@ namespace WebApi_LoDeFran.Controllers
             var caja = await _context.Cajas
                 .Include(c => c.Usuario)
                 .Include(c => c.MovimientoCajas)
+                    .ThenInclude(m => m.MotivoMovimiento)
+                        .ThenInclude(mm => mm.TipoMovimiento)
+                .Include(c => c.MovimientoCajas)
+                    .ThenInclude(m => m.MetodoPago)
                 .FirstOrDefaultAsync(c => c.UsuarioId == usuarioId && c.Estado == "abierta");
 
             if (caja == null) return Ok(null);
 
             return Ok(_mapper.Map<CajaViewModel>(caja));
         }
+
     }
     public class AbrirCajaViewModel
     {
         public int UsuarioId { get; set; }
         public decimal MontoInicial { get; set; }
     }
-
+    public class CierreCajaRequest
+    {
+        public decimal MontoFinalIngresado { get; set; }
+    }
 
 }

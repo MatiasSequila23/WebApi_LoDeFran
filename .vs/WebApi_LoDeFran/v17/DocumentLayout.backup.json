@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "E:\\Sources\\WebApi_LoDeFran\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\cajacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\cajacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\callescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\callescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\facturascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\facturascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\metodopagocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\metodopagocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\movimientocajacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\movimientocajacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\models\\calle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\models\\calle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,68 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MappingProfile.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAgwDEAAAAAAAAAAAAAAA==",
+              "Title": "Calle.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Calle.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\Calle.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\Calle.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Models\\Calle.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T19:56:53.36Z",
+              "WhenOpened": "2025-06-29T14:12:07.182Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FacturasController.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\FacturasController.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\FacturasController.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\FacturasController.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\FacturasController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-23T00:57:40.379Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MetodoPagoController.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\MetodoPagoController.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\MetodoPagoController.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\MetodoPagoController.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\MetodoPagoController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAxwCMAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-23T00:56:44.038Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MovimientoCajaController.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\MovimientoCajaController.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\MovimientoCajaController.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\MovimientoCajaController.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\MovimientoCajaController.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAAAEEAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-23T00:56:18.899Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CajaController.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\CajaController.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\CajaController.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\CajaController.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\CajaController.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAuwHYAAAAJAAAAAAAAAA==",
+              "Title": "CallesController.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\CallesController.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\CallesController.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\CallesController.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\CallesController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAwCIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-23T00:55:24.131Z",
+              "WhenOpened": "2025-06-29T14:05:12.409Z",
               "EditorCaption": ""
             }
           ]
