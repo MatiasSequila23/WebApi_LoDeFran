@@ -44,4 +44,6 @@ public partial class Calle
     public string? BarrioImp { get; set; }
 
     public string? Geometry { get; set; }
+
+    public virtual ICollection<Cliente> Clientes { get; set; } = new List<Cliente>();
 }

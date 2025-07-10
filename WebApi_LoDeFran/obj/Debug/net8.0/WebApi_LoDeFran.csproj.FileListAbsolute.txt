@@ -348,6 +348,8 @@ E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\AutoMapper.dll
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\Azure.Core.dll
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\Azure.Identity.dll
+E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\Humanizer.dll
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\Microsoft.Build.Locator.dll
@@ -400,6 +402,7 @@ E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\System.Diagnostics.D
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\System.Drawing.Common.dll
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\System.Formats.Asn1.dll
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\System.IO.Packaging.dll
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\System.IO.Pipelines.dll
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\System.Memory.Data.dll
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Debug\net8.0\System.Runtime.Caching.dll

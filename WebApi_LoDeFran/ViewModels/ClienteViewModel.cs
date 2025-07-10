@@ -12,15 +12,19 @@
 
         public string? Telefono { get; set; }
 
+        public int? PuntosFidelidad { get; set; }
+
+        public DateTime? FechaCreacion { get; set; }
+
         public string? Calle { get; set; }
 
         public string? Altura { get; set; }
 
         public string? Piso { get; set; }
 
-        public int? PuntosFidelidad { get; set; }
+        public int? CalleId { get; set; }
 
-        public DateTime? FechaCreacion { get; set; }
+        // Relación con Calle (opcional, para mostrar nombre)
+        public string? CalleNomMapa { get; set; } // opcional para mostrar
     }
-
 }

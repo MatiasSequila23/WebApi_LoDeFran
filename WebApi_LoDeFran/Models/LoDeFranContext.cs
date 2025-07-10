@@ -186,7 +186,7 @@ public partial class LoDeFranContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("tipoC");
             entity.Property(e => e.TipoFfcc)
-                .HasMaxLength(100)
+                .HasMaxLength(500)
                 .HasColumnName("tipoFFCC");
         });
 
@@ -221,6 +221,7 @@ public partial class LoDeFranContext : DbContext
             entity.Property(e => e.Calle)
                 .HasMaxLength(150)
                 .HasColumnName("calle");
+            entity.Property(e => e.CalleId).HasColumnName("calle_id");
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .IsUnicode(false)
@@ -243,6 +244,10 @@ public partial class LoDeFranContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("telefono");
+
+            entity.HasOne(d => d.CalleNavigation).WithMany(p => p.Clientes)
+                .HasForeignKey(d => d.CalleId)
+                .HasConstraintName("FK_Clientes_Calles");
         });
 
         modelBuilder.Entity<DetallesPedido>(entity =>

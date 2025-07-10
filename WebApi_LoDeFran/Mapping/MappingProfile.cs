@@ -140,10 +140,15 @@ namespace WebApi_LoDeFran.Mapping
 
             CreateMap<Piso, PisoViewModel>().ReverseMap();
 
-            CreateMap<Cliente, ClienteViewModel>().ReverseMap();
+            CreateMap<Cliente, ClienteViewModel>()
+            .ForMember(dest => dest.CalleNomMapa, opt => opt.MapFrom(src => src.CalleNavigation != null ? src.CalleNavigation.NomMapa : null));
+
+            CreateMap<ClienteViewModel, Cliente>()
+                .ForMember(dest => dest.CalleNavigation, opt => opt.Ignore()); // evitamos mapear navegación inversa automáticamente
 
             CreateMap<TiposPedido, TipoPedidoViewModel>().ReverseMap();
 
+            CreateMap<Calle, CalleViewModel>().ReverseMap();
         }
     }
 }

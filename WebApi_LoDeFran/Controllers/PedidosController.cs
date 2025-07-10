@@ -200,6 +200,7 @@ namespace WebApi_LoDeFran.Controllers
             var pedidos = await _context.Pedidos
                 .Where(p => p.EstadoId == (int)EstadoPedido.Abierto || p.EstadoId == (int)EstadoPedido.EnPreparacion)
                 .Include(p => p.Mesa)
+                .Include(p => p.TipoPedido)
                 .Include(p => p.DetallesPedidos)
                     .ThenInclude(dp => dp.Producto)
                 .ToListAsync();

@@ -511,3 +511,6 @@ E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\obj\Release\net8.0\refint\WebApi_LoDe
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\obj\Release\net8.0\WebApi_LoDeFran.pdb
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\obj\Release\net8.0\WebApi_LoDeFran.genruntimeconfig.cache
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\obj\Release\net8.0\ref\WebApi_LoDeFran.dll
+E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Release\net8.0\DocumentFormat.OpenXml.dll
+E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Release\net8.0\DocumentFormat.OpenXml.Framework.dll
+E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\bin\Release\net8.0\System.IO.Packaging.dll

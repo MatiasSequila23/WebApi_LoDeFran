@@ -25,6 +25,10 @@ public partial class Cliente
 
     public string? Piso { get; set; }
 
+    public int? CalleId { get; set; }
+
+    public virtual Calle? CalleNavigation { get; set; }
+
     public virtual ICollection<Factura> Facturas { get; set; } = new List<Factura>();
 
     public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();

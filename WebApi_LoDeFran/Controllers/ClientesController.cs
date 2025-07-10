@@ -41,25 +41,42 @@ namespace WebApi_LoDeFran.Controllers
 
         // POST: api/Clientes
         [HttpPost]
-        public async Task<IActionResult> PostCliente(ClienteViewModel viewModel)
+        public async Task<IActionResult> PostCliente(ClienteViewModel clienteVm)
         {
             var existente = await _context.Clientes
-                .FirstOrDefaultAsync(c => c.Telefono == viewModel.Telefono);
+                .FirstOrDefaultAsync(c => c.Telefono == clienteVm.Telefono);
 
             if (existente != null)
             {
-                // Cliente ya existe: devolverlo como OK
                 return Ok(_mapper.Map<ClienteViewModel>(existente));
             }
 
-            var cliente = _mapper.Map<Cliente>(viewModel);
+            var cliente = _mapper.Map<Cliente>(clienteVm);
             cliente.FechaCreacion = DateTime.Now;
+
+            // Buscar tramo de calle por nombre + altura
+            if (!string.IsNullOrWhiteSpace(clienteVm.Calle) && int.TryParse(clienteVm.Altura, out int altura))
+            {
+                var tramo = await _context.Calles
+                    .Where(c => c.NomMapa == clienteVm.Calle &&
+                                ((c.AltIzqIni <= altura && c.AltIzqFin >= altura) ||
+                                 (c.AltDerIni <= altura && c.AltDerFin >= altura)))
+                    .OrderBy(c => Math.Abs((((c.AltIzqIni ?? 0) + (c.AltIzqFin ?? 0) + (c.AltDerIni ?? 0) + (c.AltDerFin ?? 0)) / 4m ) - (decimal)altura))
+                    .FirstOrDefaultAsync();
+
+                if (tramo != null)
+                {
+                    cliente.CalleId = tramo.Id;
+                }
+            }
 
             _context.Clientes.Add(cliente);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetCliente), new { id = cliente.Id }, _mapper.Map<ClienteViewModel>(cliente));
         }
+
+
 
         // PUT: api/Clientes/5
         [HttpPut("{id}")]
