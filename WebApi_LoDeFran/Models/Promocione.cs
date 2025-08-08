@@ -11,13 +11,31 @@ public partial class Promocione
 
     public string? Descripcion { get; set; }
 
-    public decimal Descuento { get; set; }
+    public decimal? ValorDescuento { get; set; }
 
-    public DateOnly FechaInicio { get; set; }
+    public DateTime? FechaInicio { get; set; }
 
-    public DateOnly FechaFin { get; set; }
+    public DateTime? FechaFin { get; set; }
 
-    public bool Estado { get; set; }
+    public decimal? MontoMinimo { get; set; }
 
-    public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
+    public int? EstadoId { get; set; }
+
+    public int AplicacionId { get; set; }
+
+    public int TipoDescuentoId { get; set; }
+
+    public int? TipoPromocionId { get; set; }
+
+    public virtual PromocionesAplicacione Aplicacion { get; set; } = null!;
+
+    public virtual EstadosPromocione? Estado { get; set; }
+
+    public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
+
+    public virtual ICollection<PromocionDia> PromocionDia { get; set; } = new List<PromocionDia>();
+
+    public virtual TipoDescuento TipoDescuento { get; set; } = null!;
+
+    public virtual TipoPromocion? TipoPromocion { get; set; }
 }

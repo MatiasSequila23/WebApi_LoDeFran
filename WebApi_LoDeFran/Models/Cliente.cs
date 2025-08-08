@@ -27,6 +27,10 @@ public partial class Cliente
 
     public int? CalleId { get; set; }
 
+    public bool EsVip { get; set; }
+
+    public DateOnly? FechaNacimiento { get; set; }
+
     public virtual Calle? CalleNavigation { get; set; }
 
     public virtual ICollection<Factura> Facturas { get; set; } = new List<Factura>();

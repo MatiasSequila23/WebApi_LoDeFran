@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi_LoDeFran.Models;
 using WebApi_LoDeFran.ViewModels;
+using WebApi_LoDeFran.Utlis.ClassAux;
+using WebApi_LoDeFran.Utlis;
 
 namespace WebApi_LoDeFran.Controllers
 {
@@ -26,6 +28,8 @@ namespace WebApi_LoDeFran.Controllers
             var pedidos = await _context.Pedidos
                 .Include(p => p.Mesa)
                 .Include(p => p.DetallesPedidos)
+                .Include(p => p.Promocion)
+                .Include(p => p.DetallesPedidos)
                     .ThenInclude(dp => dp.Producto)
                 .ToListAsync();
 
@@ -40,8 +44,16 @@ namespace WebApi_LoDeFran.Controllers
         {
             var pedido = await _context.Pedidos
                 .Include(p => p.Mesa)
+                .Include(p => p.Promocion)
                 .Include(p => p.DetallesPedidos)
-                .ThenInclude(dp => dp.Producto)
+                    .ThenInclude(dp => dp.Producto)
+                .Include(p => p.DetallesPedidos) // ⬅ Asegura que se incluya EstadoCocina
+                    .ThenInclude(dp => dp.EstadoCocina)
+                .Include(p => p.PedidoCombos)
+                    .ThenInclude(pc => pc.Combo)
+                .Include(p => p.PedidoCombos)
+                    .ThenInclude(pc => pc.PedidoComboItems)
+                        .ThenInclude(pci => pci.Producto)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (pedido == null)
@@ -51,18 +63,60 @@ namespace WebApi_LoDeFran.Controllers
             return Ok(pedidoVM);
         }
 
+
+
         // POST: api/Pedidos
         [HttpPost]
         public async Task<ActionResult<PedidoViewModel>> PostPedido(PedidoViewModel pedidoVM)
         {
+            //try
+            //{
+                pedidoVM.CategoriaId = 1;
+
+                var pedido = _mapper.Map<Pedido>(pedidoVM);
+                pedido.FechaPedido = DateTime.UtcNow;
+
+                if (pedidoVM.PromocionId == 0)
+                    pedidoVM.PromocionId = null;
+
+
+                _context.Pedidos.Add(pedido);
+                await _context.SaveChangesAsync();
+
+                var nuevoVM = _mapper.Map<PedidoViewModel>(pedido);
+                return CreatedAtAction(nameof(GetPedido), new { id = pedido.Id }, nuevoVM);
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Puedes registrar el error si usás un logger, por ejemplo:
+            //    // _logger.LogError(ex, "Error al crear el pedido");
+
+            //    return StatusCode(500, new
+            //    {
+            //        mensaje = "Ocurrió un error al crear el pedido.",
+            //        error = ex.Message,
+            //        innerException = ex.InnerException?.Message
+            //    });
+            //}
+        }
+        [HttpPost("NuevoPedido")]
+        public async Task<ActionResult<PedidoViewModel>> NuevoPedidos([FromBody] PedidoViewModel pedidoVM)
+        {
+            pedidoVM.CategoriaId = 1;
+
             var pedido = _mapper.Map<Pedido>(pedidoVM);
             pedido.FechaPedido = DateTime.UtcNow;
+
+            if (pedidoVM.PromocionId == 0)
+                pedidoVM.PromocionId = null;
+
 
             _context.Pedidos.Add(pedido);
             await _context.SaveChangesAsync();
 
             var nuevoVM = _mapper.Map<PedidoViewModel>(pedido);
             return CreatedAtAction(nameof(GetPedido), new { id = pedido.Id }, nuevoVM);
+           
         }
 
         // PUT: api/Pedidos/5
@@ -109,7 +163,7 @@ namespace WebApi_LoDeFran.Controllers
             {
                 MesaId = idMesa,
                 FechaPedido = DateTime.UtcNow,
-                EstadoId =(int)EstadoPedido.Abierto,
+                EstadoId =(int)Enums.EstadoPedido.Abierto,
                 DetallesPedidos = new List<DetallesPedido>()
             };
             mesa.IdEstado = 2; // 2 = Ocupada
@@ -121,23 +175,15 @@ namespace WebApi_LoDeFran.Controllers
             var pedidoVM = _mapper.Map<PedidoViewModel>(pedido);
             return CreatedAtAction(nameof(GetPedido), new { id = pedido.Id }, pedidoVM);
         }
-        [HttpPut("{id}/estado")]
-        public async Task<IActionResult> CambiarEstado(int id, [FromBody] EstadoPedido nuevoEstado)
-        {
-            var pedido = await _context.Pedidos.FindAsync(id);
-            if (pedido == null)
-                return NotFound();
+        
 
-            pedido.EstadoId = (int)nuevoEstado;
-            await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
         [HttpPost("{id}/agregar-producto")]
         public async Task<IActionResult> AgregarProducto(int id, [FromBody] ProductoPedidoDto dto)
         {
             var pedido = await _context.Pedidos
                 .Include(p => p.DetallesPedidos)
+                .Include(p => p.Promocion) // Si tienes la promoción vinculada
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (pedido == null)
@@ -147,13 +193,12 @@ namespace WebApi_LoDeFran.Controllers
             if (producto == null)
                 return NotFound($"No se encontró el producto con ID {dto.productoId}");
 
-            // Verificar si el producto ya está en el pedido
             var detalleExistente = pedido.DetallesPedidos
                 .FirstOrDefault(d => d.ProductoId == dto.productoId);
 
             if (detalleExistente != null)
             {
-                detalleExistente.Cantidad += 1;
+                detalleExistente.Cantidad += dto.cantidad; // usar dto.cantidad, no solo +1
             }
             else
             {
@@ -165,8 +210,84 @@ namespace WebApi_LoDeFran.Controllers
                 });
             }
 
+            // Recalcular total sin descuento
+            pedido.TotalSinDescuento = pedido.DetallesPedidos.Sum(d => d.Cantidad * d.PrecioUnitario);
+
+            // Aplicar lógica para calcular descuento y total según promoción
+            (pedido.MontoDescuento, pedido.Total) = CalcularDescuentoYTotal(pedido);
+
             await _context.SaveChangesAsync();
             return NoContent();
+        }
+
+        
+
+        [HttpPost("{pedidoId}/agregar-combo")]
+        public async Task<IActionResult> AgregarComboAlPedido(int pedidoId, [FromBody] AgregarComboRequest request)
+        {
+            if (request == null)
+                return BadRequest("Datos del combo no enviados.");
+
+            if (request.Cantidad <= 0)
+                return BadRequest("La cantidad debe ser mayor a cero.");
+
+            var pedido = await _context.Pedidos
+                .Include(p => p.PedidoCombos)
+                .FirstOrDefaultAsync(p => p.Id == pedidoId);
+
+            if (pedido == null)
+                return NotFound($"No se encontró el pedido con ID {pedidoId}");
+
+            var comboExiste = await _context.Combos.AnyAsync(c => c.Id == request.ComboId);
+            if (!comboExiste)
+                return NotFound($"No se encontró el combo con ID {request.ComboId}");
+
+            var comboItems = await _context.CombosItems
+                .Where(ci => ci.ComboId == request.ComboId)
+                .ToListAsync();
+
+            if (!comboItems.Any())
+                return BadRequest($"El combo con ID {request.ComboId} no tiene productos asociados.");
+
+            // Crear el PedidoCombo
+            var pedidoCombo = new PedidoCombo
+            {
+                PedidoId = pedidoId,
+                ComboId = request.ComboId,
+                Cantidad = request.Cantidad,
+            };
+
+            _context.PedidoCombos.Add(pedidoCombo);
+            await _context.SaveChangesAsync(); // Guardamos para obtener el ID
+
+            foreach (var item in comboItems)
+            {
+                _context.PedidoComboItems.Add(new PedidoComboItem
+                {
+                    PedidoComboId = pedidoCombo.Id,
+                    ProductoId = item.ProductoId,
+                    Cantidad = item.Cantidad * request.Cantidad
+                });
+            }
+
+            await _context.SaveChangesAsync();
+
+            // Recalcular totales y descuentos
+            // Primero recargamos el pedido con detalles para calcular totales correctamente
+            pedido = await _context.Pedidos
+                .Include(p => p.DetallesPedidos)
+                .Include(p => p.PedidoCombos).ThenInclude(pc => pc.PedidoComboItems)
+                .Include(p => p.Promocion)
+                .FirstOrDefaultAsync(p => p.Id == pedidoId);
+
+            var (montoDescuento, totalConDescuento) = CalcularDescuentoYTotal(pedido);
+
+            pedido.MontoDescuento = montoDescuento;
+            pedido.Total = totalConDescuento;
+
+            await _context.SaveChangesAsync();
+
+            return Ok("Combo agregado correctamente al pedido.");
         }
         [HttpGet("por-mesa/{idMesa}")]
         public async Task<ActionResult<PedidoViewModel>> ObtenerPedidoPorMesa(int idMesa)
@@ -194,22 +315,53 @@ namespace WebApi_LoDeFran.Controllers
 
             return NoContent();
         }
-        [HttpGet("cocina")]
-        public async Task<ActionResult<IEnumerable<PedidoViewModel>>> GetPedidosParaCocina()
-        {
-            var pedidos = await _context.Pedidos
-                .Where(p => p.EstadoId == (int)EstadoPedido.Abierto || p.EstadoId == (int)EstadoPedido.EnPreparacion)
-                .Include(p => p.Mesa)
-                .Include(p => p.TipoPedido)
-                .Include(p => p.DetallesPedidos)
-                    .ThenInclude(dp => dp.Producto)
-                .ToListAsync();
+		[HttpGet("cocina")]
+		public async Task<ActionResult<IEnumerable<PedidoViewModel>>> GetPedidosParaCocina()
+		{
+			var estadoEnPreparacion = (int)Enums.EstadoPedido.EnPreparacion;
+			var estadoDetalleEnPreparacion = (int)Enums.EstadoDetallePedidoCocina.EnPreparacion;
 
-            var pedidosVM = _mapper.Map<List<PedidoViewModel>>(pedidos);
-            return Ok(pedidosVM);
-        }
-        // GET: api/Pedidos?estado=2
-        [HttpGet("por-estado/{idEstado}")]
+			// Traer pedidos base
+			var pedidosBase = await _context.Pedidos
+				.Where(p => p.EstadoId == estadoEnPreparacion)
+				.Include(p => p.Mesa)
+				.Include(p => p.TipoPedido)
+				.Include(p => p.Promocion)
+				.Include(p => p.PedidoCombos)
+					.ThenInclude(pc => pc.Combo)
+				.Include(p => p.PedidoCombos)
+					.ThenInclude(pc => pc.PedidoComboItems)
+						.ThenInclude(pci => pci.Producto)
+				.Include(p => p.PedidoCombos)
+					.ThenInclude(pc => pc.Combo)
+						.ThenInclude(c => c.CombosItems)
+							.ThenInclude(cp => cp.Producto)
+				.ToListAsync();
+
+			foreach (var pedido in pedidosBase)
+			{
+				pedido.DetallesPedidos = await _context.DetallesPedidos
+					.Where(dp => dp.PedidoId == pedido.Id && dp.EstadoCocinaId == estadoDetalleEnPreparacion)
+					.Include(dp => dp.Producto)
+					.Include(dp => dp.EstadoCocina)
+					.ToListAsync();
+			}
+
+			// Filtrar los pedidos que tienen al menos un detalle en preparación
+			var pedidosConDetalles = pedidosBase
+				.Where(p => p.DetallesPedidos != null && p.DetallesPedidos.Any())
+				.ToList();
+
+			var pedidosVM = _mapper.Map<List<PedidoViewModel>>(pedidosConDetalles);
+			return Ok(pedidosVM);
+		}
+
+
+
+
+
+		// GET: api/Pedidos?estado=2
+		[HttpGet("por-estado/{idEstado}")]
         public async Task<ActionResult<IEnumerable<PedidoViewModel>>> GetPedidosPorEstado(int idEstado)
         {
             var pedidos = await _context.Pedidos
@@ -248,7 +400,7 @@ namespace WebApi_LoDeFran.Controllers
             var pedido = _mapper.Map<Pedido>(pedidoVM);
             pedido.FechaPedido = DateTime.UtcNow;
             pedido.MesaId = 0; // sin mesa
-            pedido.EstadoId = (int)EstadoPedido.Abierto;
+            pedido.EstadoId = (int)Enums.EstadoPedido.Abierto;
 
             _context.Pedidos.Add(pedido);
             await _context.SaveChangesAsync();
@@ -284,7 +436,7 @@ namespace WebApi_LoDeFran.Controllers
             {
                 MesaId = idMesa,
                 FechaPedido = DateTime.UtcNow,
-                EstadoId = (int)EstadoPedido.Abierto,
+                EstadoId = (int)Enums.EstadoPedido.Abierto,
                 DetallesPedidos = new List<DetallesPedido>()
             };
             mesa.IdEstado = 2; // 2 = Ocupada
@@ -352,7 +504,7 @@ namespace WebApi_LoDeFran.Controllers
                 ClienteId = request.ClienteId,
                 TipoPedidoId = request.TipoPedidoId,
                 FechaPedido = DateTime.Now,
-                EstadoId = (int)EstadoPedido.Abierto, // Asegurate de tener un enum o valor fijo
+                EstadoId = (int)Enums.EstadoPedido.Abierto, // Asegurate de tener un enum o valor fijo
                 MesaId = null // Sin mesa
             };
 
@@ -418,7 +570,7 @@ namespace WebApi_LoDeFran.Controllers
                 ClienteId = dto.ClienteId,
                 TipoPedidoId = dto.TipoPedidoId,
                 FechaPedido = DateTime.Now,
-                EstadoId = (int)EstadoPedido.Abierto,
+                EstadoId = (int)Enums.EstadoPedido.Abierto,
                 MesaId = null // Pedido sin mesa
             };
 
@@ -439,6 +591,7 @@ namespace WebApi_LoDeFran.Controllers
             var pedidos = await _context.Pedidos
                 .Where(p => !estadosExcluir.Contains(p.EstadoId) && p.TipoPedidoId != tipoSalonId)
                 .Include(p => p.Mesa)
+                .Include(p => p.Promocion)
                 .Include(p => p.DetallesPedidos)
                     .ThenInclude(dp => dp.Producto)
                 .Include(p => p.Cliente)
@@ -458,28 +611,327 @@ namespace WebApi_LoDeFran.Controllers
 
             return Ok(pedidosVM);
         }
+        [HttpPost("crear_pedido_generico")]
+        public async Task<IActionResult> CrearPedidoGenerico([FromBody] CrearPedidoRequest dto)
+        {
+            // Validar tipo de pedido
+            var tipoPedido = await _context.TiposPedidos.FindAsync(dto.TipoPedidoId);
+            if (tipoPedido == null)
+                return BadRequest("Tipo de pedido inválido.");
+
+            var tipoNombre = tipoPedido.Nombre?.ToLower();
+
+            // Validación y asignación de cliente
+            if (tipoNombre.Contains("delivery"))
+            {
+                // Cliente obligatorio
+                if (dto.ClienteId == null)
+                    return BadRequest("El cliente es obligatorio para delivery.");
+
+                var cliente = await _context.Clientes.FindAsync(dto.ClienteId);
+                if (cliente == null)
+                    return BadRequest("El cliente no existe.");
+            }
+            else if (tipoNombre.Contains("mostrador"))
+            {
+                // Cliente opcional
+                if (dto.ClienteId == null || dto.ClienteId == 0)
+                {
+                    var clienteGenerico = await _context.Clientes
+                        .FirstOrDefaultAsync(c => c.Nombre == "Genérico" && c.Telefono == "0");
+
+                    if (clienteGenerico == null)
+                    {
+                        clienteGenerico = new Cliente
+                        {
+                            Nombre = "Genérico",
+                            Apellido = "Mostrador",
+                            Telefono = "0",
+                            FechaCreacion = DateTime.Now
+                        };
+                        _context.Clientes.Add(clienteGenerico);
+                        await _context.SaveChangesAsync();
+                    }
+
+                    dto.ClienteId = clienteGenerico.Id;
+                }
+                else
+                {
+                    var cliente = await _context.Clientes.FindAsync(dto.ClienteId);
+                    if (cliente == null)
+                        return BadRequest("El cliente no existe.");
+                }
+            }
+            else if (tipoNombre.Contains("mesa"))
+            {
+                // Cliente opcional
+                if (dto.MesaId == null)
+                    return BadRequest("La mesa es obligatoria para pedidos de mesa.");
+
+                var mesa = await _context.Mesas.FindAsync(dto.MesaId);
+                if (mesa == null)
+                    return BadRequest("La mesa no existe.");
+
+                // Marcar mesa como ocupada
+                mesa.IdEstado = (int)Enums.EstadoMesa.Ocupada;
+                _context.Mesas.Update(mesa);
+            }
+
+            var pedido = new Pedido
+            {
+                ClienteId = dto.ClienteId,
+                TipoPedidoId = dto.TipoPedidoId,
+                FechaPedido = DateTime.Now,
+                EstadoId = (int)Enums.EstadoPedido.Abierto,
+                MesaId = dto.MesaId,
+                UsuarioId = dto.UsuarioId ?? 0, // opcional
+                //PromocionId = dto.PromocionId,
+                //MontoDescuento = dto.MontoDescuento,
+                //TotalSinDescuento = dto.TotalSinDescuento,
+                //Notas = dto.Notas
+            };
+
+            _context.Pedidos.Add(pedido);
+            await _context.SaveChangesAsync();
+
+            var viewModel = _mapper.Map<PedidoViewModel>(pedido);
+            return Ok(viewModel);
+        }
+
+        private (decimal montoDescuento, decimal totalConDescuento) CalcularDescuentoYTotal(Pedido pedido)
+        {
+            // Total por detalles del pedido
+            decimal totalDetalles = pedido.DetallesPedidos.Sum(d => d.Cantidad * d.PrecioUnitario);
+
+            // Total por combos del pedido
+            decimal totalCombos = pedido.PedidoCombos
+                .Where(pc => pc.Combo != null && pc.Combo.Precio > 0)
+                .Sum(pc => pc.Cantidad * pc.Combo.Precio);
+
+            decimal totalSinDescuento = totalDetalles + totalCombos;
+            decimal montoDescuento = 0;
+
+            if (pedido.Promocion == null || pedido.Promocion.EstadoId != 1) // Solo promociones activas
+                return (0, totalSinDescuento);
+
+            var promo = pedido.Promocion;
+
+            switch (promo.AplicacionId)
+            {
+                case 1: // Total de la compra
+                    montoDescuento = AplicarDescuento(promo, totalSinDescuento);
+                    break;
+
+                //case 2: // Producto específico
+                //    montoDescuento = CalcularDescuentoProductoEspecifico(pedido, promo);
+                //    break;
+
+                //case 3: // Categoría de producto
+                //    montoDescuento = CalcularDescuentoCategoria(pedido, promo);
+                //    break;
+
+                case 4: // Primer compra
+                    if (EsPrimerCompra(pedido.ClienteId))
+                    {
+                        montoDescuento = AplicarDescuento(promo, totalSinDescuento);
+                    }
+                    break;
+
+                default:
+                    montoDescuento = 0;
+                    break;
+            }
+
+            decimal totalConDescuento = totalSinDescuento - montoDescuento;
+
+            // Evitar valores negativos
+            if (totalConDescuento < 0) totalConDescuento = 0;
+
+            return (montoDescuento, totalConDescuento);
+        }
+        private decimal AplicarDescuento(Promocione promo, decimal baseAmount)
+        {
+            decimal valorDescuento = promo.ValorDescuento ?? 0m; // asignar 0 si es null
+            switch (promo.TipoDescuentoId)
+            {
+                case 1: // Porcentaje
+                    return baseAmount * (valorDescuento / 100m);
+                case 2: // Monto fijo
+                    return valorDescuento;
+                case 3: // Envío gratis - no aplica monto descuento
+                    return 0;
+                case 4: // Regalo - no aplica monto descuento
+                    return 0;
+                default:
+                    return 0;
+            }
+        }
+
+
+        //private decimal CalcularDescuentoProductoEspecifico(Pedido pedido, Promocione promo)
+        //{
+        //    // Aquí necesitas la lógica para productos específicos:
+        //    // Ejemplo: descuento solo si el producto X está en el pedido
+        //    // Supongamos promo tiene una lista o un Id de producto asociado (deberías extender tu modelo)
+
+        //    decimal descuento = 0;
+
+        //    // Ejemplo básico: buscamos un producto con ID promo.ProductoId (deberías agregar esta propiedad)
+        //    var productoDetalle = pedido.DetallesPedidos.FirstOrDefault(d => d.ProductoId == promo.ProductoId);
+        //    if (productoDetalle != null)
+        //    {
+        //        decimal baseAmount = productoDetalle.Cantidad * productoDetalle.PrecioUnitario;
+        //        descuento = AplicarDescuento(promo, baseAmount);
+        //    }
+        //    return descuento;
+        //}
+
+        //private decimal CalcularDescuentoCategoria(Pedido pedido, Promocione promo)
+        //{
+        //    // Similar al anterior, pero filtramos por categoría
+        //    decimal descuento = 0;
+
+        //    // Aquí deberías tener promo.CategoriaId o similar para filtrar
+        //    var detallesCategoria = pedido.DetallesPedidos
+        //        .Where(d => d.Producto.CategoriaProductoId == promo.CategoriaId);
+
+        //    decimal baseAmount = detallesCategoria.Sum(d => d.Cantidad * d.PrecioUnitario);
+        //    descuento = AplicarDescuento(promo, baseAmount);
+
+        //    return descuento;
+        //}
+
+        private bool EsPrimerCompra(int? clienteId)
+        {
+            if (!clienteId.HasValue) return false;
+
+            // Lógica para validar si es la primera compra del cliente
+            return !_context.Pedidos.Any(p => p.ClienteId == clienteId.Value);
+        }
+
+        [HttpPut("{id}/estado")]
+        public async Task<IActionResult> CambiarEstado(int id, [FromBody] Enums.EstadoPedido nuevoEstado)
+        {
+            var pedido = await _context.Pedidos
+                .Include(p => p.DetallesPedidos)
+                .ThenInclude(d => d.Producto)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (pedido == null)
+                return NotFound();
+
+            if (pedido.EstadoId != (int)nuevoEstado)
+            {
+                if (nuevoEstado == Enums.EstadoPedido.EnPreparacion)
+                {
+                    await DescontarStockPorPedido(pedido);
+                }
+                else if (nuevoEstado == Enums.EstadoPedido.Cancelado)
+                {
+                    await RevertirStockPorPedido(pedido);
+                }
+
+                pedido.EstadoId = (int)nuevoEstado;
+                await _context.SaveChangesAsync();
+            }
+
+            return NoContent();
+        }
+        private async Task DescontarStockPorPedido(Pedido pedido)
+        {
+            foreach (var detalle in pedido.DetallesPedidos)
+            {
+                var producto = await _context.Productos
+                    .Include(p => p.InsumosProductos)
+                    .FirstOrDefaultAsync(p => p.Id == detalle.ProductoId);
+
+                if (producto == null) continue;
+
+                // Si tiene insumos: descontar insumos
+                if (producto.InsumosProductos != null && producto.InsumosProductos.Any())
+                {
+                    foreach (var insumoProducto in producto.InsumosProductos)
+                    {
+                        var insumo = await _context.Insumos.FindAsync(insumoProducto.InsumoId);
+                        if (insumo != null)
+                        {
+                            var cantidadTotal = insumoProducto.Cantidad * detalle.Cantidad;
+
+                            if (cantidadTotal == null)
+                                continue; // o loguear error, o lanzar excepción según el caso
+
+                            insumo.CantidadDisponible -= cantidadTotal.Value;
+
+                            if (insumo.CantidadDisponible < 0)
+                                insumo.CantidadDisponible = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    // Si no tiene insumos: descontar stock del producto
+                    producto.Stock -= detalle.Cantidad;
+                    if (producto.Stock < 0)
+                        producto.Stock = 0;
+                }
+            }
+        }
+
+
+        private async Task RevertirStockPorPedido(Pedido pedido)
+        {
+            foreach (var detalle in pedido.DetallesPedidos)
+            {
+                var producto = await _context.Productos
+                    .Include(p => p.InsumosProductos)
+                    .FirstOrDefaultAsync(p => p.Id == detalle.ProductoId);
+
+                if (producto == null) continue;
+
+                if (producto.InsumosProductos != null && producto.InsumosProductos.Any())
+                {
+                    foreach (var insumoProducto in producto.InsumosProductos)
+                    {
+                        var insumo = await _context.Insumos.FindAsync(insumoProducto.InsumoId);
+                        if (insumo != null)
+                        {
+                            var cantidadTotal = insumoProducto.Cantidad * detalle.Cantidad;
+
+                            if (cantidadTotal == null)
+                                return; // O loguear un error, o lanzar una excepción
+
+                            insumo.CantidadDisponible += cantidadTotal.Value;
+                        }
+                    }
+                }
+                else
+                {
+                    producto.Stock += detalle.Cantidad;
+                }
+            }
+        }
+
+
 
     }
-    public enum EstadoPedido
-    {
-        Abierto = 1,             // Pedido creado y se están cargando productos.
-        EnPreparacion = 2,       // Cocina está preparando.
-        ListoParaEntregar = 3,   // Cocina termina, listo para el mozo.
-        Entregado = 4,           // El mozo entrega a la mesa.
-        A_Cobrar = 5,            // El cliente pide la cuenta.
-        Cobrado = 6,             // Cajero cobra el pedido.
-        Cerrado = 7,             // Se liberó la mesa.
-        Cancelado = 8
-    }
+
+
     public class ProductoPedidoDto
     {
         public int productoId { get; set; }
         public int cantidad { get; set; }
     }
-    public class CrearPedidoRequest
-    {
-        public int ClienteId { get; set; }
-        public int TipoPedidoId { get; set; }
-    }
+  
 
+    public class AgregarComboRequest
+    {
+        public int ComboId { get; set; }
+        public int Cantidad { get; set; }
+    }
+    public class CrearPedidoRequestMesa
+    {
+        public int? ClienteId { get; set; }
+        public int? TipoPedidoId { get; set; }
+        public int? MesaId { get; set; }
+    }
 }

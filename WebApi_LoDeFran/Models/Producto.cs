@@ -29,6 +29,10 @@ public partial class Producto
 
     public virtual CategoriasProducto? CategoriaProducto { get; set; }
 
+    public virtual ICollection<CombosItem> CombosItems { get; set; } = new List<CombosItem>();
+
+    public virtual ICollection<DescuentosProducto> DescuentosProductos { get; set; } = new List<DescuentosProducto>();
+
     public virtual ICollection<DetallesPedido> DetallesPedidos { get; set; } = new List<DetallesPedido>();
 
     public virtual EstadosProducto? Estado { get; set; }
@@ -37,7 +41,7 @@ public partial class Producto
 
     public virtual ICollection<InsumosProducto> InsumosProductos { get; set; } = new List<InsumosProducto>();
 
-    public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
+    public virtual ICollection<PedidoComboItem> PedidoComboItems { get; set; } = new List<PedidoComboItem>();
 
-    public virtual ICollection<Promocione> Promocions { get; set; } = new List<Promocione>();
+    public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
 }

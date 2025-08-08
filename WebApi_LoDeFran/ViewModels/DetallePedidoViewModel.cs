@@ -10,6 +10,9 @@ namespace WebApi_LoDeFran.ViewModels
         public int Cantidad { get; set; }
         public decimal PrecioUnitario { get; set; }
         public decimal? Subtotal { get; set; }
+        public string? Comentario { get; set; }
+        public int EstadoCocinaId { get; set; }
+        public string EstadoCocinaNombre { get; set; } = null!;
         public ProductoViewModel Producto { get; set; }
     }
 }

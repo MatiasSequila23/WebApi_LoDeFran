@@ -99,5 +99,22 @@ namespace WebApi_LoDeFran.Controllers
 
             return NoContent();
         }
+        // GET: api/Usuarios/mozos
+        [HttpGet("mozos")]
+        public async Task<ActionResult<IEnumerable<UsuarioViewModel>>> GetMozos()
+        {
+            int rolMozoId = 2;
+
+            var mozos = await _context.Usuarios
+                .Include(u => u.Rols)
+                .Include(u => u.Permisos)
+                .Where(u => u.Rols.Any(r => r.Id == rolMozoId))
+                .ToListAsync();
+
+            var mozosVM = _mapper.Map<List<UsuarioViewModel>>(mozos);
+            return Ok(mozosVM);
+        }
+
+
     }
 }

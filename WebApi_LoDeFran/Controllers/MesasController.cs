@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi_LoDeFran.Models;
 using WebApi_LoDeFran.ViewModels;
+using WebApi_LoDeFran.Utlis.ClassAux;
+using WebApi_LoDeFran.Utlis;
 
 namespace WebApi_LoDeFran.Controllers
 {
@@ -112,7 +114,7 @@ namespace WebApi_LoDeFran.Controllers
         }
         // PUT: api/Mesas/{id}/estado
         [HttpPut("{id}/estado")]
-        public async Task<IActionResult> CambiarEstadoMesa(int id, [FromBody] EstadoMesa nuevoEstado)
+        public async Task<IActionResult> CambiarEstadoMesa(int id, [FromBody] Enums.EstadoMesa nuevoEstado)
         {
             var mesa = await _context.Mesas.FindAsync(id);
             if (mesa == null)
@@ -125,11 +127,5 @@ namespace WebApi_LoDeFran.Controllers
             return NoContent();
         }
     }
-    public enum EstadoMesa
-    {
-        Disponible = 1,            
-        Ocupada = 2,       
-        Reservada = 3,   
-        Fuera_de_servicio = 4
-    }
+    
 }

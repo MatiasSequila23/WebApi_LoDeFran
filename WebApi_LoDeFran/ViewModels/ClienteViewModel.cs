@@ -26,5 +26,9 @@
 
         // Relación con Calle (opcional, para mostrar nombre)
         public string? CalleNomMapa { get; set; } // opcional para mostrar
+
+        public bool EsVip { get; set; }
+
+        public DateOnly? FechaNacimiento { get; set; }
     }
 }

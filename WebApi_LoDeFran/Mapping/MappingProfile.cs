@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using WebApi_LoDeFran.Models;
+using WebApi_LoDeFran.Utlis.Dto;
 using WebApi_LoDeFran.ViewModels;
 namespace WebApi_LoDeFran.Mapping
 {
@@ -17,18 +18,29 @@ namespace WebApi_LoDeFran.Mapping
                 .ForMember(dest => dest.EstadoNombre, opt => opt.MapFrom(src => src.Estado != null ? src.Estado.Nombre : null));
             CreateMap<ProductoViewModel, Producto>();
 
+            CreateMap<PedidoViewModel, Pedido>()
+    .ForMember(dest => dest.Mesa, opt => opt.Ignore())
+    .ForMember(dest => dest.Promocion, opt => opt.Ignore())
+    .ForMember(dest => dest.Cliente, opt => opt.Ignore())
+    .ForMember(dest => dest.TipoPedido, opt => opt.Ignore())
+    .ForMember(dest => dest.PedidoCombos, opt => opt.Ignore())
+    .ForMember(dest => dest.Estado, opt => opt.Ignore())
+    .ForMember(dest => dest.PromocionId, opt =>
+        opt.MapFrom(src => src.PromocionId == 0 ? null : src.PromocionId));
+
             CreateMap<Pedido, PedidoViewModel>()
-               .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Estado))
-               .ForMember(dest => dest.DetallePedido, opt => opt.MapFrom(src => src.DetallesPedidos))
-               .ForMember(dest => dest.Mesa, opt => opt.MapFrom(src => src.Mesa))
-               .ForMember(dest => dest.TipoPedidoNombre, opt => opt.MapFrom(src => src.TipoPedido.Nombre))
-               .ForMember(dest => dest.ClienteNombre, opt => opt.MapFrom(src => src.Cliente != null ? src.Cliente.Nombre + " " + src.Cliente.Apellido : null));
+    .ForMember(dest => dest.Estado, opt => opt.MapFrom(src => src.Estado))
+    .ForMember(dest => dest.DetallePedido, opt => opt.MapFrom(src => src.DetallesPedidos))
+    .ForMember(dest => dest.Mesa, opt => opt.MapFrom(src => src.Mesa))
+    .ForMember(dest => dest.TipoPedidoNombre, opt => opt.MapFrom(src => src.TipoPedido.Nombre))
+    .ForMember(dest => dest.ClienteNombre, opt => opt.MapFrom(src => src.Cliente != null ? src.Cliente.Nombre + " " + src.Cliente.Apellido : null))
+    .ForMember(dest => dest.NombrePromocion, opt => opt.MapFrom(src => src.Promocion != null ? src.Promocion.Nombre : null));
 
 
-            CreateMap<PedidoViewModel, Pedido>();
 
             CreateMap<DetallesPedido, DetallePedidoViewModel>()
-                .ForMember(dest => dest.Producto, opt => opt.MapFrom(src => src.Producto));
+                .ForMember(dest => dest.Producto, opt => opt.MapFrom(src => src.Producto))
+                .ForMember(dest => dest.EstadoCocinaNombre, opt => opt.MapFrom(src => src.EstadoCocina.Nombre)); 
             CreateMap<DetallePedidoViewModel, DetallesPedido>();
 
             CreateMap<Bitacora, BitacoraViewModel>()
@@ -78,12 +90,28 @@ namespace WebApi_LoDeFran.Mapping
 
 
             CreateMap<Factura, FacturaViewModel>()
-                .ForMember(dest => dest.ClienteNombre, opt => opt.MapFrom(src => src.Cliente != null ? src.Cliente.Nombre + " " + src.Cliente.Apellido : null))
-                .ForMember(dest => dest.MetodoPagoNombre, opt => opt.MapFrom(src => src.MetodoPago != null ? src.MetodoPago.Nombre : null));
+     .ForMember(dest => dest.ClienteNombre,
+         opt => opt.MapFrom(src => src.Cliente != null ? src.Cliente.Nombre + " " + src.Cliente.Apellido : null))
+     .ForMember(dest => dest.MetodoPagoNombre,
+         opt => opt.MapFrom(src => src.MetodoPago != null ? src.MetodoPago.Nombre : null))
+     .ForMember(dest => dest.UsuarioNombre,
+         opt => opt.MapFrom(src => src.Usuario != null ? src.Usuario.Nombre : null))
+     .ForMember(dest => dest.CajaDescripcion,
+                 opt => opt.MapFrom(src => src.Caja != null ? $"Caja abierta: {src.Caja.FechaApertura.ToString("dd/MM/yyyy HH:mm")} - Estado: {src.Caja.Estado}" : null))
+     .ForMember(dest => dest.EstadoNombre,
+         opt => opt.MapFrom(src => src.Estado.Nombre));
+
+            CreateMap<FacturaDto, Factura>();
+
+
             CreateMap<FacturaViewModel, Factura>()
                 .ForMember(dest => dest.Cliente, opt => opt.Ignore())
                 .ForMember(dest => dest.MetodoPago, opt => opt.Ignore())
-                .ForMember(dest => dest.Pedido, opt => opt.Ignore());
+                .ForMember(dest => dest.Pedido, opt => opt.Ignore())
+                .ForMember(dest => dest.Usuario, opt => opt.Ignore())
+                .ForMember(dest => dest.Caja, opt => opt.Ignore())
+                .ForMember(dest => dest.Estado, opt => opt.Ignore());
+
 
 
             CreateMap<Mesa, MesaViewModel>()
@@ -99,7 +127,6 @@ namespace WebApi_LoDeFran.Mapping
 
             CreateMap<Permiso, PermisoViewModel>().ReverseMap();
 
-            CreateMap<Promocione, PromocionViewModel>().ReverseMap();
 
             CreateMap<Reserva, ReservaViewModel>()
                 .ForMember(dest => dest.ClienteNombre, opt => opt.MapFrom(src => src.Cliente.Nombre))
@@ -136,7 +163,7 @@ namespace WebApi_LoDeFran.Mapping
 
             CreateMap<EstadosMesa, EstadoMesaViewModel>().ReverseMap();
 
-            CreateMap<EstadosMesa, EstadoMesaViewModel>().ReverseMap();
+            CreateMap<EstadosCocina , EstadoCocinaViewModel>().ReverseMap();
 
             CreateMap<Piso, PisoViewModel>().ReverseMap();
 
@@ -149,6 +176,54 @@ namespace WebApi_LoDeFran.Mapping
             CreateMap<TiposPedido, TipoPedidoViewModel>().ReverseMap();
 
             CreateMap<Calle, CalleViewModel>().ReverseMap();
+
+            CreateMap<Combo, ComboViewModel>()
+                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.CombosItems));
+
+            CreateMap<CombosItem, ComboItemViewModel>()
+                .ForMember(dest => dest.NombreProducto, opt => opt.MapFrom(src => src.Producto.Nombre));
+
+            CreateMap<ComboViewModel, Combo>()
+                .ForMember(dest => dest.CombosItems, opt => opt.MapFrom(src => src.Items));
+
+            CreateMap<ComboItemViewModel, CombosItem>();
+
+            CreateMap<PedidoCombo, PedidoComboViewModel>()
+                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Combo.Nombre))
+                .ForMember(dest => dest.Precio, opt => opt.MapFrom(src => src.Combo.Precio)) // si el precio está en Combo
+                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.PedidoComboItems));
+
+            CreateMap<PedidoComboItem, PedidoComboItemViewModel>()
+                .ForMember(dest => dest.NombreProducto, opt => opt.MapFrom(src => src.Producto.Nombre));
+
+            CreateMap<PedidoComboViewModel, PedidoCombo>()
+                .ForMember(dest => dest.Combo, opt => opt.Ignore())
+                .ForMember(dest => dest.PedidoComboItems, opt => opt.MapFrom(src => src.Items));
+
+            CreateMap<PedidoComboItemViewModel, PedidoComboItem>()
+                .ForMember(dest => dest.Producto, opt => opt.Ignore());
+
+            CreateMap<Promocione, PromocionViewModel>()
+                .ForMember(dest => dest.NombreEstado,
+                           opt => opt.MapFrom(src => src.Estado != null ? src.Estado.Nombre : null))
+                .ForMember(dest => dest.NombreAplicacion,
+                           opt => opt.MapFrom(src => src.Aplicacion != null ? src.Aplicacion.Nombre : null))
+                .ForMember(dest => dest.NombreTipoDescuento,
+                           opt => opt.MapFrom(src => src.TipoDescuento != null ? src.TipoDescuento.Nombre : null))
+                .ForMember(dest => dest.NombreTipoPromocion,
+                           opt => opt.MapFrom(src => src.TipoPromocion != null ? src.TipoPromocion.Nombre : null))
+                .ForMember(dest => dest.PromocionDia, opt => opt.MapFrom(src => src.PromocionDia));
+
+
+
+
+            CreateMap<PromocionViewModel, Promocione>();
+            CreateMap<TipoDescuento, TipoDescuentoViewModel>();
+            CreateMap<TipoPromocion, TipoPromocionViewModel>();
+            CreateMap<Dia, DiaViewModel>();
+            CreateMap<PromocionesAplicacione, PromocionAplicacionViewModel>();
+            CreateMap<PromocionDia, PromocionDiaViewModel>();
+
         }
     }
 }

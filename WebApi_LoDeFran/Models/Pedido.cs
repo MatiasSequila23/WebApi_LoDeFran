@@ -27,6 +27,12 @@ public partial class Pedido
 
     public string? Notas { get; set; }
 
+    public int? PromocionId { get; set; }
+
+    public decimal? MontoDescuento { get; set; }
+
+    public decimal? TotalSinDescuento { get; set; }
+
     public virtual Cliente? Cliente { get; set; }
 
     public virtual ICollection<DetallesPedido> DetallesPedidos { get; set; } = new List<DetallesPedido>();
@@ -36,6 +42,10 @@ public partial class Pedido
     public virtual ICollection<Factura> Facturas { get; set; } = new List<Factura>();
 
     public virtual Mesa? Mesa { get; set; }
+
+    public virtual ICollection<PedidoCombo> PedidoCombos { get; set; } = new List<PedidoCombo>();
+
+    public virtual Promocione? Promocion { get; set; }
 
     public virtual TiposPedido? TipoPedido { get; set; }
 }

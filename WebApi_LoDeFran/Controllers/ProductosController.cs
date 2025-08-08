@@ -24,13 +24,54 @@ public class ProductosController : ControllerBase
     public async Task<ActionResult<IEnumerable<ProductoViewModel>>> GetProductos()
     {
         var productos = await _context.Productos
-            .Include(p => p.CategoriaProducto) // Corregido
+            .Include(p => p.CategoriaProducto)
             .Include(p => p.Estado)
+            .Include(p => p.InsumosProductos) // Agregamos los insumos usados por cada producto
+                .ThenInclude(ip => ip.Insumo) // Incluimos los datos de cada insumo
             .ToListAsync();
 
         var productosVM = _mapper.Map<List<ProductoViewModel>>(productos);
+
+        foreach (var producto in productos)
+        {
+            var productoVM = productosVM.FirstOrDefault(p => p.Id == producto.Id);
+
+            if (producto.InsumosProductos != null && producto.InsumosProductos.Any())
+            {
+                // Calcular stock en base a insumos disponibles
+                decimal? stockCalculado = null;
+
+                foreach (var ip in producto.InsumosProductos)
+                {
+                    if (ip.Insumo == null || ip.Insumo.CantidadDisponible == null || ip.Cantidad == 0)
+                        continue;
+
+
+
+                    decimal disponible = ip.Insumo.CantidadDisponible;
+                    decimal necesarioPorUnidad = (decimal)ip.Cantidad!;
+
+
+                    decimal posible = Math.Floor(disponible / necesarioPorUnidad);
+
+                    if (stockCalculado == null)
+                        stockCalculado = posible;
+                    else
+                        stockCalculado = Math.Min(stockCalculado.Value, posible);
+                }
+
+                productoVM.Stock = (int)(stockCalculado ?? 0);
+            }
+            else
+            {
+                // Usar el stock real si no tiene insumos
+                productoVM.Stock = producto.Stock;
+            }
+        }
+
         return Ok(productosVM);
     }
+
 
     // GET: api/Productos/5 
     [HttpGet("{id}")]

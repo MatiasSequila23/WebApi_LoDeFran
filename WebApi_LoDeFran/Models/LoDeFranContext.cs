@@ -25,7 +25,21 @@ public partial class LoDeFranContext : DbContext
 
     public virtual DbSet<Cliente> Clientes { get; set; }
 
+    public virtual DbSet<Combo> Combos { get; set; }
+
+    public virtual DbSet<CombosItem> CombosItems { get; set; }
+
+    public virtual DbSet<Descuento> Descuentos { get; set; }
+
+    public virtual DbSet<DescuentosProducto> DescuentosProductos { get; set; }
+
     public virtual DbSet<DetallesPedido> DetallesPedidos { get; set; }
+
+    public virtual DbSet<Dia> Dias { get; set; }
+
+    public virtual DbSet<EstadosCocina> EstadosCocinas { get; set; }
+
+    public virtual DbSet<EstadosFactura> EstadosFacturas { get; set; }
 
     public virtual DbSet<EstadosInsumo> EstadosInsumos { get; set; }
 
@@ -34,6 +48,8 @@ public partial class LoDeFranContext : DbContext
     public virtual DbSet<EstadosPedido> EstadosPedidos { get; set; }
 
     public virtual DbSet<EstadosProducto> EstadosProductos { get; set; }
+
+    public virtual DbSet<EstadosPromocione> EstadosPromociones { get; set; }
 
     public virtual DbSet<Factura> Facturas { get; set; }
 
@@ -51,13 +67,21 @@ public partial class LoDeFranContext : DbContext
 
     public virtual DbSet<Pedido> Pedidos { get; set; }
 
+    public virtual DbSet<PedidoCombo> PedidoCombos { get; set; }
+
+    public virtual DbSet<PedidoComboItem> PedidoComboItems { get; set; }
+
     public virtual DbSet<Permiso> Permisos { get; set; }
 
     public virtual DbSet<Piso> Pisos { get; set; }
 
     public virtual DbSet<Producto> Productos { get; set; }
 
+    public virtual DbSet<PromocionDia> PromocionDias { get; set; }
+
     public virtual DbSet<Promocione> Promociones { get; set; }
+
+    public virtual DbSet<PromocionesAplicacione> PromocionesAplicaciones { get; set; }
 
     public virtual DbSet<Proveedore> Proveedores { get; set; }
 
@@ -66,6 +90,10 @@ public partial class LoDeFranContext : DbContext
     public virtual DbSet<Role> Roles { get; set; }
 
     public virtual DbSet<Stock> Stocks { get; set; }
+
+    public virtual DbSet<TipoDescuento> TipoDescuentos { get; set; }
+
+    public virtual DbSet<TipoPromocion> TipoPromocions { get; set; }
 
     public virtual DbSet<TiposMovimiento> TiposMovimientos { get; set; }
 
@@ -250,6 +278,109 @@ public partial class LoDeFranContext : DbContext
                 .HasConstraintName("FK_Clientes_Calles");
         });
 
+        modelBuilder.Entity<Combo>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__combos__3213E83FDFA7C235");
+
+            entity.ToTable("combos");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Descripcion)
+                .HasColumnType("text")
+                .HasColumnName("descripcion");
+            entity.Property(e => e.EstadoId).HasColumnName("estado_id");
+            entity.Property(e => e.FechaCreacion)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("fecha_creacion");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(150)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
+            entity.Property(e => e.Precio)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("precio");
+            entity.Property(e => e.Stock).HasColumnName("stock");
+        });
+
+        modelBuilder.Entity<CombosItem>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__combos_i__3213E83F2DE8FE06");
+
+            entity.ToTable("combos_items");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Cantidad)
+                .HasDefaultValue(1)
+                .HasColumnName("cantidad");
+            entity.Property(e => e.CategoriaGrupo)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("categoria_grupo");
+            entity.Property(e => e.ComboId).HasColumnName("combo_id");
+            entity.Property(e => e.EsOpcional).HasColumnName("es_opcional");
+            entity.Property(e => e.ProductoId).HasColumnName("producto_id");
+
+            entity.HasOne(d => d.Combo).WithMany(p => p.CombosItems)
+                .HasForeignKey(d => d.ComboId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__combos_it__combo__4EDDB18F");
+
+            entity.HasOne(d => d.Producto).WithMany(p => p.CombosItems)
+                .HasForeignKey(d => d.ProductoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__combos_it__produ__4FD1D5C8");
+        });
+
+        modelBuilder.Entity<Descuento>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__descuent__3213E83FF8DBCD3C");
+
+            entity.ToTable("descuentos");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.EsAutomatico).HasColumnName("es_automatico");
+            entity.Property(e => e.EstadoId).HasColumnName("estado_id");
+            entity.Property(e => e.FechaFin)
+                .HasColumnType("datetime")
+                .HasColumnName("fecha_fin");
+            entity.Property(e => e.FechaInicio)
+                .HasColumnType("datetime")
+                .HasColumnName("fecha_inicio");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(150)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
+            entity.Property(e => e.Tipo)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("tipo");
+            entity.Property(e => e.Valor)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("valor");
+        });
+
+        modelBuilder.Entity<DescuentosProducto>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__descuent__3213E83FB4E1853A");
+
+            entity.ToTable("descuentosProductos");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.DescuentoId).HasColumnName("descuento_id");
+            entity.Property(e => e.ProductoId).HasColumnName("producto_id");
+
+            entity.HasOne(d => d.Descuento).WithMany(p => p.DescuentosProductos)
+                .HasForeignKey(d => d.DescuentoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__descuento__descu__558AAF1E");
+
+            entity.HasOne(d => d.Producto).WithMany(p => p.DescuentosProductos)
+                .HasForeignKey(d => d.ProductoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__descuento__produ__567ED357");
+        });
+
         modelBuilder.Entity<DetallesPedido>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Detalles__3213E83F3686E91D");
@@ -258,6 +389,13 @@ public partial class LoDeFranContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Cantidad).HasColumnName("cantidad");
+            entity.Property(e => e.Comentario)
+                .HasMaxLength(400)
+                .IsUnicode(false)
+                .HasColumnName("comentario");
+            entity.Property(e => e.EstadoCocinaId)
+                .HasDefaultValue(1)
+                .HasColumnName("estado_cocina_id");
             entity.Property(e => e.PedidoId).HasColumnName("pedido_id");
             entity.Property(e => e.PrecioUnitario)
                 .HasColumnType("decimal(10, 2)")
@@ -267,6 +405,11 @@ public partial class LoDeFranContext : DbContext
                 .HasColumnType("decimal(18, 0)")
                 .HasColumnName("subtotal");
 
+            entity.HasOne(d => d.EstadoCocina).WithMany(p => p.DetallesPedidos)
+                .HasForeignKey(d => d.EstadoCocinaId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_DetallesPedidos_EstadoCocina");
+
             entity.HasOne(d => d.Pedido).WithMany(p => p.DetallesPedidos)
                 .HasForeignKey(d => d.PedidoId)
                 .HasConstraintName("FK_DetallesPedido_Pedidos");
@@ -275,6 +418,47 @@ public partial class LoDeFranContext : DbContext
                 .HasForeignKey(d => d.ProductoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Detalles_Producto");
+        });
+
+        modelBuilder.Entity<Dia>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__dias__3213E83F00CC5A03");
+
+            entity.ToTable("dias");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Codigo).HasColumnName("codigo");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
+        });
+
+        modelBuilder.Entity<EstadosCocina>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__estados___3213E83FEB4F4733");
+
+            entity.ToTable("estados_cocina");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
+                .HasColumnName("nombre");
+        });
+
+        modelBuilder.Entity<EstadosFactura>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__estados___3213E83F29A7675E");
+
+            entity.ToTable("estados_facturas");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
         });
 
         modelBuilder.Entity<EstadosInsumo>(entity =>
@@ -332,6 +516,19 @@ public partial class LoDeFranContext : DbContext
                 .HasColumnName("nombre");
         });
 
+        modelBuilder.Entity<EstadosPromocione>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__estados___3213E83F3C2C6CEC");
+
+            entity.ToTable("estados_promociones");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
+        });
+
         modelBuilder.Entity<Factura>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Facturas__3213E83FD14D3C68");
@@ -339,24 +536,53 @@ public partial class LoDeFranContext : DbContext
             entity.ToTable("facturas");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CajaId).HasColumnName("caja_id");
             entity.Property(e => e.ClienteId).HasColumnName("cliente_id");
-            entity.Property(e => e.Estado)
+            entity.Property(e => e.CuitCliente)
                 .HasMaxLength(20)
                 .IsUnicode(false)
-                .HasColumnName("estado");
+                .HasColumnName("cuit_cliente");
+            entity.Property(e => e.DescuentoAplicado)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("descuento_aplicado");
+            entity.Property(e => e.EstadoId)
+                .HasDefaultValue(1)
+                .HasColumnName("estado_id");
             entity.Property(e => e.FechaEmision)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_emision");
             entity.Property(e => e.MetodoPagoId).HasColumnName("metodo_pago_id");
+            entity.Property(e => e.NumeroFactura)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("numero_factura");
+            entity.Property(e => e.Observaciones)
+                .IsUnicode(false)
+                .HasColumnName("observaciones");
             entity.Property(e => e.PedidoId).HasColumnName("pedido_id");
+            entity.Property(e => e.TipoFactura)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("tipo_factura");
             entity.Property(e => e.Total)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("total");
+            entity.Property(e => e.UsuarioId).HasColumnName("usuario_id");
+
+            entity.HasOne(d => d.Caja).WithMany(p => p.Facturas)
+                .HasForeignKey(d => d.CajaId)
+                .HasConstraintName("FK_factura_caja");
 
             entity.HasOne(d => d.Cliente).WithMany(p => p.Facturas)
                 .HasForeignKey(d => d.ClienteId)
                 .HasConstraintName("FK_Factura_Cliente");
+
+            entity.HasOne(d => d.Estado).WithMany(p => p.Facturas)
+                .HasForeignKey(d => d.EstadoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_factura_estado");
 
             entity.HasOne(d => d.MetodoPago).WithMany(p => p.Facturas)
                 .HasForeignKey(d => d.MetodoPagoId)
@@ -366,6 +592,11 @@ public partial class LoDeFranContext : DbContext
             entity.HasOne(d => d.Pedido).WithMany(p => p.Facturas)
                 .HasForeignKey(d => d.PedidoId)
                 .HasConstraintName("FK_Facturas_Pedidos");
+
+            entity.HasOne(d => d.Usuario).WithMany(p => p.Facturas)
+                .HasForeignKey(d => d.UsuarioId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_factura_usuario");
         });
 
         modelBuilder.Entity<Insumo>(entity =>
@@ -551,12 +782,19 @@ public partial class LoDeFranContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_pedido");
             entity.Property(e => e.MesaId).HasColumnName("mesa_id");
+            entity.Property(e => e.MontoDescuento)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("monto_descuento");
             entity.Property(e => e.Notas).HasColumnName("notas");
+            entity.Property(e => e.PromocionId).HasColumnName("promocion_id");
             entity.Property(e => e.TipoPedidoId).HasColumnName("tipo_pedido_id");
             entity.Property(e => e.Total)
                 .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("total");
+            entity.Property(e => e.TotalSinDescuento)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("total_sin_descuento");
             entity.Property(e => e.UsuarioId).HasColumnName("usuario_id");
 
             entity.HasOne(d => d.Cliente).WithMany(p => p.Pedidos)
@@ -572,9 +810,59 @@ public partial class LoDeFranContext : DbContext
                 .HasForeignKey(d => d.MesaId)
                 .HasConstraintName("FK_Pedidos_Mesas");
 
+            entity.HasOne(d => d.Promocion).WithMany(p => p.Pedidos)
+                .HasForeignKey(d => d.PromocionId)
+                .HasConstraintName("FK_Pedidos_Promociones");
+
             entity.HasOne(d => d.TipoPedido).WithMany(p => p.Pedidos)
                 .HasForeignKey(d => d.TipoPedidoId)
                 .HasConstraintName("FK_pedidos_tipos_pedido");
+        });
+
+        modelBuilder.Entity<PedidoCombo>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__pedido_c__3213E83F53AF33E1");
+
+            entity.ToTable("pedido_combo");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Cantidad)
+                .HasDefaultValue(1)
+                .HasColumnName("cantidad");
+            entity.Property(e => e.ComboId).HasColumnName("combo_id");
+            entity.Property(e => e.PedidoId).HasColumnName("pedido_id");
+
+            entity.HasOne(d => d.Combo).WithMany(p => p.PedidoCombos)
+                .HasForeignKey(d => d.ComboId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_pedido_combo_combo");
+
+            entity.HasOne(d => d.Pedido).WithMany(p => p.PedidoCombos)
+                .HasForeignKey(d => d.PedidoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_pedido_combo_pedido");
+        });
+
+        modelBuilder.Entity<PedidoComboItem>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__pedido_c__3213E83FAFD02521");
+
+            entity.ToTable("pedido_combo_item");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Cantidad).HasColumnName("cantidad");
+            entity.Property(e => e.PedidoComboId).HasColumnName("pedido_combo_id");
+            entity.Property(e => e.ProductoId).HasColumnName("producto_id");
+
+            entity.HasOne(d => d.PedidoCombo).WithMany(p => p.PedidoComboItems)
+                .HasForeignKey(d => d.PedidoComboId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__pedido_co__pedid__7226EDCC");
+
+            entity.HasOne(d => d.Producto).WithMany(p => p.PedidoComboItems)
+                .HasForeignKey(d => d.ProductoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__pedido_co__produ__731B1205");
         });
 
         modelBuilder.Entity<Permiso>(entity =>
@@ -648,45 +936,93 @@ public partial class LoDeFranContext : DbContext
                 .HasConstraintName("FK_productos_insumo");
         });
 
+        modelBuilder.Entity<PromocionDia>(entity =>
+        {
+            entity.HasKey(e => new { e.PromocionId, e.DiaId }).HasName("PK__promocio__783F4F15A9111B4B");
+
+            entity.ToTable("promocion_dias");
+
+            entity.Property(e => e.PromocionId).HasColumnName("promocion_id");
+            entity.Property(e => e.DiaId).HasColumnName("dia_id");
+            entity.Property(e => e.FechaCreacion)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("fechaCreacion");
+
+            entity.HasOne(d => d.Dia).WithMany(p => p.PromocionDia)
+                .HasForeignKey(d => d.DiaId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__promocion__dia_i__1D114BD1");
+
+            entity.HasOne(d => d.Promocion).WithMany(p => p.PromocionDia)
+                .HasForeignKey(d => d.PromocionId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__promocion__promo__1C1D2798");
+        });
+
         modelBuilder.Entity<Promocione>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Promocio__3213E83FF99A89A1");
+            entity.HasKey(e => e.Id).HasName("PK__promocio__3213E83FC69FFA71");
 
             entity.ToTable("promociones");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.AplicacionId).HasColumnName("aplicacion_id");
             entity.Property(e => e.Descripcion)
                 .HasColumnType("text")
                 .HasColumnName("descripcion");
-            entity.Property(e => e.Descuento)
-                .HasColumnType("decimal(5, 2)")
-                .HasColumnName("descuento");
-            entity.Property(e => e.Estado)
-                .HasDefaultValue(true)
-                .HasColumnName("estado");
-            entity.Property(e => e.FechaFin).HasColumnName("fecha_fin");
-            entity.Property(e => e.FechaInicio).HasColumnName("fecha_inicio");
+            entity.Property(e => e.EstadoId).HasColumnName("estado_id");
+            entity.Property(e => e.FechaFin)
+                .HasColumnType("datetime")
+                .HasColumnName("fecha_fin");
+            entity.Property(e => e.FechaInicio)
+                .HasColumnType("datetime")
+                .HasColumnName("fecha_inicio");
+            entity.Property(e => e.MontoMinimo)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("monto_minimo");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(150)
+                .IsUnicode(false)
+                .HasColumnName("nombre");
+            entity.Property(e => e.TipoDescuentoId)
+                .HasDefaultValue(1)
+                .HasColumnName("tipo_descuento_id");
+            entity.Property(e => e.TipoPromocionId).HasColumnName("tipo_promocion_id");
+            entity.Property(e => e.ValorDescuento)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("valor_descuento");
+
+            entity.HasOne(d => d.Aplicacion).WithMany(p => p.Promociones)
+                .HasForeignKey(d => d.AplicacionId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__promocion__aplic__09FE775D");
+
+            entity.HasOne(d => d.Estado).WithMany(p => p.Promociones)
+                .HasForeignKey(d => d.EstadoId)
+                .HasConstraintName("FK__promocion__estad__090A5324");
+
+            entity.HasOne(d => d.TipoDescuento).WithMany(p => p.Promociones)
+                .HasForeignKey(d => d.TipoDescuentoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Promociones_tipo_descuento");
+
+            entity.HasOne(d => d.TipoPromocion).WithMany(p => p.Promociones)
+                .HasForeignKey(d => d.TipoPromocionId)
+                .HasConstraintName("FK_Promociones_TipoPromocion");
+        });
+
+        modelBuilder.Entity<PromocionesAplicacione>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__promocio__3213E83F8895BC2B");
+
+            entity.ToTable("promociones_aplicaciones");
+
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("nombre");
-
-            entity.HasMany(d => d.Productos).WithMany(p => p.Promocions)
-                .UsingEntity<Dictionary<string, object>>(
-                    "PromocionProducto",
-                    r => r.HasOne<Producto>().WithMany()
-                        .HasForeignKey("ProductoId")
-                        .HasConstraintName("FK__Promocion__produ__75A278F5"),
-                    l => l.HasOne<Promocione>().WithMany()
-                        .HasForeignKey("PromocionId")
-                        .HasConstraintName("FK__Promocion__promo__74AE54BC"),
-                    j =>
-                    {
-                        j.HasKey("PromocionId", "ProductoId").HasName("PK__Promocio__3061FCFC3DC88059");
-                        j.ToTable("promocion_producto");
-                        j.IndexerProperty<int>("PromocionId").HasColumnName("promocion_id");
-                        j.IndexerProperty<int>("ProductoId").HasColumnName("producto_id");
-                    });
         });
 
         modelBuilder.Entity<Proveedore>(entity =>
@@ -795,6 +1131,33 @@ public partial class LoDeFranContext : DbContext
             entity.HasOne(d => d.Producto).WithMany(p => p.Stocks)
                 .HasForeignKey(d => d.ProductoId)
                 .HasConstraintName("FK_Stock_Productos");
+        });
+
+        modelBuilder.Entity<TipoDescuento>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tipo_des__3214EC073D0B020D");
+
+            entity.ToTable("tipo_descuento");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
+                .HasColumnName("nombre");
+        });
+
+        modelBuilder.Entity<TipoPromocion>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tipo_pro__3214EC07130461FF");
+
+            entity.ToTable("tipo_promocion");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Descripcion)
+                .HasMaxLength(300)
+                .HasColumnName("descripcion");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(100)
+                .HasColumnName("nombre");
         });
 
         modelBuilder.Entity<TiposMovimiento>(entity =>

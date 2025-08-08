@@ -21,6 +21,8 @@ public partial class Caja
 
     public decimal? Diferencia { get; set; }
 
+    public virtual ICollection<Factura> Facturas { get; set; } = new List<Factura>();
+
     public virtual ICollection<MovimientoCaja> MovimientoCajas { get; set; } = new List<MovimientoCaja>();
 
     public virtual Usuario Usuario { get; set; } = null!;

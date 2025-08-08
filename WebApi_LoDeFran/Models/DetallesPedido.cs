@@ -17,6 +17,12 @@ public partial class DetallesPedido
 
     public decimal? Subtotal { get; set; }
 
+    public string? Comentario { get; set; }
+
+    public int EstadoCocinaId { get; set; }
+
+    public virtual EstadosCocina EstadoCocina { get; set; } = null!;
+
     public virtual Pedido Pedido { get; set; } = null!;
 
     public virtual Producto Producto { get; set; } = null!;
