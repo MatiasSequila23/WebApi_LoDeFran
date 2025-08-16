@@ -1,6 +1,7 @@
 ﻿
 
 using AutoMapper;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi_LoDeFran.Models;
@@ -87,9 +88,16 @@ namespace WebApi_LoDeFran.Controllers
         [HttpDelete("pedidos/{idPedido}/detalle/{idDetalle}")]
         public async Task<IActionResult> DeleteDetalle(int idPedido, int idDetalle)
         {
+            // Traer el pedido junto con los detalles y combos
             var pedido = await _context.Pedidos
-                .Include(p => p.DetallesPedidos)
-                .FirstOrDefaultAsync(p => p.Id == idPedido);
+              .Include(p => p.DetallesPedidos)
+              .Include(p => p.Promocion)
+              .Include(p => p.PedidoCombos)
+                  .ThenInclude(pc => pc.Combo) // <-- Importante
+              .Include(p => p.PedidoCombos)
+                  .ThenInclude(pc => pc.PedidoComboItems)
+              .Include(p => p.Promocion)
+              .FirstOrDefaultAsync(p => p.Id == idPedido);
 
             if (pedido == null)
                 return NotFound();
@@ -97,19 +105,31 @@ namespace WebApi_LoDeFran.Controllers
             var detalle = pedido.DetallesPedidos.FirstOrDefault(d => d.Id == idDetalle);
             if (detalle == null)
                 return NotFound();
-            (pedido.MontoDescuento, pedido.Total) = CalcularDescuentoYTotal(pedido);
 
+            // Eliminar el detalle primero
             _context.DetallesPedidos.Remove(detalle);
+            await _context.SaveChangesAsync();
+
+            // Recalcular totales luego de la eliminación
+            (pedido.MontoDescuento, pedido.Total) = CalcularDescuentoYTotal(pedido);
+            pedido.TotalSinDescuento = pedido.MontoDescuento + pedido.Total;
+
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
+
         [HttpPost("{id}/agregar-producto")]
         public async Task<IActionResult> AgregarProducto(int id, [FromBody] ProductoPedidoDto dto)
         {
             var pedido = await _context.Pedidos
                 .Include(p => p.DetallesPedidos)
-                .Include(p => p.Promocion) // Si tienes la promoción vinculada
+                .Include(p => p.Promocion)
+                .Include(p => p.PedidoCombos)
+                    .ThenInclude(pc => pc.Combo) // <-- Importante
+                .Include(p => p.PedidoCombos)
+                    .ThenInclude(pc => pc.PedidoComboItems)
+                .Include(p => p.Promocion)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (pedido == null)
@@ -138,11 +158,11 @@ namespace WebApi_LoDeFran.Controllers
             }
 
             // Recalcular total sin descuento
-            pedido.TotalSinDescuento = pedido.DetallesPedidos.Sum(d => d.Cantidad * d.PrecioUnitario);
+           // pedido.TotalSinDescuento = pedido.DetallesPedidos.Sum(d => d.Cantidad * d.PrecioUnitario);
 
             // Aplicar lógica para calcular descuento y total según promoción
             (pedido.MontoDescuento, pedido.Total) = CalcularDescuentoYTotal(pedido);
-
+            pedido.TotalSinDescuento = pedido.MontoDescuento + pedido.Total;
             await _context.SaveChangesAsync();
             return NoContent();
         }
@@ -186,14 +206,17 @@ namespace WebApi_LoDeFran.Controllers
             var pedido = await _context.Pedidos
                 .Include(p => p.DetallesPedidos)
                 .Include(p => p.Promocion)
+                .Include(p => p.PedidoCombos)
+                    .ThenInclude(pc => pc.Combo) // <-- Importante
+                .Include(p => p.PedidoCombos)
+                    .ThenInclude(pc => pc.PedidoComboItems)
+            .Include(p => p.Promocion)
                 .FirstOrDefaultAsync(p => p.Id == detalle.PedidoId);
 
             if (pedido == null) return NotFound();
 
             (pedido.MontoDescuento, pedido.Total) = CalcularDescuentoYTotal(pedido);
-
-            // Total con descuento
-            pedido.Total = (pedido.TotalSinDescuento ?? 0) - (pedido.MontoDescuento ?? 0);
+            pedido.TotalSinDescuento = pedido.MontoDescuento + pedido.Total;
 
             await _context.SaveChangesAsync();
 

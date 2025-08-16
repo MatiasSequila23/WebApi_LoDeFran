@@ -5,6 +5,7 @@ using WebApi_LoDeFran.Models;
 using WebApi_LoDeFran.ViewModels;
 using WebApi_LoDeFran.Utlis.ClassAux;
 using WebApi_LoDeFran.Utlis;
+using DocumentFormat.OpenXml.Drawing.Charts;
 
 namespace WebApi_LoDeFran.Controllers
 {
@@ -220,7 +221,7 @@ namespace WebApi_LoDeFran.Controllers
             return NoContent();
         }
 
-        
+
 
         [HttpPost("{pedidoId}/agregar-combo")]
         public async Task<IActionResult> AgregarComboAlPedido(int pedidoId, [FromBody] AgregarComboRequest request)
@@ -233,6 +234,8 @@ namespace WebApi_LoDeFran.Controllers
 
             var pedido = await _context.Pedidos
                 .Include(p => p.PedidoCombos)
+                    .ThenInclude(pc => pc.PedidoComboItems)
+                .Include(p => p.Promocion)
                 .FirstOrDefaultAsync(p => p.Id == pedidoId);
 
             if (pedido == null)
@@ -249,34 +252,69 @@ namespace WebApi_LoDeFran.Controllers
             if (!comboItems.Any())
                 return BadRequest($"El combo con ID {request.ComboId} no tiene productos asociados.");
 
-            // Crear el PedidoCombo
-            var pedidoCombo = new PedidoCombo
-            {
-                PedidoId = pedidoId,
-                ComboId = request.ComboId,
-                Cantidad = request.Cantidad,
-            };
+            // Verificar si ya existe el combo en el pedido
+            var pedidoComboExistente = pedido.PedidoCombos
+                .FirstOrDefault(pc => pc.ComboId == request.ComboId);
 
-            _context.PedidoCombos.Add(pedidoCombo);
-            await _context.SaveChangesAsync(); // Guardamos para obtener el ID
-
-            foreach (var item in comboItems)
+            if (pedidoComboExistente != null)
             {
-                _context.PedidoComboItems.Add(new PedidoComboItem
+                // Si ya existe, sumar la cantidad
+                pedidoComboExistente.Cantidad += request.Cantidad;
+
+                // Actualizar también los PedidoComboItems
+                foreach (var item in comboItems)
                 {
-                    PedidoComboId = pedidoCombo.Id,
-                    ProductoId = item.ProductoId,
-                    Cantidad = item.Cantidad * request.Cantidad
-                });
+                    var pedidoComboItemExistente = pedidoComboExistente.PedidoComboItems
+                        .FirstOrDefault(pci => pci.ProductoId == item.ProductoId);
+
+                    if (pedidoComboItemExistente != null)
+                    {
+                        pedidoComboItemExistente.Cantidad += item.Cantidad * request.Cantidad;
+                    }
+                    else
+                    {
+                        _context.PedidoComboItems.Add(new PedidoComboItem
+                        {
+                            PedidoComboId = pedidoComboExistente.Id,
+                            ProductoId = item.ProductoId,
+                            Cantidad = item.Cantidad * request.Cantidad
+                        });
+                    }
+                }
+            }
+            else
+            {
+                // Si no existe, crear un nuevo PedidoCombo
+                var nuevoPedidoCombo = new PedidoCombo
+                {
+                    PedidoId = pedidoId,
+                    ComboId = request.ComboId,
+                    Cantidad = request.Cantidad,
+                };
+
+                _context.PedidoCombos.Add(nuevoPedidoCombo);
+                await _context.SaveChangesAsync(); // Guardar para obtener ID
+
+                foreach (var item in comboItems)
+                {
+                    _context.PedidoComboItems.Add(new PedidoComboItem
+                    {
+                        PedidoComboId = nuevoPedidoCombo.Id,
+                        ProductoId = item.ProductoId,
+                        Cantidad = item.Cantidad * request.Cantidad
+                    });
+                }
             }
 
             await _context.SaveChangesAsync();
 
             // Recalcular totales y descuentos
-            // Primero recargamos el pedido con detalles para calcular totales correctamente
             pedido = await _context.Pedidos
                 .Include(p => p.DetallesPedidos)
-                .Include(p => p.PedidoCombos).ThenInclude(pc => pc.PedidoComboItems)
+                .Include(p => p.PedidoCombos)
+                    .ThenInclude(pc => pc.Combo)
+                .Include(p => p.PedidoCombos)
+                    .ThenInclude(pc => pc.PedidoComboItems)
                 .Include(p => p.Promocion)
                 .FirstOrDefaultAsync(p => p.Id == pedidoId);
 
@@ -284,18 +322,60 @@ namespace WebApi_LoDeFran.Controllers
 
             pedido.MontoDescuento = montoDescuento;
             pedido.Total = totalConDescuento;
+            pedido.TotalSinDescuento = pedido.MontoDescuento + pedido.Total;
 
             await _context.SaveChangesAsync();
 
             return Ok("Combo agregado correctamente al pedido.");
         }
+
+
+        [HttpPut("{pedidoId}/combo/{comboId}")]
+        public async Task<IActionResult> ActualizarCombo(int pedidoId, int comboId, [FromBody] ActualizarComboRequest request)
+        {
+            if (pedidoId != request.PedidoId || comboId != request.ComboId)
+                return BadRequest("IDs no coinciden.");
+
+            var combo = await _context.PedidoCombos
+                .FirstOrDefaultAsync(c => c.Id == comboId && c.PedidoId == pedidoId);
+
+            if (combo == null) return NotFound();
+
+            // Actualizar combo
+            combo.Cantidad = request.Cantidad;
+            combo.Comentario = request.Comentario;
+            await _context.SaveChangesAsync();
+
+            // Recalcular totales del pedido
+            var pedido = await _context.Pedidos
+                .Include(p => p.DetallesPedidos)
+                .Include(p => p.PedidoCombos).ThenInclude(pc => pc.Combo)
+                .Include(p => p.PedidoCombos).ThenInclude(pc => pc.PedidoComboItems)
+                .Include(p => p.Promocion)
+                .FirstOrDefaultAsync(p => p.Id == pedidoId);
+
+            if (pedido != null)
+            {
+                var (montoDescuento, totalConDescuento) = CalcularDescuentoYTotal(pedido);
+                pedido.MontoDescuento = montoDescuento;
+                pedido.Total = totalConDescuento;
+                pedido.TotalSinDescuento = pedido.MontoDescuento + pedido.Total;
+                await _context.SaveChangesAsync();
+            }
+
+            return NoContent();
+        }
+
+
+
         [HttpGet("por-mesa/{idMesa}")]
         public async Task<ActionResult<PedidoViewModel>> ObtenerPedidoPorMesa(int idMesa)
         {
             var pedido = await _context.Pedidos
-                //.Include(p => p.Estado)
                 .Include(p => p.DetallesPedidos)
-                .ThenInclude(dp => dp.Producto)
+                    .ThenInclude(dp => dp.Producto)
+                .Include(p => p.Usuario)   // para traer info del mozo
+                .Include(p => p.Cliente)   // para traer info del cliente
                 .FirstOrDefaultAsync(p => p.MesaId == idMesa && p.EstadoId != 7);
 
             if (pedido == null)
@@ -304,6 +384,7 @@ namespace WebApi_LoDeFran.Controllers
             var pedidoVM = _mapper.Map<PedidoViewModel>(pedido);
             return Ok(pedidoVM);
         }
+
         [HttpPut("detalle/{idDetalle}/cantidad")]
         public async Task<IActionResult> ModificarCantidad(int idDetalle, [FromBody] int nuevaCantidad)
         {
@@ -622,7 +703,7 @@ namespace WebApi_LoDeFran.Controllers
             var tipoNombre = tipoPedido.Nombre?.ToLower();
 
             // Validación y asignación de cliente
-            if (tipoNombre.Contains("delivery"))
+            if (dto.TipoPedidoId ==3)
             {
                 // Cliente obligatorio
                 if (dto.ClienteId == null)
@@ -632,7 +713,7 @@ namespace WebApi_LoDeFran.Controllers
                 if (cliente == null)
                     return BadRequest("El cliente no existe.");
             }
-            else if (tipoNombre.Contains("mostrador"))
+            else if (dto.TipoPedidoId == 2)
             {
                 // Cliente opcional
                 if (dto.ClienteId == null || dto.ClienteId == 0)
@@ -662,7 +743,7 @@ namespace WebApi_LoDeFran.Controllers
                         return BadRequest("El cliente no existe.");
                 }
             }
-            else if (tipoNombre.Contains("mesa"))
+            else if (dto.TipoPedidoId == 1)
             {
                 // Cliente opcional
                 if (dto.MesaId == null)

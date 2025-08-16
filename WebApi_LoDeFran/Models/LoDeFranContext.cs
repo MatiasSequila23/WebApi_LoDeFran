@@ -817,6 +817,10 @@ public partial class LoDeFranContext : DbContext
             entity.HasOne(d => d.TipoPedido).WithMany(p => p.Pedidos)
                 .HasForeignKey(d => d.TipoPedidoId)
                 .HasConstraintName("FK_pedidos_tipos_pedido");
+
+            entity.HasOne(d => d.Usuario).WithMany(p => p.Pedidos)
+                .HasForeignKey(d => d.UsuarioId)
+                .HasConstraintName("FK_Pedido_Usuario");
         });
 
         modelBuilder.Entity<PedidoCombo>(entity =>
@@ -830,6 +834,10 @@ public partial class LoDeFranContext : DbContext
                 .HasDefaultValue(1)
                 .HasColumnName("cantidad");
             entity.Property(e => e.ComboId).HasColumnName("combo_id");
+            entity.Property(e => e.Comentario)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("comentario");
             entity.Property(e => e.PedidoId).HasColumnName("pedido_id");
 
             entity.HasOne(d => d.Combo).WithMany(p => p.PedidoCombos)

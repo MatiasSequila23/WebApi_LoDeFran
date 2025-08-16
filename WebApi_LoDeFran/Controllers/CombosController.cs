@@ -209,6 +209,20 @@ namespace WebApi_LoDeFran.Controllers
 
             return Ok(new { combo.Id, combo.EstadoId });
         }
+        [HttpPut("comentario/{id}")]
+        public async Task<IActionResult> ActualizarComentario(int id, [FromBody] string comentario)
+        {
+            var detalle = await _context.PedidoCombos.FindAsync(id);
 
+            if (detalle == null)
+                return NotFound();
+
+            detalle.Comentario = comentario;
+            _context.Entry(detalle).Property(d => d.Comentario).IsModified = true;
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

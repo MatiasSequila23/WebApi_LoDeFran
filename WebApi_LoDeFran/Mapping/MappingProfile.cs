@@ -34,7 +34,9 @@ namespace WebApi_LoDeFran.Mapping
     .ForMember(dest => dest.Mesa, opt => opt.MapFrom(src => src.Mesa))
     .ForMember(dest => dest.TipoPedidoNombre, opt => opt.MapFrom(src => src.TipoPedido.Nombre))
     .ForMember(dest => dest.ClienteNombre, opt => opt.MapFrom(src => src.Cliente != null ? src.Cliente.Nombre + " " + src.Cliente.Apellido : null))
-    .ForMember(dest => dest.NombrePromocion, opt => opt.MapFrom(src => src.Promocion != null ? src.Promocion.Nombre : null));
+    .ForMember(dest => dest.NombrePromocion, opt => opt.MapFrom(src => src.Promocion != null ? src.Promocion.Nombre : null))
+     .ForMember(dest => dest.NombreMozo, opt => opt.MapFrom(src =>
+        src.Usuario != null ? src.Usuario.Nombre : null));
 
 
 

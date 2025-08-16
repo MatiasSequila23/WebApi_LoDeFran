@@ -9,7 +9,7 @@ public partial class Pedido
 
     public int? ClienteId { get; set; }
 
-    public int UsuarioId { get; set; }
+    public int? UsuarioId { get; set; }
 
     public DateTime? FechaPedido { get; set; }
 
@@ -48,4 +48,6 @@ public partial class Pedido
     public virtual Promocione? Promocion { get; set; }
 
     public virtual TiposPedido? TipoPedido { get; set; }
+
+    public virtual Usuario? Usuario { get; set; }
 }
