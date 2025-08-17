@@ -48,6 +48,7 @@ namespace WebApi_LoDeFran.Controllers
                 .Include(p => p.Promocion)
                 .Include(p => p.DetallesPedidos)
                     .ThenInclude(dp => dp.Producto)
+                        .ThenInclude(dpi => dpi.CategoriaProducto)
                 .Include(p => p.DetallesPedidos) // ⬅ Asegura que se incluya EstadoCocina
                     .ThenInclude(dp => dp.EstadoCocina)
                 .Include(p => p.PedidoCombos)
@@ -55,6 +56,9 @@ namespace WebApi_LoDeFran.Controllers
                 .Include(p => p.PedidoCombos)
                     .ThenInclude(pc => pc.PedidoComboItems)
                         .ThenInclude(pci => pci.Producto)
+                .Include(p => p.Usuario)
+                .Include(p => p.Cliente)
+                .Include(p => p.TipoPedido)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (pedido == null)
@@ -372,8 +376,12 @@ namespace WebApi_LoDeFran.Controllers
         public async Task<ActionResult<PedidoViewModel>> ObtenerPedidoPorMesa(int idMesa)
         {
             var pedido = await _context.Pedidos
+                .Include(p => p.Mesa)
+                .Include(p => p.TipoPedido)
                 .Include(p => p.DetallesPedidos)
                     .ThenInclude(dp => dp.Producto)
+                .Include(p => p.PedidoCombos)
+                    .ThenInclude(pc => pc.Combo)
                 .Include(p => p.Usuario)   // para traer info del mozo
                 .Include(p => p.Cliente)   // para traer info del cliente
                 .FirstOrDefaultAsync(p => p.MesaId == idMesa && p.EstadoId != 7);

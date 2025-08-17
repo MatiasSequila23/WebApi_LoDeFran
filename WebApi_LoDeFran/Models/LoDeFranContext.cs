@@ -91,6 +91,8 @@ public partial class LoDeFranContext : DbContext
 
     public virtual DbSet<Stock> Stocks { get; set; }
 
+    public virtual DbSet<SubcategoriasProducto> SubcategoriasProductos { get; set; }
+
     public virtual DbSet<TipoDescuento> TipoDescuentos { get; set; }
 
     public virtual DbSet<TipoPromocion> TipoPromocions { get; set; }
@@ -929,6 +931,7 @@ public partial class LoDeFranContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("precio");
             entity.Property(e => e.Stock).HasColumnName("stock");
+            entity.Property(e => e.SubcategoriaProductoId).HasColumnName("subcategoria_producto_id");
             entity.Property(e => e.TieneInsumos).HasColumnName("tiene_insumos");
 
             entity.HasOne(d => d.CategoriaProducto).WithMany(p => p.Productos)
@@ -942,6 +945,10 @@ public partial class LoDeFranContext : DbContext
             entity.HasOne(d => d.Insumo).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.InsumoId)
                 .HasConstraintName("FK_productos_insumo");
+
+            entity.HasOne(d => d.SubcategoriaProducto).WithMany(p => p.Productos)
+                .HasForeignKey(d => d.SubcategoriaProductoId)
+                .HasConstraintName("FK_Productos_Subcategoria");
         });
 
         modelBuilder.Entity<PromocionDia>(entity =>
@@ -1139,6 +1146,24 @@ public partial class LoDeFranContext : DbContext
             entity.HasOne(d => d.Producto).WithMany(p => p.Stocks)
                 .HasForeignKey(d => d.ProductoId)
                 .HasConstraintName("FK_Stock_Productos");
+        });
+
+        modelBuilder.Entity<SubcategoriasProducto>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__subcateg__3213E83F11E544CB");
+
+            entity.ToTable("subcategorias_productos");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CategoriaId).HasColumnName("categoria_id");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(100)
+                .HasColumnName("nombre");
+
+            entity.HasOne(d => d.Categoria).WithMany(p => p.SubcategoriasProductos)
+                .HasForeignKey(d => d.CategoriaId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__subcatego__categ__2C1E8537");
         });
 
         modelBuilder.Entity<TipoDescuento>(entity =>

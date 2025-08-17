@@ -10,4 +10,6 @@ public partial class CategoriasProducto
     public string Nombre { get; set; } = null!;
 
     public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
+
+    public virtual ICollection<SubcategoriasProducto> SubcategoriasProductos { get; set; } = new List<SubcategoriasProducto>();
 }

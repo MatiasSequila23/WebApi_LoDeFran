@@ -12,6 +12,10 @@
         public int? CategoriaProductoId { get; set; }
         public string? CategoriaProductoNombre { get; set; } // Para mostrar el nombre
 
+        // Subcategoría (nuevo)
+        public int? SubcategoriaProductoId { get; set; }
+        public string? SubcategoriaProductoNombre { get; set; }
+
         public int? EstadoId { get; set; }
         public string? EstadoNombre { get; set; }
         public int? InsumoId { get; set; }

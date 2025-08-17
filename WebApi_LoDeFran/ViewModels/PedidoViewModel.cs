@@ -21,7 +21,13 @@ namespace WebApi_LoDeFran.ViewModels
         public MesaViewModel? Mesa { get; set; }
         public string? NombreMozo { get; set; }
         public string? Notas { get; set; }
+        // Datos del cleinte 
         public string? ClienteNombre { get; set; }
+        public string? Telefono { get; set; }
+        public string? Calle { get; set; }
+        public string? Altura { get; set; }
+        public string? Piso { get; set; }
+        // End
         public List<PedidoComboViewModel> PedidoCombos { get; set; } = new();
 
         // 🔽 NUEVOS CAMPOS

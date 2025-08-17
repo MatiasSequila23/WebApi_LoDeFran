@@ -541,6 +541,26 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WebApi_LoDeFran.Controllers.CategoriasProductosController",
+    "Method": "GetMenu",
+    "RelativePath": "api/CategoriasProductos/menu",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[WebApi_LoDeFran.ViewModels.CategoriaProductoViewModel, WebApi_LoDeFran, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "WebApi_LoDeFran.Controllers.ClientesController",
     "Method": "GetClientes",
     "RelativePath": "api/Clientes",
@@ -2271,6 +2291,32 @@
   },
   {
     "ContainingType": "WebApi_LoDeFran.Controllers.PedidosController",
+    "Method": "ActualizarCombo",
+    "RelativePath": "api/Pedidos/{pedidoId}/combo/{comboId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pedidoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "comboId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "WebApi_LoDeFran.Utlis.ClassAux.ActualizarComboRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.PedidosController",
     "Method": "GetPedidosParaCocina",
     "RelativePath": "api/Pedidos/cocina",
     "HttpMethod": "GET",
@@ -3674,6 +3720,46 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.SubcategoriaProductoController",
+    "Method": "GetSubCategorias",
+    "RelativePath": "api/SubcategoriaProducto",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApi_LoDeFran.ViewModels.SubcategoriaProductoViewModel, WebApi_LoDeFran, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.SubcategoriaProductoController",
+    "Method": "GetMenu",
+    "RelativePath": "api/SubcategoriaProducto/menu",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[WebApi_LoDeFran.ViewModels.CategoriaProductoViewModel, WebApi_LoDeFran, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "WebApi_LoDeFran.Controllers.TipoDescuentoController",

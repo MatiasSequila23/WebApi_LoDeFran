@@ -25,6 +25,7 @@ public class ProductosController : ControllerBase
     {
         var productos = await _context.Productos
             .Include(p => p.CategoriaProducto)
+            .Include(p => p.SubcategoriaProducto)
             .Include(p => p.Estado)
             .Include(p => p.InsumosProductos) // Agregamos los insumos usados por cada producto
                 .ThenInclude(ip => ip.Insumo) // Incluimos los datos de cada insumo
@@ -79,6 +80,7 @@ public class ProductosController : ControllerBase
     {
         var producto = await _context.Productos
             .Include(p => p.CategoriaProducto) // Corregido
+            .Include(p => p.SubcategoriaProducto)
             .Include(p => p.Estado)
             .FirstOrDefaultAsync(p => p.Id == id);
 
@@ -204,6 +206,7 @@ public class ProductosController : ControllerBase
             .Include(p => p.InsumosProductos)
                 .ThenInclude(ip => ip.Insumo)
             .Include(p => p.CategoriaProducto) // opcional, si lo necesitas en el ViewModel
+            .Include(p => p.SubcategoriaProducto)
             .Include(p => p.Estado)            // opcional, si lo necesitas en el ViewModel
             .FirstOrDefaultAsync(p => p.Id == id);
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi_LoDeFran.Models;
@@ -77,6 +78,19 @@ namespace WebApi_LoDeFran.Controllers
             _context.CategoriasProductos.Remove(categoria);
             await _context.SaveChangesAsync();
             return NoContent();
+        }
+
+
+        [HttpGet("menu")]
+        public async Task<ActionResult<List<CategoriaProductoViewModel>>> GetMenu()
+        {
+            var menuVM = await _context.CategoriasProductos
+                .Include(c => c.SubcategoriasProductos)       // EF carga subcategorías
+                    .ThenInclude(sc => sc.Productos)         // EF carga productos
+                .ProjectTo<CategoriaProductoViewModel>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+
+            return Ok(menuVM);
         }
     }
 }
