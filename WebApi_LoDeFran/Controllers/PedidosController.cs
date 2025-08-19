@@ -615,12 +615,15 @@ namespace WebApi_LoDeFran.Controllers
             var tipoNombre = tipoPedido.Nombre?.ToLower();
 
             // DELIVERY
-            if (tipoNombre.Contains("delivery"))
+            if (tipoNombre.Contains("delivery") && dto.ClienteId.HasValue)
             {
-                var cliente = await _context.Clientes.FindAsync(dto.ClienteId);
+                var cliente = await _context.Clientes.FindAsync(dto.ClienteId.Value);
                 if (cliente == null)
                     return BadRequest("El cliente no existe para delivery.");
             }
+
+            // Si ClienteId es null, se crea el pedido sin cliente asignado
+
 
             // MOSTRADOR
             if (tipoNombre.Contains("mostrador"))
@@ -656,12 +659,13 @@ namespace WebApi_LoDeFran.Controllers
             // Crear el pedido
             var pedido = new Pedido
             {
-                ClienteId = dto.ClienteId,
+                ClienteId = dto.ClienteId, // puede ser null
                 TipoPedidoId = dto.TipoPedidoId,
                 FechaPedido = DateTime.Now,
                 EstadoId = (int)Enums.EstadoPedido.Abierto,
-                MesaId = null // Pedido sin mesa
+                MesaId = null
             };
+
 
             _context.Pedidos.Add(pedido);
             await _context.SaveChangesAsync();
@@ -1000,6 +1004,20 @@ namespace WebApi_LoDeFran.Controllers
             }
         }
 
+        [HttpPost("asignar_cliente")]
+        public async Task<IActionResult> AsignarCliente([FromBody] AsignarClienteRequest dto)
+        {
+            var pedido = await _context.Pedidos.FindAsync(dto.PedidoId);
+            if (pedido == null) return NotFound();
+
+            var cliente = await _context.Clientes.FindAsync(dto.ClienteId);
+            if (cliente == null) return BadRequest("Cliente no encontrado");
+
+            pedido.ClienteId = cliente.Id;
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
 
 
     }
@@ -1022,5 +1040,10 @@ namespace WebApi_LoDeFran.Controllers
         public int? ClienteId { get; set; }
         public int? TipoPedidoId { get; set; }
         public int? MesaId { get; set; }
+    }
+    public class AsignarClienteRequest
+    {
+        public int? PedidoId { get; set; }
+        public int? ClienteId { get; set; }
     }
 }
