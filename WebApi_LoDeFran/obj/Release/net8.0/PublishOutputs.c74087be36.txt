@@ -1,6 +1,7 @@
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\obj\Release\net8.0\PubTmp\Out\WebApi_LoDeFran.exe
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\obj\Release\net8.0\PubTmp\Out\appsettings.json
+E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\obj\Release\net8.0\PubTmp\Out\appsettings.Production.json
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\obj\Release\net8.0\PubTmp\Out\WebApi_LoDeFran.dll
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\obj\Release\net8.0\PubTmp\Out\WebApi_LoDeFran.runtimeconfig.json
 E:\Sources\WebApi_LoDeFran\WebApi_LoDeFran\obj\Release\net8.0\PubTmp\Out\WebApi_LoDeFran.pdb

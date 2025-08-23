@@ -13,6 +13,7 @@ namespace WebApi_LoDeFran.ViewModels
         public string? Comentario { get; set; }
         public int EstadoCocinaId { get; set; }
         public string EstadoCocinaNombre { get; set; } = null!;
+        public int CantidadConfirmada { get; set; }
         public ProductoViewModel Producto { get; set; }
     }
 }

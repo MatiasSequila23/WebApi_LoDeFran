@@ -222,7 +222,16 @@ namespace WebApi_LoDeFran.Controllers
 
             return NoContent();
         }
+        [HttpPut("detalle/{idDetalle}/cantidad-confirmada")]
+        public async Task<IActionResult> ModificarCantidadConfirmada(int idDetalle, [FromBody] int nuevaCantidadConfirm)
+        {
+            var detalle = await _context.DetallesPedidos.FindAsync(idDetalle);
+            if (detalle == null) return NotFound();
 
+            detalle.CantidadConfirmada = nuevaCantidadConfirm;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
         private (decimal montoDescuento, decimal totalConDescuento) CalcularDescuentoYTotal(Pedido pedido)
         {
             // Total por detalles del pedido

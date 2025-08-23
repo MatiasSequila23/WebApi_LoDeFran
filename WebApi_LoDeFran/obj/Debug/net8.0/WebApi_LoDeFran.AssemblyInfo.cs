@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebApi_LoDeFran")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e6f7961d35447da24b070c26ec95c97633c288f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7fd35ee71c819426896e2fca6c5024868c1dda72")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebApi_LoDeFran")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebApi_LoDeFran")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

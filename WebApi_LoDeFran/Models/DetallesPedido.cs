@@ -21,6 +21,8 @@ public partial class DetallesPedido
 
     public int EstadoCocinaId { get; set; }
 
+    public int CantidadConfirmada { get; set; }
+
     public virtual EstadosCocina EstadoCocina { get; set; } = null!;
 
     public virtual Pedido Pedido { get; set; } = null!;

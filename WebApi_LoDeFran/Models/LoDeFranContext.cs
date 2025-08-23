@@ -391,6 +391,7 @@ public partial class LoDeFranContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Cantidad).HasColumnName("cantidad");
+            entity.Property(e => e.CantidadConfirmada).HasColumnName("cantidad_confirmada");
             entity.Property(e => e.Comentario)
                 .HasMaxLength(400)
                 .IsUnicode(false)

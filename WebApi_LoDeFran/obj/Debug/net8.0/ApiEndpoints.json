@@ -980,6 +980,27 @@
   },
   {
     "ContainingType": "WebApi_LoDeFran.Controllers.DetallesPedidosController",
+    "Method": "ModificarCantidadConfirmada",
+    "RelativePath": "api/DetallesPedidos/detalle/{idDetalle}/cantidad-confirmada",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idDetalle",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "nuevaCantidadConfirm",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.DetallesPedidosController",
     "Method": "CambiarEstadoCocina",
     "RelativePath": "api/DetallesPedidos/detalle/{idDetalle}/estado-cocina",
     "HttpMethod": "PUT",
@@ -2310,6 +2331,22 @@
       {
         "Name": "request",
         "Type": "WebApi_LoDeFran.Utlis.ClassAux.ActualizarComboRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApi_LoDeFran.Controllers.PedidosController",
+    "Method": "AsignarCliente",
+    "RelativePath": "api/Pedidos/asignar_cliente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "WebApi_LoDeFran.Controllers.AsignarClienteRequest",
         "IsRequired": true
       }
     ],
