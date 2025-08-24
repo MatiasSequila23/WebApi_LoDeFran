@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "E:\\Sources\\WebApi_LoDeFran\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\models\\lodefrancontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,36 +15,8 @@
       "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\pedidoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\pedidoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\controllers\\detallespedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\controllers\\detallespedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\detallepedidoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\detallepedidoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\models\\detallespedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\models\\detallespedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\viewmodels\\productoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\viewmodels\\productoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|e:\\sources\\webapi_lodefran\\webapi_lodefran\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6030687-6C66-4DBC-96DD-5E53AB0AFED1}|WebApi_LoDeFran\\WebApi_LoDeFran.csproj|solutionrelative:webapi_lodefran\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,147 +31,54 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Properties\\launchSettings.json",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Properties\\launchSettings.json",
-              "RelativeToolTip": "WebApi_LoDeFran\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-23T19:31:04.871Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Program.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Program.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Program.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-23T17:50:42.61Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\appsettings.json",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\appsettings.json",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\appsettings.json",
-              "RelativeToolTip": "WebApi_LoDeFran\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-23T17:02:09.474Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\appsettings.Development.json",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\appsettings.Development.json",
               "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\appsettings.Development.json",
               "RelativeToolTip": "WebApi_LoDeFran\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAB/AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-23T17:02:07.766Z"
+              "WhenOpened": "2025-08-24T11:19:14.358Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.Production.json",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\appsettings.Production.json",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\appsettings.Production.json",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\appsettings.Production.json",
-              "RelativeToolTip": "WebApi_LoDeFran\\appsettings.Production.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAACEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-23T17:01:20.098Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DetallesPedidosController.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\DetallesPedidosController.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Controllers\\DetallesPedidosController.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Controllers\\DetallesPedidosController.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Controllers\\DetallesPedidosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOgAAAAMAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Program.cs",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Program.cs",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Program.cs",
+              "RelativeToolTip": "WebApi_LoDeFran\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T17:15:47.553Z"
+              "WhenOpened": "2025-08-24T11:03:28.721Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "DetallePedidoViewModel.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\DetallePedidoViewModel.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\DetallePedidoViewModel.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\DetallePedidoViewModel.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\DetallePedidoViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:14:14.51Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "DetallesPedido.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\DetallesPedido.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\DetallesPedido.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\DetallesPedido.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Models\\DetallesPedido.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:13:32.581Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "LoDeFranContext.cs",
               "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\LoDeFranContext.cs",
               "RelativeDocumentMoniker": "WebApi_LoDeFran\\Models\\LoDeFranContext.cs",
               "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Models\\LoDeFranContext.cs",
               "RelativeToolTip": "WebApi_LoDeFran\\Models\\LoDeFranContext.cs",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAnwGYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGMAAAAAAAAAAAA2wG4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:13:16.885Z"
+              "WhenOpened": "2025-08-24T11:00:21.422Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ProductoViewModel.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\ProductoViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-17T20:34:20.789Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PedidoViewModel.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\PedidoViewModel.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\ViewModels\\PedidoViewModel.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\ViewModels\\PedidoViewModel.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\ViewModels\\PedidoViewModel.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAIA0wBoAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-17T19:43:21.099Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "MappingProfile.cs",
-              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "RelativeDocumentMoniker": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "RelativeToolTip": "WebApi_LoDeFran\\Mapping\\MappingProfile.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwDMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-17T19:17:08.795Z"
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\appsettings.json",
+              "RelativeDocumentMoniker": "WebApi_LoDeFran\\appsettings.json",
+              "ToolTip": "E:\\Sources\\WebApi_LoDeFran\\WebApi_LoDeFran\\appsettings.json",
+              "RelativeToolTip": "WebApi_LoDeFran\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-24T11:00:08.567Z",
+              "EditorCaption": ""
             }
           ]
         }
