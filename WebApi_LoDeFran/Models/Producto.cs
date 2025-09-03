@@ -29,6 +29,8 @@ public partial class Producto
 
     public int? SubcategoriaProductoId { get; set; }
 
+    public bool TieneVariante { get; set; }
+
     public virtual CategoriasProducto? CategoriaProducto { get; set; }
 
     public virtual ICollection<CombosItem> CombosItems { get; set; } = new List<CombosItem>();
@@ -39,11 +41,11 @@ public partial class Producto
 
     public virtual EstadosProducto? Estado { get; set; }
 
-    public virtual Insumo? Insumo { get; set; }
-
     public virtual ICollection<InsumosProducto> InsumosProductos { get; set; } = new List<InsumosProducto>();
 
     public virtual ICollection<PedidoComboItem> PedidoComboItems { get; set; } = new List<PedidoComboItem>();
+
+    public virtual ICollection<ProductosVariante> ProductosVariantes { get; set; } = new List<ProductosVariante>();
 
     public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
 

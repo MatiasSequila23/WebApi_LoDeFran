@@ -29,8 +29,6 @@ public partial class Insumo
 
     public virtual ICollection<InsumosProducto> InsumosProductos { get; set; } = new List<InsumosProducto>();
 
-    public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
-
     public virtual Proveedore? Proveedor { get; set; }
 
     public virtual UnidadMedidum? UnidadMedida { get; set; }

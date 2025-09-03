@@ -77,6 +77,8 @@ public partial class LoDeFranContext : DbContext
 
     public virtual DbSet<Producto> Productos { get; set; }
 
+    public virtual DbSet<ProductosVariante> ProductosVariantes { get; set; }
+
     public virtual DbSet<PromocionDia> PromocionDias { get; set; }
 
     public virtual DbSet<Promocione> Promociones { get; set; }
@@ -106,19 +108,8 @@ public partial class LoDeFranContext : DbContext
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: true)
-                .Build();
-
-            var connectionString = config.GetConnectionString("DefaultConnection");
-            optionsBuilder.UseSqlServer(connectionString);
-        }
-    }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-O064NS2\\SQLEXPRESS;Database=LoDeFran;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -945,22 +936,41 @@ public partial class LoDeFranContext : DbContext
             entity.Property(e => e.Stock).HasColumnName("stock");
             entity.Property(e => e.SubcategoriaProductoId).HasColumnName("subcategoria_producto_id");
             entity.Property(e => e.TieneInsumos).HasColumnName("tiene_insumos");
+            entity.Property(e => e.TieneVariante).HasColumnName("tiene_variante");
 
             entity.HasOne(d => d.CategoriaProducto).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.CategoriaProductoId)
-                .HasConstraintName("FK_Producto_Categoria");
+                .HasConstraintName("FK_Productos_CategoriaProducto");
 
             entity.HasOne(d => d.Estado).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.EstadoId)
                 .HasConstraintName("FK_Productos_EstadoProducto");
 
-            entity.HasOne(d => d.Insumo).WithMany(p => p.Productos)
-                .HasForeignKey(d => d.InsumoId)
-                .HasConstraintName("FK_productos_insumo");
-
             entity.HasOne(d => d.SubcategoriaProducto).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.SubcategoriaProductoId)
-                .HasConstraintName("FK_Productos_Subcategoria");
+                .HasConstraintName("FK_Productos_SubcategoriaProducto");
+        });
+
+        modelBuilder.Entity<ProductosVariante>(entity =>
+        {
+            entity.HasKey(e => e.IdVariante).HasName("PK__producto__EE2623B4A8CDE0D5");
+
+            entity.ToTable("productosVariantes");
+
+            entity.Property(e => e.IdVariante).HasColumnName("idVariante");
+            entity.Property(e => e.IdProducto).HasColumnName("idProducto");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(100)
+                .HasColumnName("nombre");
+            entity.Property(e => e.Precio)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("precio");
+            entity.Property(e => e.Stock).HasColumnName("stock");
+
+            entity.HasOne(d => d.IdProductoNavigation).WithMany(p => p.ProductosVariantes)
+                .HasForeignKey(d => d.IdProducto)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__productos__idPro__52442E1F");
         });
 
         modelBuilder.Entity<PromocionDia>(entity =>

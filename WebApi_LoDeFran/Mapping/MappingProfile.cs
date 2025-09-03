@@ -13,18 +13,26 @@ namespace WebApi_LoDeFran.Mapping
                 .ForMember(dest => dest.Permisos, opt => opt.MapFrom(src => src.Permisos.Select(p => p.Nombre)));
             CreateMap<UsuarioViewModel, Usuario>();
 
+            CreateMap<ProductosVariante, ProductoVarianteViewModel>().ReverseMap();
+
             CreateMap<Producto, ProductoViewModel>()
-                 .ForMember(dest => dest.CategoriaProductoNombre,
-                            opt => opt.MapFrom(src => src.CategoriaProducto != null ? src.CategoriaProducto.Nombre : null))
-                 .ForMember(dest => dest.EstadoNombre,
-                            opt => opt.MapFrom(src => src.Estado != null ? src.Estado.Nombre : null))
-                 .ForMember(dest => dest.SubcategoriaProductoNombre,
-                            opt => opt.MapFrom(src => src.SubcategoriaProducto != null ? src.SubcategoriaProducto.Nombre : null));
+                .ForMember(dest => dest.CategoriaProductoNombre,
+                    opt => opt.MapFrom(src => src.CategoriaProducto != null ? src.CategoriaProducto.Nombre : null))
+                .ForMember(dest => dest.EstadoNombre,
+                    opt => opt.MapFrom(src => src.Estado != null ? src.Estado.Nombre : null))
+                .ForMember(dest => dest.SubcategoriaProductoNombre,
+                    opt => opt.MapFrom(src => src.SubcategoriaProducto != null ? src.SubcategoriaProducto.Nombre : null))
+                .ForMember(dest => dest.Variantes,
+                    opt => opt.MapFrom(src => src.ProductosVariantes))  // 👈 acá mapeamos la colección
+                ;
 
             CreateMap<ProductoViewModel, Producto>()
-                .ForMember(dest => dest.CategoriaProducto, opt => opt.Ignore())
-                .ForMember(dest => dest.Estado, opt => opt.Ignore())
-                .ForMember(dest => dest.SubcategoriaProducto, opt => opt.Ignore());
+    .ForMember(dest => dest.CategoriaProducto, opt => opt.Ignore())
+    .ForMember(dest => dest.Estado, opt => opt.Ignore())
+    .ForMember(dest => dest.SubcategoriaProducto, opt => opt.Ignore())
+    .ForMember(dest => dest.ProductosVariantes,
+        opt => opt.MapFrom(src => src.Variantes));
+
 
 
             CreateMap<PedidoViewModel, Pedido>()
@@ -55,7 +63,7 @@ namespace WebApi_LoDeFran.Mapping
 
             CreateMap<DetallesPedido, DetallePedidoViewModel>()
                 .ForMember(dest => dest.Producto, opt => opt.MapFrom(src => src.Producto))
-                .ForMember(dest => dest.EstadoCocinaNombre, opt => opt.MapFrom(src => src.EstadoCocina.Nombre)); 
+                .ForMember(dest => dest.EstadoCocinaNombre, opt => opt.MapFrom(src => src.EstadoCocina.Nombre));
             CreateMap<DetallePedidoViewModel, DetallesPedido>();
 
             CreateMap<Bitacora, BitacoraViewModel>()
@@ -194,7 +202,7 @@ namespace WebApi_LoDeFran.Mapping
 
             CreateMap<EstadosMesa, EstadoMesaViewModel>().ReverseMap();
 
-            CreateMap<EstadosCocina , EstadoCocinaViewModel>().ReverseMap();
+            CreateMap<EstadosCocina, EstadoCocinaViewModel>().ReverseMap();
 
             CreateMap<Piso, PisoViewModel>().ReverseMap();
 
